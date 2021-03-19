@@ -26,7 +26,7 @@
         android:layout_below="@+id/heading"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:hint="@string/username"/>
+        android:hint="@string/username" />
 
     <EditText
         android:id="@+id/emaillogin"
@@ -74,7 +74,7 @@
         android:layout_below="@+id/loginbtn"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-s        android:text="Have an account , Login here"
+        android:text="Have an account , Login here"
         android:textColor="@color/colorPrimaryDark" />
 
 
