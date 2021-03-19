@@ -6,15 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".Registration">
 
+    <ImageView
+        android:id="@+id/logoimage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@mipmap/logog_round" />
+
 
     <TextView
         android:id="@+id/heading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/logoimage"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:gravity="center_horizontal"
-        android:text="Registration"
+        android:text="@string/login"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
         android:textSize="30dp" />
@@ -35,7 +44,7 @@
         android:layout_below="@+id/usenname"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:hint="Email/phone number" />
+        android:hint="@string/login_email_hint" />
 
     <EditText
         android:id="@+id/passlogin"
@@ -54,7 +63,7 @@
         android:layout_below="@+id/passlogin"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:hint="Enter your password"
+        android:hint="Confirm password"
         android:inputType="textPassword" />
 
     <Button

@@ -6,8 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/logoimage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@mipmap/logog_round" />
+
+
+
 
     <TextView
+        android:layout_below="@+id/logoimage"
         android:id="@+id/heading"
         android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
@@ -15,7 +26,7 @@
         android:textSize="30dp"
         android:text="@string/login"
         android:textAlignment="center"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:textColor="@color/colorAccent"
         android:gravity="center_horizontal" />
 
