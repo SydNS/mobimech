@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MobiMech</string>
+    <string name="register">REGISTER</string>
+    <string name="login_email_hint">Email</string>
 </resources>
