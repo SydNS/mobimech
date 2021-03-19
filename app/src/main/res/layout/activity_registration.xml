@@ -4,7 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#99000000"
     tools:context=".Registration">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.6"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg2" />
 
     <ImageView
         android:id="@+id/logoimage"
@@ -28,43 +36,82 @@
         android:textColor="@color/colorAccent"
         android:textSize="30dp" />
 
-    <EditText
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/usenname"
+        style="@style/LoginTextInputLayoutStyle"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/heading"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:hint="@string/username" />
+        app:boxStrokeColor="#fff"
+        app:boxStrokeWidth="2dp">
 
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/username"
+            android:textColorHint="@color/whiteTextColor" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emaillogin"
+        style="@style/LoginTextInputLayoutStyle"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/usenname"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:hint="@string/login_email_hint" />
+        app:boxStrokeWidth="2dp">
 
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/login_email_hint"
+            android:textColorHint="@color/whiteTextColor" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passlogin"
+        style="@style/LoginTextInputLayoutStyle"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/emaillogin"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:hint="Enter your password"
-        android:inputType="textPassword" />
+        app:boxStrokeWidth="2dp">
 
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_your_password"
+            android:inputType="textPassword"
+            android:textColorHint="@color/whiteTextColor" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passlogin2"
+        style="@style/LoginTextInputLayoutStyle"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/passlogin"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:hint="Confirm password"
-        android:inputType="textPassword" />
+        app:boxStrokeWidth="2dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/confirm_password"
+            android:inputType="textPassword"
+            android:textColorHint="@color/whiteTextColor" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
     <Button
         android:id="@+id/loginbtn"
@@ -78,7 +125,8 @@
 
     <TextView
         android:id="@+id/loginlink"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
+
         android:layout_height="wrap_content"
         android:layout_below="@+id/loginbtn"
         android:layout_centerHorizontal="true"
