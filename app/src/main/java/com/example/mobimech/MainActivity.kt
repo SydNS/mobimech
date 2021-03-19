@@ -2,15 +2,22 @@ package com.example.mobimech
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
+import com.example.mobimech.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var activityMainBinding:ActivityMainBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        activityMainBinding= ActivityMainBinding.inflate(layoutInflater)
+        val mainactivityview:View=activityMainBinding.root
+        setContentView(mainactivityview)
 
-
-
-
+        activityMainBinding.loginbtn.setOnClickListener { Toast.makeText(this,"Dean Got it",Toast.LENGTH_LONG).show() }
 
     }
 }
