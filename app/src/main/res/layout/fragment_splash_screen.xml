@@ -3,35 +3,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#99000000"
     android:theme="@style/ThemeOverlay.MobiMech.FullscreenContainer"
-    tools:context=".SplashScreen"
-    android:background="#99000000">
+   >
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg"
-        android:alpha=".9"/>
+        android:alpha=".9"
+        android:background="@drawable/bg" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ImageView
+            android:id="@+id/splashlogo"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:id="@+id/splashlogo"
-            android:src="@mipmap/logog_round"
-            android:layout_centerInParent="true"/>
+            android:layout_centerInParent="true"
+            android:src="@mipmap/logog_round" />
 
 
         <TextView
-            android:text="@string/slogan"
-            android:textColor="@color/whiteTextColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
             android:layout_below="@id/splashlogo"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:text="@string/slogan"
+            android:textColor="@color/whiteTextColor" />
     </RelativeLayout>
 
 </FrameLayout>
