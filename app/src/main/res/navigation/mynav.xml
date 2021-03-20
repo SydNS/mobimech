@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mynav"
-    app:startDestination="@id/loginFrag">
+    app:startDestination="@id/splashScreen">
     <fragment
         android:id="@+id/loginFrag"
         android:name="com.example.mobimech.AuthDestinationFrags.LoginFrag"
