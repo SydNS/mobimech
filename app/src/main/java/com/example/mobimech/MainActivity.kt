@@ -1,5 +1,6 @@
 package com.example.mobimech
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -18,6 +19,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(mainactivityview)
 
         activityMainBinding.loginbtn.setOnClickListener { Toast.makeText(this,"Dean Got it",Toast.LENGTH_LONG).show() }
+
+        activityMainBinding.registerlink.setOnClickListener {
+            startActivity(Intent(this,Registration::class.java))
+        }
 
     }
 }
