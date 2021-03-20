@@ -42,4 +42,25 @@
             android:id="@+id/action_resetPassword_to_loginFrag"
             app:destination="@id/loginFrag" />
     </fragment>
+    <fragment
+        android:id="@+id/walkthrough"
+        android:name="com.example.mobimech.Walkthrough"
+        android:label="fragment_walkthrough"
+        tools:layout="@layout/fragment_walkthrough" >
+        <action
+            android:id="@+id/action_walkthrough_to_loginFrag"
+            app:destination="@id/loginFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashScreen"
+        android:name="com.example.mobimech.SplashScreen"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreen_to_walkthrough"
+            app:destination="@id/walkthrough" />
+        <action
+            android:id="@+id/action_splashScreen_to_loginFrag"
+            app:destination="@id/loginFrag" />
+    </fragment>
 </navigation>
