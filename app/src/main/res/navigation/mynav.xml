@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mynav"
+    app:startDestination="@id/loginFrag">
+    <fragment
+        android:id="@+id/loginFrag"
+        android:name="com.example.mobimech.LoginFrag"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFrag_to_homeFrag"
+            app:destination="@id/homeFrag" />
+        <action
+            android:id="@+id/action_loginFrag_to_registrationFrag"
+            app:destination="@id/registrationFrag" />
+        <action
+            android:id="@+id/action_loginFrag_to_resetPassword"
+            app:destination="@id/resetPassword" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFrag"
+        android:name="com.example.mobimech.HomeFrag"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/registrationFrag"
+        android:name="com.example.mobimech.RegistrationFrag"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration" >
+        <action
+            android:id="@+id/action_registrationFrag_to_loginFrag"
+            app:destination="@id/loginFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/resetPassword"
+        android:name="com.example.mobimech.ResetPassword"
+        android:label="fragment_reset_password"
+        tools:layout="@layout/fragment_reset_password" >
+        <action
+            android:id="@+id/action_resetPassword_to_loginFrag"
+            app:destination="@id/loginFrag" />
+    </fragment>
+</navigation>
