@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
 
         activityMainBinding.registerlink.setOnClickListener {
             startActivity(Intent(this,Registration::class.java))
+            finish()
+
         }
 
     }

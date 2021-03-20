@@ -18,6 +18,8 @@ class Registration : AppCompatActivity() {
         setContentView(registrationview)
         activityRegistrationBinding.loginlink.setOnClickListener {
             startActivity(Intent(this,MainActivity::class.java))
+            finish()
+
         }
 
 
