@@ -6,7 +6,7 @@
     app:startDestination="@id/loginFrag">
     <fragment
         android:id="@+id/loginFrag"
-        android:name="com.example.mobimech.LoginFrag"
+        android:name="com.example.mobimech.AuthDestinationFrags.LoginFrag"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -21,12 +21,12 @@
     </fragment>
     <fragment
         android:id="@+id/homeFrag"
-        android:name="com.example.mobimech.HomeFrag"
+        android:name="com.example.mobimech.AuthDestinationFrags.HomeFrag"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/registrationFrag"
-        android:name="com.example.mobimech.RegistrationFrag"
+        android:name="com.example.mobimech.AuthDestinationFrags.RegistrationFrag"
         android:label="fragment_registration"
         tools:layout="@layout/fragment_registration" >
         <action
@@ -35,7 +35,7 @@
     </fragment>
     <fragment
         android:id="@+id/resetPassword"
-        android:name="com.example.mobimech.ResetPassword"
+        android:name="com.example.mobimech.AuthDestinationFrags.ResetPassword"
         android:label="fragment_reset_password"
         tools:layout="@layout/fragment_reset_password" >
         <action
