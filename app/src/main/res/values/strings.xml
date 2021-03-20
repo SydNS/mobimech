@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">MobiMech</string>
-    <string name="login">Login</string>
     <string name="register">REGISTER</string>
     <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Password</string>
@@ -11,4 +10,9 @@
     <string name="enter_your_password">Enter your password</string>
     <string name="confirm_password">Confirm password</string>
     <string name="enter_your_email_phone_number">Enter your email/phone number</string>
+    <string name="login">Login</string>
+    <string name="have_no_account_register_here">Have no account , Register here</string>
+    <string name="this_is_the_background_image">this is the background image</string>
+    <string name="this_is_the_applogo">this is the applogo</string>
+    <string name="have_an_account_login_here">Have an account , Login here</string>
 </resources>
