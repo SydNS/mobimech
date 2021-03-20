@@ -41,7 +41,6 @@ class LoginFrag : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         loginBinding = FragmentLoginBinding.inflate(inflater, container, false)
-
         return loginBinding.root
     }
 
