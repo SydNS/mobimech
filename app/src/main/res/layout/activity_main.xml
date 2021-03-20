@@ -15,8 +15,6 @@
         android:src="@drawable/bg2"
         android:contentDescription="@string/this_is_the_background_image" />
 
-
-
     <ImageView
         android:contentDescription="@string/this_is_the_applogo"
         android:id="@+id/logoimage"
