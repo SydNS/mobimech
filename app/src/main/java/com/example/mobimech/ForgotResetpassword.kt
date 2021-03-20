@@ -11,6 +11,7 @@ class ForgotResetpassword : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        activityForgotResetpasswordBinding= ActivityForgotResetpasswordBinding.inflate(layoutInflater)
         val forgotResetpasswordBindingview=activityForgotResetpasswordBinding.root
         setContentView(forgotResetpasswordBindingview)
 
