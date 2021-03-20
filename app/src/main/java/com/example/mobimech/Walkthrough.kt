@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.mobimech.databinding.FragmentWalkthroughBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +22,8 @@ class Walkthrough : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    lateinit var walkthroughBinding: FragmentWalkthroughBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -34,7 +37,15 @@ class Walkthrough : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_walkthrough, container, false)
+        walkthroughBinding= FragmentWalkthroughBinding.inflate(inflater,container,false)
+        val view:View=walkthroughBinding.root
+        return view
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
     companion object {
