@@ -1,4 +1,4 @@
-package com.example.mobimech
+package com.example.mobimech.AuthDestinationFrags
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
