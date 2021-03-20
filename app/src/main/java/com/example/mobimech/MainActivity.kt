@@ -1,8 +1,11 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.mobimech
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.Toast
 import com.example.mobimech.databinding.ActivityMainBinding
@@ -21,4 +24,5 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
 }
