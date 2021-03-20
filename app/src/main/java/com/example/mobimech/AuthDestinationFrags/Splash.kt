@@ -1,12 +1,18 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.mobimech.AuthDestinationFrags
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
+import com.example.mobimech.MainActivity
 import com.example.mobimech.R
 import com.example.mobimech.databinding.FragmentSplashBinding
 
@@ -50,10 +56,40 @@ class Splash : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Navigation.findNavController(view).navigate(R.id.action_splash_to_loginFrag)
-        splashBinding.splashlogo.startAnimation(AnimationUtils.loadAnimation(activity,R.anim.splashlogo))
+
+//        Navigation.findNavController(view).navigate(
+//            R.id.action_splash_to_loginFrag
+//            ,
+//            null,
+//            NavOptions.Builder()
+//                .setPopUpTo(
+//                    R.id.splash,
+//                    true
+//                ).build()
+//        )
+//        loadSplashScreen(view)
 
     }
+
+    private fun loadSplashScreen(view: View) {
+        Handler().postDelayed({
+            // You can declare your desire activity here to open after finishing splash screen. Like MainActivity
+
+            Navigation.findNavController(view).navigate(
+                R.id.action_splash_to_loginFrag,
+                null,
+                NavOptions.Builder()
+                    .setPopUpTo(
+                        R.id.splash,
+                        true
+                    ).build()
+            )
+
+
+        }, 2000)
+
+    }
+
 
     companion object {
         /**
