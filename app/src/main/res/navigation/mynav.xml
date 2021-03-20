@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mynav"
-    app:startDestination="@id/splash">
+    app:startDestination="@id/loginFrag">
     <fragment
         android:id="@+id/loginFrag"
         android:name="com.example.mobimech.AuthDestinationFrags.LoginFrag"
@@ -51,7 +51,7 @@
             android:id="@+id/action_walkthrough_to_loginFrag"
             app:destination="@id/loginFrag" />
     </fragment>
-    <fragment
+    splashBinding<fragment
         android:id="@+id/splash"
         android:name="com.example.mobimech.AuthDestinationFrags.Splash"
         android:label="fragment_splash"
