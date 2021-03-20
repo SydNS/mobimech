@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.Navigation
 import com.example.mobimech.R
+import com.example.mobimech.databinding.FragmentLoginBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +25,8 @@ class LoginFrag : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    lateinit var loginBinding: FragmentLoginBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,7 +40,45 @@ class LoginFrag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        loginBinding = FragmentLoginBinding.inflate(inflater, container, false)
+
+        return loginBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        loginBinding.loginbtn.setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.action_loginFrag_to_homeFrag)
+
+
+            Toast.makeText(
+                activity,
+                "Welcome home",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+
+        loginBinding.registerlink.setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.action_loginFrag_to_registrationFrag)
+            Toast.makeText(
+                activity,
+                "Register",
+                Toast.LENGTH_LONG
+            ).show()
+
+
+        }
+        loginBinding.resetpasswordlink.setOnClickListener {
+            Toast.makeText(
+                activity,
+                "Dean Got it",
+                Toast.LENGTH_LONG
+            ).show()
+            Navigation.findNavController(view).navigate(R.id.action_loginFrag_to_resetPassword)
+
+        }
+
+
     }
 
     companion object {
