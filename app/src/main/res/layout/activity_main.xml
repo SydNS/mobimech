@@ -83,7 +83,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="@string/login"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="@color/whiteTextColor" />
 
 
     <RelativeLayout
@@ -101,7 +101,7 @@
             android:layout_margin="10dp"
             android:layout_marginLeft="80dp"
             android:text="@string/have_no_account_register_here"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/whiteTextColor"
             android:layout_alignParentLeft="true"
             android:layout_marginStart="80dp" />
 
@@ -113,7 +113,7 @@
             android:layout_margin="10dp"
             android:layout_marginLeft="60sp"
             android:text="@string/forgotpassword"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/whiteTextColor"
             android:layout_alignParentRight="true"
             android:layout_marginStart="60dp" />
 
