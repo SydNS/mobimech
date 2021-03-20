@@ -15,4 +15,6 @@
     <string name="this_is_the_background_image">this is the background image</string>
     <string name="this_is_the_applogo">this is the applogo</string>
     <string name="have_an_account_login_here">Have an account , Login here</string>
+    <string name="forgotpassword">Forgot password</string>
+    <string name="resetpass">Reset Password</string>
 </resources>
