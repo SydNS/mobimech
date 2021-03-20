@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:alpha="0.6"
         android:scaleType="centerCrop"
-        android:src="@drawable/bg2"
+        android:src="@drawable/bg3"
         android:contentDescription="@string/this_is_the_background_image" />
 
     <ImageView
