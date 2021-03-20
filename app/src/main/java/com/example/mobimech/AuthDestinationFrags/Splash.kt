@@ -9,7 +9,6 @@ import android.view.animation.AnimationUtils
 import androidx.navigation.Navigation
 import com.example.mobimech.R
 import com.example.mobimech.databinding.FragmentSplashBinding
-import com.example.mobimech.databinding.FragmentSplashScreenBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

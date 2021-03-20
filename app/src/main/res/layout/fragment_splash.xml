@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#99000000"
     android:theme="@style/ThemeOverlay.MobiMech.FullscreenContainer"
-    tools:context="">
+    tools:context=".AuthDestinationFrags.Splash">
 
     <ImageView
         android:layout_width="match_parent"
