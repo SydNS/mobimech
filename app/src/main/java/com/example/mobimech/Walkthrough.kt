@@ -5,7 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
+import com.example.mobimech.adapters.WalkthroughRecyclerviewdapter
 import com.example.mobimech.databinding.FragmentWalkthroughBinding
+import com.example.mobimech.models.User
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +29,8 @@ class Walkthrough : Fragment() {
     private var param2: String? = null
 
     lateinit var walkthroughBinding: FragmentWalkthroughBinding
+    lateinit var walkthroughRecyclerviewdapter: WalkthroughRecyclerviewdapter
+    lateinit var walkthruVP: ViewPager2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +38,7 @@ class Walkthrough : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
 
     override fun onCreateView(
@@ -37,14 +46,33 @@ class Walkthrough : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        walkthroughBinding= FragmentWalkthroughBinding.inflate(inflater,container,false)
-        val view:View=walkthroughBinding.root
+        walkthroughBinding = FragmentWalkthroughBinding.inflate(inflater, container, false)
+        val view: View = walkthroughBinding.root
+        //getting recyclerview from xml
+        walkthruVP = walkthroughBinding.walkthroughviewpager as ViewPager2
+
+        //crating an arraylist to store users using the data class user
+        val users = ArrayList<User>()
+
+        //adding some dummy data to the list
+        users.add(User("Belal Khan",R.drawable.bg ,"Ranchi Jharkhand"))
+        users.add(User("Ramiz Khan", R.drawable.bg,"Ranchi Jharkhand"))
+
+
+        //creating our adapter
+        walkthroughRecyclerviewdapter = WalkthroughRecyclerviewdapter(users)
+
+        //now adding the adapter to recyclerview
+        walkthruVP.adapter = walkthroughRecyclerviewdapter
+
+
         return view
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        walkthruVP.adapter = walkthroughRecyclerviewdapter
 
     }
 
