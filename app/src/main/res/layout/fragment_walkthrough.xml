@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Walkthrough"
-    android:background="@color/whiteTextColor">
+    android:background="@color/whiteTextColor"
+    tools:context=".Walkthrough">
 
 
     <RelativeLayout
@@ -13,22 +13,23 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
         android:background="#fff">
+
         <ImageView
             android:id="@+id/indicator1"
-            android:layout_margin="20dp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/bg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/this_a_walkhthru_image" />
+            android:layout_centerInParent="true"
+            android:layout_margin="20dp"
+            android:contentDescription="@string/this_a_walkhthru_image"
+            android:src="@drawable/bg" />
     </RelativeLayout>
-    <androidx.viewpager2.widget.ViewPager2
-        android:layout_centerInParent="true"
-        android:layout_width="300dp"
-        android:layout_margin="-5dp"
-        android:layout_height="500dp"
-        android:id="@+id/walkthroughviewpager"/>
 
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/walkthroughviewpager"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:layout_centerInParent="true"
+        android:layout_marginHorizontal="-5dp" />
 
 
 </RelativeLayout>
