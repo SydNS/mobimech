@@ -47,14 +47,14 @@
     </fragment>
     <fragment
         android:id="@+id/walkthrough"
-        android:name="com.example.mobimech.Walkthrough"
+        android:name="com.example.mobimech.AuthDestinationFrags.Walkthrough"
         android:label="fragment_walkthrough"
         tools:layout="@layout/fragment_walkthrough" >
         <action
             android:id="@+id/action_walkthrough_to_loginFrag"
             app:destination="@id/loginFrag" />
     </fragment>
-    splashBinding<fragment
+    <fragment
         android:id="@+id/splash"
         android:name="com.example.mobimech.AuthDestinationFrags.Splash"
         android:label="fragment_splash"
