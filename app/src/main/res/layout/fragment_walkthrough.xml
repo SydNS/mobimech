@@ -6,11 +6,6 @@
     tools:context=".Walkthrough"
     android:background="@color/whiteTextColor">
 
-    <!-- TODO: Update blank fragment layout -->
-    <androidx.viewpager2.widget.ViewPager2
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/walkthroughviewpager"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,7 +20,15 @@
             android:src="@drawable/bg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:contentDescription="@string/this_a_walkhthru_image" />
     </RelativeLayout>
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_centerInParent="true"
+        android:layout_width="300dp"
+        android:layout_margin="-5dp"
+        android:layout_height="500dp"
+        android:id="@+id/walkthroughviewpager"/>
+
+
 
 </RelativeLayout>
