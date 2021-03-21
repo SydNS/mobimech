@@ -83,7 +83,7 @@ class Walkthrough : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         walkthruVP.adapter = walkthroughRecyclerviewdapter
-        var ci: Int = walkthruVP.currentItem
+//        var ci: Int = walkthruVP.currentItem
 //        walkthruprevious.visibility = View.GONE
 
 
@@ -99,10 +99,10 @@ class Walkthrough : Fragment() {
 
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                val d: Int = users.size - 1
+//                val d: Int = users.size - 1
                 when {
                     position == 2 -> {
-                        walkthruprevious.visibility = View.GONE
+                        walkthruprevious.visibility = View.VISIBLE
                         walkthrunext.visibility = View.GONE
                         walkthrsignin.visibility = View.VISIBLE
                     }
@@ -125,12 +125,12 @@ class Walkthrough : Fragment() {
         })
 
         walkthruprevious.setOnClickListener {
-            var ci: Int = walkthruVP.currentItem
+            val ci = walkthruVP.currentItem
 
             walkthruVP.setCurrentItem(ci - 1, true)
         }
         walkthrunext.setOnClickListener {
-            var ci: Int = walkthruVP.currentItem
+            val ci = walkthruVP.currentItem
 
             walkthruVP.setCurrentItem(ci + 1, true)
         }
