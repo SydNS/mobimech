@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import com.example.mobimech.R
 import com.example.mobimech.databinding.FragmentLoginBinding
@@ -47,8 +48,16 @@ class LoginFrag : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loginBinding.loginbtn.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_loginFrag_to_homeFrag)
-
+//            Navigation.findNavController(view).navigate(R.id.action_loginFrag_to_homeFrag)
+            Navigation.findNavController(view).navigate(
+                R.id.action_loginFrag_to_walkthrough,
+                null,
+                NavOptions.Builder()
+                    .setPopUpTo(
+                        R.id.splash,
+                        true
+                    ).build()
+            )
 
             Toast.makeText(
                 activity,
