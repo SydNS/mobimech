@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_loginFrag_to_resetPassword"
             app:destination="@id/resetPassword" />
+        <action
+            android:id="@+id/action_loginFrag_to_walkthrough"
+            app:destination="@id/walkthrough" />
     </fragment>
     <fragment
         android:id="@+id/homeFrag"
