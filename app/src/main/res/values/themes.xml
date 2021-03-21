@@ -2,9 +2,13 @@
     <!-- Base application theme. -->
     <style name="Theme.MobiMech" parent="Theme.MaterialComponents.NoActionBar">
         <!-- -->
+        <item name="android:fontFamily">@font/europe</item>
+
     </style>
     <style name="activityauth" parent="Theme.MobiMech">
         <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:fontFamily">@font/europe</item>
+
     </style>
 
 
