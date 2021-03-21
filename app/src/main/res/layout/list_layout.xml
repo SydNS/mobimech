@@ -19,7 +19,7 @@
             android:id="@+id/bground"
             android:orientation="vertical"
             android:layout_width="300dp"
-            android:layout_height="400dp"
+            android:layout_height="450dp"
             android:background="@drawable/bg">
 <!--            <ImageView-->
 <!--                android:alpha=".7"-->
