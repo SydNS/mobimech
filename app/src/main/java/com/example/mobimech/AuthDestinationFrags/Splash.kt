@@ -76,7 +76,7 @@ class Splash : Fragment() {
             // You can declare your desire activity here to open after finishing splash screen. Like MainActivity
 
             Navigation.findNavController(view).navigate(
-                R.id.action_splash_to_loginFrag,
+                R.id.action_splash_to_walkthrough,
                 null,
                 NavOptions.Builder()
                     .setPopUpTo(
