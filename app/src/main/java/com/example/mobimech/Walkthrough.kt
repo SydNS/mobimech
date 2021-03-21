@@ -52,16 +52,15 @@ class Walkthrough : Fragment() {
         val users = ArrayList<DisplayItem>()
 
         //adding some dummy data to the list
-        users.add(DisplayItem("We are Mobile Mech",R.drawable.bg ,"We bring you the garage "))
-        users.add(DisplayItem("Wherever You are", R.drawable.bg3,"Stranded or Not, We got You"))
-
+        users.add(DisplayItem("We are Mobile Mech",R.drawable.bg ,getString(R.string.descn1)))
+        users.add(DisplayItem("We are Mobile Mech",R.drawable.bg2 ,getString(R.string.descn2)))
+        users.add(DisplayItem("We are Mobile Mech",R.drawable.bg3 ,getString(R.string.descn2)))
 
         //creating our adapter
         walkthroughRecyclerviewdapter = WalkthroughRecyclerviewdapter(users)
 
         //now adding the adapter to recyclerview
         walkthruVP.adapter = walkthroughRecyclerviewdapter
-
 
         return view
     }
