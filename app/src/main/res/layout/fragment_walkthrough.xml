@@ -24,16 +24,17 @@
         android:padding="5dp">
 
         <Button
-            android:elevation="10dp"
-            android:text="Previous"
-            android:textColor="@color/whiteTextColor"
             android:id="@+id/previous"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_marginLeft="100dp"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="100dp" />
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/walkthrubtnbackground"
+            android:elevation="10dp"
+            android:text="Prev"
+            android:textColor="@color/whiteTextColor" />
 
         <Button
             android:elevation="10dp"
@@ -45,7 +46,8 @@
             android:layout_marginRight="60dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="100dp" />
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/walkthrubtnbackgroundnext"/>
 
         <Button
             android:elevation="10dp"
@@ -54,10 +56,10 @@
             android:id="@+id/Signinbtn"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_marginRight="23dp"
-            android:layout_centerInParent="true"
-            android:visibility="gone"
-            android:layout_marginEnd="23dp" />
+            android:layout_marginRight="60dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="50dp"/>
     </RelativeLayout>
 
 </RelativeLayout>
