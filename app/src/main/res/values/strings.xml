@@ -23,4 +23,6 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="slogan">Mobile Mechanic, at your service</string>
     <string name="this_a_walkhthru_image">this a walkhthru image</string>
+    <string name="mechanic">Mechanic</string>
+    <string name="mobile_mechanic">Mobile Mechanic</string>
 </resources>
