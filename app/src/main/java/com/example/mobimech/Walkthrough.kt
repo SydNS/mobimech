@@ -52,8 +52,8 @@ class Walkthrough : Fragment() {
         val users = ArrayList<DisplayItem>()
 
         //adding some dummy data to the list
-        users.add(DisplayItem("Belal Khan",R.drawable.bg ,"Ranchi Jharkhand"))
-        users.add(DisplayItem("Ramiz Khan", R.drawable.bg,"Ranchi Jharkhand"))
+        users.add(DisplayItem("We are Mobile Mech",R.drawable.bg ,"We bring you the garage "))
+        users.add(DisplayItem("Wherever You are", R.drawable.bg3,"Stranded or Not, We got You"))
 
 
         //creating our adapter
