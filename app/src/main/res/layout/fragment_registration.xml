@@ -3,28 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/walkthrubtnbackground"
     tools:context=".AuthDestinationFrags.RegistrationFrag">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/black_overlay">
+        android:layout_height="match_parent">
+
+        <!--        <ImageView-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:alpha="0.8"-->
+        <!--            android:scaleType="centerCrop"-->
+        <!--            android:src="@drawable/bg3"-->
+        <!--            android:contentDescription="@string/this_is_the_background_image" />-->
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:alpha="0.8"
-            android:scaleType="centerCrop"
-            android:src="@drawable/bg3"
-            android:contentDescription="@string/this_is_the_background_image" />
-
-        <ImageView
-            android:contentDescription="@string/this_is_the_applogo"
             android:id="@+id/logoimage"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
+            android:contentDescription="@string/this_is_the_applogo"
             android:src="@mipmap/logog_round" />
 
 
@@ -49,8 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/heading"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            >
+            android:layout_marginTop="20dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -110,8 +109,6 @@
                 android:inputType="textPassword"
                 android:textColorHint="@color/whiteTextColor" />
         </com.google.android.material.textfield.TextInputLayout>
-
-
 
 
         <Button
