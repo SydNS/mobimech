@@ -5,13 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.mobimech.adapters.WalkthroughRecyclerviewdapter
 import com.example.mobimech.databinding.FragmentWalkthroughBinding
-import com.example.mobimech.models.User
+import com.example.mobimech.models.DisplayItem
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -44,19 +41,19 @@ class Walkthrough : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         walkthroughBinding = FragmentWalkthroughBinding.inflate(inflater, container, false)
         val view: View = walkthroughBinding.root
         //getting recyclerview from xml
-        walkthruVP = walkthroughBinding.walkthroughviewpager as ViewPager2
+        walkthruVP = walkthroughBinding.walkthroughviewpager
 
         //crating an arraylist to store users using the data class user
-        val users = ArrayList<User>()
+        val users = ArrayList<DisplayItem>()
 
         //adding some dummy data to the list
-        users.add(User("Belal Khan",R.drawable.bg ,"Ranchi Jharkhand"))
-        users.add(User("Ramiz Khan", R.drawable.bg,"Ranchi Jharkhand"))
+        users.add(DisplayItem("Belal Khan",R.drawable.bg ,"Ranchi Jharkhand"))
+        users.add(DisplayItem("Ramiz Khan", R.drawable.bg,"Ranchi Jharkhand"))
 
 
         //creating our adapter
