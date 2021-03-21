@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobimech.R
@@ -15,10 +16,10 @@ class WalkthroughRecyclerviewdapter(val userList: ArrayList<DisplayItem>) :
         fun bindItems(user: DisplayItem) {
             val textViewName = itemView.findViewById(R.id.textViewUsername) as TextView
             val textViewAddress  = itemView.findViewById(R.id.textViewAddress) as TextView
-            val image  = itemView.findViewById(R.id.displayimage) as ImageView
+            val image  = itemView.findViewById(R.id.bground) as RelativeLayout
             textViewName.text = user.name
             textViewAddress.text = user.address
-            image.setImageResource(user.displayimage)
+            image.setBackgroundResource(user.displayimage)
         }
     }
 
