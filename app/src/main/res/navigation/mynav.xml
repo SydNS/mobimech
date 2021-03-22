@@ -26,7 +26,11 @@
         android:id="@+id/homeFrag"
         android:name="com.example.mobimech.AuthDestinationFrags.HomeFrag"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFrag_to_loginFrag"
+            app:destination="@id/loginFrag" />
+    </fragment>
     <fragment
         android:id="@+id/registrationFrag"
         android:name="com.example.mobimech.AuthDestinationFrags.RegistrationFrag"
