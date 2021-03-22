@@ -27,4 +27,5 @@
     <string name="mobile_mechanic">Mobile Mechanic</string>
     <string name="descn1">\"We bring you the garage \"</string>
     <string name="descn2">"we bring you the best mechanics we bring you the best mechanics we bring you the best mechanics "</string>
+    <string name="title_activity_user_map_ui">User Map</string>
 </resources>
