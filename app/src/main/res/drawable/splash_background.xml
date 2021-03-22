@@ -13,7 +13,7 @@ android:opacity="opaque"> <!-- android:opacity="opaque" should be here -->
     </shape>
 </item>
     <item>
-        <bitmap android:src="@drawable/bg3"
+        <bitmap android:src="@drawable/bg"
             android:gravity="center"/>
 
     </item>
