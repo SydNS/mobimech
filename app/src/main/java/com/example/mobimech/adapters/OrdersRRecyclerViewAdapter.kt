@@ -25,7 +25,7 @@ class OrdersRRecyclerViewAdapter(val orderlistItem: ArrayList<OrderListItem>) :
     }
 
     override fun getItemCount(): Int {
-        orderlistItem.size
+        return orderlistItem.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
