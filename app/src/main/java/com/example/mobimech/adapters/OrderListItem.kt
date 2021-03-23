@@ -1,5 +1,3 @@
 package com.example.mobimech.adapters
 
-class OrderListItem {
-
-}
+data class OrderListItem(val mechName:String,val OrderDate:String)
