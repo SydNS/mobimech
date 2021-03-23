@@ -1,31 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="80dp">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="10dp"
+    android:layout_margin="3dp"
+    android:background="@color/black_overlay">
 
-    <TextView
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="Name Mechan"
-        android:id="@+id/mecahnname"
-        android:layout_margin="8dp"
-        android:layout_alignParentLeft="true" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="20 /march /2012"
-        android:id="@+id/orderdate"
-        android:layout_margin="8dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/rateStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-         android:layout_margin="8dp"
-        android:text="rate this mechanrate this mechanrate this mechanrate this mechanrate this mechan  " />
+        <TextView
+            android:id="@+id/mecahnname"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="8dp"
+            android:text="Name Mechan" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/orderdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="8dp"
+            android:text="20 /march /2012" />
+
+        <TextView
+            android:id="@+id/rateStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mecahnname"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="8dp"
+            android:text="rate this mechanrate this mechanrate this mechanrate this mechanrate this mechan  " />
+
+        <TextView
+            android:id="@+id/serviceprovided"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Service"
+            android:layout_below="@id/rateStart"
+            android:layout_margin="10dp"/>
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="location"
+            android:layout_toRightOf="@+id/serviceprovided"
+            android:layout_below="@id/rateStart"
+            android:layout_margin="10dp"/>
+        <TextView
+            android:id="@+id/cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="location"
+            sandroid:layout_alignParentEnd="true"
+            android:layout_below="@id/rateStart"
+
+            android:layout_margin="10dp"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
