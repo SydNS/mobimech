@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/walkthrubtnbackground"
     android:visibility="visible"
+
     tools:context=".AuthDestinationFrags.HomeFrag">
 
     <!-- TODO: Update blank fragment layout -->
@@ -20,24 +22,57 @@
             android:layout_marginTop="20dp"
             android:contentDescription="@string/this_is_the_applogo"
             android:src="@mipmap/logog_round" />
+
         <RelativeLayout
+            android:id="@+id/orderows"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/orderows"
-            android:layout_marginTop="20dp"
-            android:layout_below="@id/logoimage">
+            android:layout_below="@id/logoimage"
+            android:layout_marginTop="20dp">
+
+            <RelativeLayout
+                android:id="@+id/highlights"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_marginVertical="5dp">
+                <androidx.cardview.widget.CardView
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/hl1"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginVertical="15dp"
+                    android:layout_marginLeft="10dp" />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/hl2"
+                    android:layout_toRightOf="@id/hl1"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginVertical="15dp"
+                    android:layout_marginLeft="10dp"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/hl3"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginVertical="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/hl2" />
+
+
+            </RelativeLayout>
 
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/orderrecyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/orderrecyclerview"/>
+                android:layout_below="@id/highlights"
+                android:orientation="horizontal" />
 
         </RelativeLayout>
 
 
-       </RelativeLayout>
+    </RelativeLayout>
 
 
 </FrameLayout>
