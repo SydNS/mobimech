@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="80dp">
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Name Mechan"
+        android:id="@+id/mecahnname"
+        android:layout_margin="8dp"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20 /march /2012"
+        android:id="@+id/orderdate"
+        android:layout_margin="8dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/rateStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:layout_margin="8dp"
+        android:text="rate this mechanrate this mechanrate this mechanrate this mechanrate this mechan  " />
+
+</RelativeLayout>
