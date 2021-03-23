@@ -1,11 +1,18 @@
 package com.example.mobimech.AuthDestinationFrags
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mobimech.R
+import com.example.mobimech.adapters.OrdersRRecyclerViewAdapter
+import com.example.mobimech.databinding.FragmentHomeBinding
+import com.example.mobimech.models.DisplayItem
+import com.example.mobimech.models.OrderListItem
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +29,9 @@ class HomeFrag : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    lateinit var fragmentHomeBinding: FragmentHomeBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,7 +45,28 @@ class HomeFrag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        //crating an arraylist to store users using the data class user
+        var orderdt = ArrayList<OrderListItem>()
+
+        //adding some dummy data to the list
+        orderdt.add(OrderListItem("Juma","22/3/2021" ))
+        orderdt.add(OrderListItem("David","23/3/2021" ))
+        orderdt.add(OrderListItem("Elijah","24/3/2021" ))
+        orderdt.add(OrderListItem("Paul","25/3/2021" ))
+
+        fragmentHomeBinding.orderrecyclerview.adapter=OrdersRRecyclerViewAdapter(orderdt)
+        fragmentHomeBinding.orderrecyclerview.layoutManager=LinearLayoutManager(activity)
+
+
+        return fragmentHomeBinding.root
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
     companion object {
