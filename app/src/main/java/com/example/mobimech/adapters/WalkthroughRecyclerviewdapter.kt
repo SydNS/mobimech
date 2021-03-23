@@ -20,7 +20,7 @@ class WalkthroughRecyclerviewdapter(val userList: ArrayList<DisplayItem>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         
-        var listLayoutBinding: ListLayoutBinding =
+        listLayoutBinding =
             ListLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(listLayoutBinding)
     }
