@@ -50,7 +50,7 @@ class LoginFrag : Fragment() {
         loginBinding.loginbtn.setOnClickListener {
 //            Navigation.findNavController(view).navigate(R.id.action_loginFrag_to_homeFrag)
             Navigation.findNavController(view).navigate(
-                R.id.action_loginFrag_to_walkthrough,
+                R.id.action_loginFrag_to_homeFrag,
                 null,
                 NavOptions.Builder()
                     .setPopUpTo(
