@@ -11,9 +11,7 @@ import com.example.mobimech.models.DisplayItem
 class OrdersRRecyclerViewAdapter(val orderlistItem:  ArrayList<OrderListItem>) : RecyclerView.Adapter<OrdersRRecyclerViewAdapter.ViewHolder>() {
 
     lateinit var orderlistLayoutBinding: OrderlistLayoutBinding
-    class ViewHolder(var viewBinding: OrderlistLayoutBinding) : RecyclerView.ViewHolder(viewBinding.root) {
-
-    }
+    class ViewHolder(var viewBinding: OrderlistLayoutBinding) : RecyclerView.ViewHolder(viewBinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 //        val view=LayoutInflater.from(parent.context).inflate(R.layout.orderlist_layout, parent, false)
