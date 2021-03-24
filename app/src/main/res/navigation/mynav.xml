@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_registrationFrag_to_loginFrag"
             app:destination="@id/loginFrag" />
+        <action
+            android:id="@+id/action_registrationFrag_to_walkthrough"
+            app:destination="@id/walkthrough" />
     </fragment>
     <fragment
         android:id="@+id/resetPassword"
@@ -48,6 +51,9 @@
         <action
             android:id="@+id/action_resetPassword_to_loginFrag"
             app:destination="@id/loginFrag" />
+        <action
+            android:id="@+id/action_resetPassword_to_registrationFrag"
+            app:destination="@id/registrationFrag" />
     </fragment>
     <fragment
         android:id="@+id/walkthrough"
