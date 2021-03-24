@@ -57,6 +57,16 @@ class LoginFrag : Fragment() {
         loginBinding.loginbtn.setOnClickListener {
 //            Navigation.findNavController(view).navigate(R.id.action_loginFrag_to_homeFrag)
 
+            val email:String=loginBinding.emaillogin.editText.toString().trim()
+            val password:String=loginBinding.passlogin.editText.toString()
+
+            if(email.isEmpty()){
+                Toast.makeText(activity,"Fill in all the Fields",Toast.LENGTH_SHORT).show()
+            }
+            if(password.isEmpty()){
+                Toast.makeText(activity,"Fill in all the Fields",Toast.LENGTH_SHORT).show()
+            }
+            signIn(email,password,view)
 
             Toast.makeText(
                 activity,
@@ -96,10 +106,6 @@ class LoginFrag : Fragment() {
                 Log.d(TAG, "createUserWithEmail:success")
                 val user = auth?.currentUser
                 Toast.makeText(activity,user.toString(),Toast.LENGTH_SHORT).show()
-
-//
-//                Navigation.findNavController(view)
-//                    .navigate(R.id.action_loginFrag_to_homeFrag)
 
                 Navigation.findNavController(view).navigate(
                     R.id.action_loginFrag_to_homeFrag,
