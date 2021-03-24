@@ -131,7 +131,6 @@
             android:text="@string/have_an_account_login_here"
             android:textColor="@color/whiteTextColor" />
 
-
     </RelativeLayout>
 
 </FrameLayout>
