@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
+import androidx.navigation.Navigation
 import androidx.transition.Visibility
 import androidx.viewpager2.widget.ViewPager2
 import com.example.mobimech.R
@@ -133,6 +134,10 @@ class Walkthrough : Fragment() {
             val ci = walkthruVP.currentItem
 
             walkthruVP.setCurrentItem(ci + 1, true)
+        }
+
+        walkthroughBinding.Signinbtn.setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.action_walkthrough_to_loginFrag)
         }
 
     }
