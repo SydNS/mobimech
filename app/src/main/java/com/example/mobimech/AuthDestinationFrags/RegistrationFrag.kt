@@ -80,17 +80,20 @@ class RegistrationFrag : Fragment() {
 
 //            Toast.makeText(activity,"$emailtext $usernametext $passtext1 $passtext2",Toast.LENGTH_SHORT).show()
 
-            if ( emailtext.isNotEmpty() || usernametext.isNotEmpty()){
+//            if ( emailtext.isNotEmpty() || usernametext.isNotEmpty()){
                 if(passtext1==passtext2 ) {
-                    Toast.makeText(activity, "$passtext1 is equal $passtext2", Toast.LENGTH_SHORT)
-                        .show()
+
+//                    Toast.makeText(activity, "$passtext1 is equal $passtext2", Toast.LENGTH_SHORT)
+//                        .show()
+                    createAccount(emailtext,passtext2)
+
                     Navigation.findNavController(view)
                         .navigate(R.id.action_registrationFrag_to_loginFrag)
                 }else{
                     Toast.makeText(activity, "some fields are empty", Toast.LENGTH_SHORT)
                         .show()
                 }
-            }
+//            }
 
             Navigation.findNavController(view).navigate(R.id.action_registrationFrag_to_walkthrough)
 
@@ -112,6 +115,7 @@ class RegistrationFrag : Fragment() {
                 val user = auth.currentUser
                 Toast.makeText(activity,user.toString(),Toast.LENGTH_SHORT).show()
             }else{
+                Toast.makeText(activity,"Error Occured ",Toast.LENGTH_SHORT).show()
 
             }
 
