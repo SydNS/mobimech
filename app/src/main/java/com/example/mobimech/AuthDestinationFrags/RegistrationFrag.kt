@@ -44,16 +44,7 @@ class RegistrationFrag : Fragment() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = auth.currentUser
-        if(currentUser != null){
-            reload();
-        }else{
 
-        }
-    }
     private fun reload() {
 
     }
@@ -118,6 +109,18 @@ class RegistrationFrag : Fragment() {
                 Toast.makeText(activity,"Error Occured ",Toast.LENGTH_SHORT).show()
 
             }
+
+        }
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = mAuth?.currentUser
+        if(currentUser != null){
+            reload();
+        }else{
 
         }
     }
