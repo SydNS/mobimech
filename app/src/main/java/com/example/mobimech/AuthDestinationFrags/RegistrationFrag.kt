@@ -70,23 +70,19 @@ class RegistrationFrag : Fragment() {
             var passtext2= registrationBinding.passlogin2.editText?.text.toString().trim()
 
 //            Toast.makeText(activity,"$emailtext $usernametext $passtext1 $passtext2",Toast.LENGTH_SHORT).show()
-
 //            if ( emailtext.isNotEmpty() || usernametext.isNotEmpty()){
                 if(passtext1==passtext2 ) {
-
 //                    Toast.makeText(activity, "$passtext1 is equal $passtext2", Toast.LENGTH_SHORT)
 //                        .show()
-                    createAccount(emailtext,passtext2)
+                    createAccount(emailtext,passtext2,view)
 
-                    Navigation.findNavController(view)
-                        .navigate(R.id.action_registrationFrag_to_loginFrag)
                 }else{
                     Toast.makeText(activity, "some fields are empty", Toast.LENGTH_SHORT)
                         .show()
                 }
 //            }
 
-            Navigation.findNavController(view).navigate(R.id.action_registrationFrag_to_walkthrough)
+//            Navigation.findNavController(view).navigate(R.id.action_registrationFrag_to_walkthrough)
 
         }
 
@@ -96,17 +92,23 @@ class RegistrationFrag : Fragment() {
 
     }
 
-    private fun createAccount(email: String, password: String) {
+    private fun createAccount(email: String, password: String,view: View) {
         // [START create_user_with_email]
-        auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {
+        mAuth?.createUserWithEmailAndPassword(email,password)?.addOnCompleteListener {
             if (it.isSuccessful){
 
                 // Sign in success, update UI with the signed-in user's information
                 Log.d(TAG, "createUserWithEmail:success")
-                val user = auth.currentUser
+                val user = mAuth?.currentUser
                 Toast.makeText(activity,user.toString(),Toast.LENGTH_SHORT).show()
+
+
+                Navigation.findNavController(view)
+                    .navigate(R.id.action_registrationFrag_to_walkthrough)
             }else{
-                Toast.makeText(activity,"Error Occured ",Toast.LENGTH_SHORT).show()
+                // If sign in fails, display a message to the user.
+//                Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                Toast.makeText(activity,"Error Occured ${it.exception}",Toast.LENGTH_SHORT).show()
 
             }
 
@@ -118,9 +120,7 @@ class RegistrationFrag : Fragment() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = mAuth?.currentUser
-        if(currentUser != null){
-            reload();
-        }else{
+        if(currentUser != null) reload() else{
 
         }
     }
