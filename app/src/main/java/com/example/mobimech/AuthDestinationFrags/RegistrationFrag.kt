@@ -1,6 +1,8 @@
 package com.example.mobimech.AuthDestinationFrags
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,12 +33,29 @@ class RegistrationFrag : Fragment() {
     lateinit var registrationBinding: FragmentRegistrationBinding
     private lateinit var emailtext:String
 
+
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = auth.currentUser
+        if(currentUser != null){
+            reload();
+        }else{
+
+        }
+    }
+    private fun reload() {
+
     }
 
     override fun onCreateView(
@@ -59,22 +78,44 @@ class RegistrationFrag : Fragment() {
             var passtext1= registrationBinding.passlogin.editText?.text.toString().trim()
             var passtext2= registrationBinding.passlogin2.editText?.text.toString().trim()
 
-            Toast.makeText(activity,"$emailtext $usernametext $passtext1 $passtext2",Toast.LENGTH_SHORT).show()
+//            Toast.makeText(activity,"$emailtext $usernametext $passtext1 $passtext2",Toast.LENGTH_SHORT).show()
 
-            if ( emailtext.isNotEmpty()|| usernametext.isNotEmpty()){
+            if ( emailtext.isNotEmpty() || usernametext.isNotEmpty()){
                 if(passtext1==passtext2 ) {
                     Toast.makeText(activity, "$passtext1 is equal $passtext2", Toast.LENGTH_SHORT)
                         .show()
                     Navigation.findNavController(view)
                         .navigate(R.id.action_registrationFrag_to_loginFrag)
                 }else{
-                    registrationBinding.passlogin.isErrorEnabled=true
-                    registrationBinding.passlogin2.isErrorEnabled=true
-
+                    Toast.makeText(activity, "some fields are empty", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
+
+            Navigation.findNavController(view).navigate(R.id.action_registrationFrag_to_walkthrough)
+
         }
 
+        registrationBinding.loginlink.setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.action_registrationFrag_to_loginFrag)
+        }
+
+    }
+
+    private fun createAccount(email: String, password: String) {
+        // [START create_user_with_email]
+        auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {
+            if (it.isSuccessful){
+
+                // Sign in success, update UI with the signed-in user's information
+                Log.d(TAG, "createUserWithEmail:success")
+                val user = auth.currentUser
+                Toast.makeText(activity,user.toString(),Toast.LENGTH_SHORT).show()
+            }else{
+
+            }
+
+        }
     }
 
     companion object {
