@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.mobimech.databinding.MakeorderBinding
 
 class MakeOrder : Fragment() {
+    lateinit var makeorderBinding: MakeorderBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,7 +19,7 @@ class MakeOrder : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
+        makeorderBinding= MakeorderBinding.inflate(inflater)
+        return makeorderBinding.root}
 
 }
