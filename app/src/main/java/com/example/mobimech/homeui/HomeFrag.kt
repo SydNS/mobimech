@@ -1,4 +1,4 @@
-package com.example.mobimech.AuthDestinationFrags
+package com.example.mobimech.homeui
 
 import android.content.Intent
 import android.os.Bundle
