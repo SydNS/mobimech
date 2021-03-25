@@ -29,7 +29,7 @@ class LoginFrag : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    lateinit var loginBinding: FragmentLoginBinding
+    lateinit var loginBinding:FragmentLoginBinding
 
     private lateinit var auth: FirebaseAuth
 
@@ -46,7 +46,7 @@ class LoginFrag : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         loginBinding = FragmentLoginBinding.inflate(inflater, container, false)
         return loginBinding.root
@@ -57,8 +57,8 @@ class LoginFrag : Fragment() {
         loginBinding.loginbtn.setOnClickListener {
 //            Navigation.findNavController(view).navigate(R.id.action_loginFrag_to_homeFrag)
 
-            val email:String=loginBinding.emaillogin.editText.toString().trim()
-            val password:String=loginBinding.passlogin.editText.toString()
+            val email:String= loginBinding.emaillogin.editText?.text.toString().trim()
+            val password:String=loginBinding.passlogin.editText?.text.toString()
 
             if(email.isEmpty()){
                 Toast.makeText(activity,"Fill in all the Fields",Toast.LENGTH_SHORT).show()
@@ -68,11 +68,7 @@ class LoginFrag : Fragment() {
             }
             signIn(email,password,view)
 
-            Toast.makeText(
-                activity,
-                "Welcome home",
-                Toast.LENGTH_LONG
-            ).show()
+
         }
 
         loginBinding.registerlink.setOnClickListener {
@@ -104,7 +100,7 @@ class LoginFrag : Fragment() {
         auth.signInWithEmailAndPassword(email,password).addOnCompleteListener {
             if(it.isSuccessful){
                 Log.d(TAG, "createUserWithEmail:success")
-                val user = auth?.currentUser
+                val user = auth.currentUser
                 Toast.makeText(activity,user.toString(),Toast.LENGTH_SHORT).show()
 
                 Navigation.findNavController(view).navigate(
@@ -116,6 +112,11 @@ class LoginFrag : Fragment() {
                             true
                         ).build()
                 )
+                Toast.makeText(
+                    activity,
+                    "Welcome home",
+                    Toast.LENGTH_LONG
+                ).show()
 
 
             }else{
