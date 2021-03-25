@@ -104,13 +104,7 @@ class LoginFrag : Fragment() {
                 Toast.makeText(activity,user.toString(),Toast.LENGTH_SHORT).show()
 
                 Navigation.findNavController(view).navigate(
-                    R.id.action_loginFrag_to_homeFrag,
-                    null,
-                    NavOptions.Builder()
-                        .setPopUpTo(
-                            R.id.splash,
-                            true
-                        ).build()
+                    R.id.action_loginFrag_to_homeFrag
                 )
                 Toast.makeText(
                     activity,
