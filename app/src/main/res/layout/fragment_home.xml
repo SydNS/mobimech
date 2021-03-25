@@ -6,7 +6,7 @@
     android:background="@drawable/walkthrubtnbackground"
     android:visibility="visible"
 
-    tools:context=".AuthDestinationFrags.HomeFrag">
+    tools:context=".homeui.HomeFrag">
 
     <!-- TODO: Update blank fragment layout -->
 
