@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mobimech.R
 import com.example.mobimech.UI.UserMapUi
 import com.example.mobimech.adapters.OrdersRRecyclerViewAdapter
+import com.example.mobimech.adapters.TabsAdapter
 import com.example.mobimech.databinding.FragmentHomeBinding
+import com.example.mobimech.databinding.FragmentHomeTabsBinding
 import com.example.mobimech.models.DisplayItem
 import com.example.mobimech.models.OrderListItem
 
@@ -50,43 +52,48 @@ class HomeFrag : Fragment() {
         fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false)
 
         //crating an arraylist to store users using the data class user
-        var orderdt = ArrayList<OrderListItem>()
+//        val orderdt = ArrayList<OrderListItem>()
+//
+//        //adding some dummy data to the list
+//        orderdt.add(OrderListItem("Juma","22/3/2021" ))
+//        orderdt.add(OrderListItem("David","23/3/2021" ))
+//        orderdt.add(OrderListItem("Elijah","24/3/2021" ))
+//        orderdt.add(OrderListItem("Paul","25/3/2021" ))
+//        orderdt.add(OrderListItem("David","23/3/2021" ))
+//        orderdt.add(OrderListItem("Elijah","24/3/2021" ))
+//        orderdt.add(OrderListItem("Paul","25/3/2021" ))
+//        orderdt.add(OrderListItem("David","23/3/2021" ))
+//        orderdt.add(OrderListItem("Elijah","24/3/2021" ))
+//        orderdt.add(OrderListItem("Paul","25/3/2021" ))
+//        orderdt.add(OrderListItem("David","23/3/2021" ))
+//        orderdt.add(OrderListItem("Elijah","24/3/2021" ))
+//        orderdt.add(OrderListItem("Paul","25/3/2021" ))
+//        orderdt.add(OrderListItem("David","23/3/2021" ))
+//        orderdt.add(OrderListItem("Elijah","24/3/2021" ))
+//        orderdt.add(OrderListItem("Paul","25/3/2021" ))
+//        orderdt.add(OrderListItem("David","23/3/2021" ))
+//        orderdt.add(OrderListItem("Elijah","24/3/2021" ))
+//        orderdt.add(OrderListItem("Paul","25/3/2021" ))
+//
+//        fragmentHomeBinding.orderrecyclerview.adapter=OrdersRRecyclerViewAdapter(orderdt)
+//        fragmentHomeBinding.orderrecyclerview.layoutManager=LinearLayoutManager(activity)
 
-        //adding some dummy data to the list
-        orderdt.add(OrderListItem("Juma","22/3/2021" ))
-        orderdt.add(OrderListItem("David","23/3/2021" ))
-        orderdt.add(OrderListItem("Elijah","24/3/2021" ))
-        orderdt.add(OrderListItem("Paul","25/3/2021" ))
-        orderdt.add(OrderListItem("David","23/3/2021" ))
-        orderdt.add(OrderListItem("Elijah","24/3/2021" ))
-        orderdt.add(OrderListItem("Paul","25/3/2021" ))
-        orderdt.add(OrderListItem("David","23/3/2021" ))
-        orderdt.add(OrderListItem("Elijah","24/3/2021" ))
-        orderdt.add(OrderListItem("Paul","25/3/2021" ))
-        orderdt.add(OrderListItem("David","23/3/2021" ))
-        orderdt.add(OrderListItem("Elijah","24/3/2021" ))
-        orderdt.add(OrderListItem("Paul","25/3/2021" ))
-        orderdt.add(OrderListItem("David","23/3/2021" ))
-        orderdt.add(OrderListItem("Elijah","24/3/2021" ))
-        orderdt.add(OrderListItem("Paul","25/3/2021" ))
-        orderdt.add(OrderListItem("David","23/3/2021" ))
-        orderdt.add(OrderListItem("Elijah","24/3/2021" ))
-        orderdt.add(OrderListItem("Paul","25/3/2021" ))
-
-        fragmentHomeBinding.orderrecyclerview.adapter=OrdersRRecyclerViewAdapter(orderdt)
-        fragmentHomeBinding.orderrecyclerview.layoutManager=LinearLayoutManager(activity)
-
+        fragmentHomeBinding= FragmentHomeBinding.inflate(inflater, container, false)
+        fragmentHomeBinding.viewpager.adapter= TabsAdapter(childFragmentManager)
+        fragmentHomeBinding.tabLayout.setupWithViewPager(fragmentHomeBinding.viewpager)
 
         return fragmentHomeBinding.root
+
+
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fragmentHomeBinding.makeorders.setOnClickListener {
-            startActivity(Intent(activity,UserMapUi::class.java))
-        }
+//        fragmentHomeBinding.makeorders.setOnClickListener {
+//            startActivity(Intent(activity,UserMapUi::class.java))
+//        }
 
     }
 
