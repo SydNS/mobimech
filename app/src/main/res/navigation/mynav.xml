@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFrag"
-        android:name="com.example.mobimech.AuthDestinationFrags.HomeFrag"
+        android:name="com.example.mobimech.homeui.HomeFrag"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -76,4 +76,9 @@
             android:id="@+id/action_splash_to_loginFrag"
             app:destination="@id/loginFrag" />
     </fragment>
+    <fragment
+        android:id="@+id/homeTabs"
+        android:name="com.example.mobimech.HomeTabs"
+        android:label="fragment_home_tabs"
+        tools:layout="@layout/fragment_home_tabs" />
 </navigation>
