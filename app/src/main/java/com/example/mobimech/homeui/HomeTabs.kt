@@ -41,7 +41,7 @@ class HomeTabs : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        homeTabsBinding= FragmentHomeTabsBinding.inflate(inflater)
+        homeTabsBinding= FragmentHomeTabsBinding.inflate(inflater, container, false)
         homeTabsBinding.viewpager.adapter=TabsAdapter(childFragmentManager)
         homeTabsBinding.tabLayout.setupWithViewPager(homeTabsBinding.viewpager)
 
