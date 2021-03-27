@@ -145,6 +145,24 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
     }
 
     override fun onLocationChanged(location: Location) {
-        TODO("Not yet implemented")
+        lastLocation=location
+        val latlong = LatLng(location.latitude, location.longitude)
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latlong))
+        mMap.addMarker(
+            MarkerOptions().position(latlong)
+                .title("my Location")
+        )
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(17F))
+
+    }
+
+    @Synchronized
+    protected fun buildGoogleApiClient() {
+        googleApiClient = GoogleApiClient.Builder(this)
+            .addConnectionCallbacks(this)
+            .addOnConnectionFailedListener(this)
+            .addApi(LocationServices.API)
+            .build()
+        googleApiClient.connect()
     }
 }
