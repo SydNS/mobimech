@@ -88,7 +88,7 @@ class RegistrationFrag : Fragment() {
 
             if (passtext1 == passtext2) {
 
-                createAccount(emailtext, passtext2, view)
+                createAccount(emailtext, passtext2, view,"Clients","Client")
 
             } else {
                 Toast.makeText(activity, "some fields are empty", Toast.LENGTH_SHORT)
@@ -100,6 +100,21 @@ class RegistrationFrag : Fragment() {
 
         registrationBinding.mechanregisterbtn.setOnClickListener {
 
+            var emailtext = registrationBinding.emaillogin.editText?.text.toString().trim()
+            var usernametext = registrationBinding.usenname.editText?.text.toString().trim()
+            var passtext1 = registrationBinding.passlogin.editText?.text.toString().trim()
+            var passtext2 = registrationBinding.passlogin2.editText?.text.toString().trim()
+
+
+            if (passtext1 == passtext2) {
+
+                createAccount(emailtext, passtext2, view,"Mechanics","Mechanic")
+
+            } else {
+                Toast.makeText(activity, "some fields are empty", Toast.LENGTH_SHORT)
+                    .show()
+            }
+
         }
 
         registrationBinding.loginlink.setOnClickListener {
@@ -108,7 +123,7 @@ class RegistrationFrag : Fragment() {
 
     }
 
-    private fun createAccount(email: String, password: String, view: View) {
+    private fun createAccount(email: String, password: String, view: View,childname:String,appuser:String) {
         // [START create_user_with_email]
 
         loadingBar!!.setTitle("Please wait :")
@@ -125,11 +140,11 @@ class RegistrationFrag : Fragment() {
                 currentUserId = user?.uid
                 MechanicRef =firbasedatabase
                         .reference
-                        .child("Users").child("Clients").child(currentUserId!!)
+                        .child("Users").child(childname).child(currentUserId!!)
 //                        .child("Users").child("Mechanics").child(currentUserId!!)
                 MechanicRef!!.setValue(true)
 
-                Toast.makeText(activity, user.toString(), Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Welcome Our Dear $appuser", Toast.LENGTH_SHORT).show()
 
                 loadingBar!!.dismiss()
 
@@ -139,7 +154,7 @@ class RegistrationFrag : Fragment() {
             } else {
                 // If sign in fails, display a message to the user.
 //                Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                Toast.makeText(activity, "Error Occured ${it.exception}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Error Occured ${it.exception?.message.toString()}", Toast.LENGTH_SHORT).show()
                 loadingBar!!.dismiss()
 
             }
