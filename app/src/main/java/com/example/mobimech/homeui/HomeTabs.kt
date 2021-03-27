@@ -45,6 +45,7 @@ class HomeTabs : Fragment() {
         homeTabsBinding.viewpager.adapter=TabsAdapter(childFragmentManager)
         homeTabsBinding.tabLayout.setupWithViewPager(homeTabsBinding.viewpager)
 
+
         return homeTabsBinding.root
     }
 
