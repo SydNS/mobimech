@@ -15,7 +15,6 @@
             android:id="@+id/logoimage"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginHorizontal="175dp"
             android:contentDescription="@string/this_is_the_applogo"
             android:src="@mipmap/logog_round" />
 
