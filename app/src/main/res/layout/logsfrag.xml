@@ -3,29 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/logoimage"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:contentDescription="@string/this_is_the_applogo"
-        android:src="@mipmap/logog_round" />
 
-    <RelativeLayout
-        android:id="@+id/orderows"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/orderrecyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/logoimage"
-        android:layout_marginTop="20dp">
 
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/orderrecyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/orderlogs"
-            android:orientation="horizontal" />
-    </RelativeLayout>
-
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal" />
 </RelativeLayout>
