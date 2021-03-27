@@ -2,15 +2,20 @@
 
 package com.example.mobimech.UI
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.content.pm.PackageManager.*
 import android.location.Location
 import android.location.LocationListener
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.RelativeLayout
+import androidx.core.app.ActivityCompat
 import com.example.mobimech.R
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationServices
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -23,9 +28,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 
+
+
 class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
     GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
-    LocationListener {
+    com.google.android.gms.location.LocationListener {
 
     private lateinit var mMap: GoogleMap
     lateinit var googleApiClient: GoogleApiClient
@@ -38,17 +45,8 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
     private var customerPickupLocation: LatLng? = null
 
     var driverLocationref: DatabaseReference? = null
-    val geoQuery: GeoQuery? = null
+//    val geoQuery: GeoQuery? = null
 
-//    private var driverID: String? = null
-//    private var AssignedCustomerRef: DatabaseReference? = null
-//    private var AssignedCustomerPickUpRef: DatabaseReference? = null
-//    var PickUpMarker: Marker? = null
-//    private var AssignedCustomerPickUpRefListner: ValueEventListener? = null
-//    private var txtName: TextView? = null
-//    private var txtPhone: TextView? = null
-
-    //private var settingsbtn: Button? = null
     private var currentLogOutCustomerStatus = false
     var radius = 1.0
     var driverFound = false
@@ -95,7 +93,28 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
     }
 
     override fun onConnected(p0: Bundle?) {
-        TODO("Not yet implemented")
+
+        locationRequest= LocationRequest()
+        locationRequest.interval=1000
+        locationRequest.fastestInterval=1000
+        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PERMISSION_GRANTED
+        ) {
+            return
+        }
+
+        LocationServices.FusedLocationApi.requestLocationUpdates(
+            googleApiClient,
+            locationRequest,
+            this
+        )
     }
 
     override fun onConnectionSuspended(p0: Int) {
