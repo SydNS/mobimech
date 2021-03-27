@@ -37,4 +37,6 @@
     <string name="completed_orders">Completed Orders</string>
     <string name="request">Request a Mechanic</string>
     <string name="accept_request">Accept Request</string>
+    <string name="mechnic_login">Mechanic</string>
+    <string name="user_login">User</string>
 </resources>
