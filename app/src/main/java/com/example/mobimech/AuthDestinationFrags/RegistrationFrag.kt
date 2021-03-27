@@ -34,6 +34,9 @@ class RegistrationFrag : Fragment() {
     private lateinit var emailtext:String
 
 
+    private var firebaseAuthListner: FirebaseAuth.AuthStateListener? = null
+
+
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -123,6 +126,11 @@ class RegistrationFrag : Fragment() {
         if(currentUser != null) reload() else{
 
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        firebaseAuthListner?.let { mAuth?.removeAuthStateListener(it) }
     }
 
     companion object {
