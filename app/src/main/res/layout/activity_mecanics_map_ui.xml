@@ -11,8 +11,9 @@ tools:context=".UI.UserMapUi">
     android:layout_width="50dp"
     android:layout_height="wrap_content"
     android:layout_marginStart="20dp"
-    android:background="@drawable/walkthrubtnbackground"
-    android:layout_marginLeft="20dp" />
+    android:layout_marginLeft="20dp"
+    android:drawableEnd="@drawable/logout"
+    android:drawableRight="@drawable/logout" />
 
 <Button
     android:id="@+id/settingsbtncustomer"
@@ -40,6 +41,6 @@ tools:context=".UI.UserMapUi">
     android:layout_height="70dp"
     android:layout_below="@id/map"
     android:layout_marginTop="-70dp"
-    android:text="@string/request" />
+    android:text="@string/accept_request" />
 
 </RelativeLayout>
