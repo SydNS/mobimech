@@ -35,6 +35,6 @@
     <string name="make_order">Make Order</string>
     <string name="pending_orders">Pending Orders</string>
     <string name="completed_orders">Completed Orders</string>
-    <string name="request">Call a Mechanic</string>
+    <string name="request">Request a Mechanic</string>
     <string name="accept_request">Accept Request</string>
 </resources>
