@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.widget.RelativeLayout
 import androidx.core.app.ActivityCompat
 import com.example.mobimech.R
+import com.firebase.geofire.GeoFire
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.LocationRequest
@@ -26,9 +27,12 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 
+
+//Mechanic's Map Activity
 
 class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
     GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
@@ -45,6 +49,7 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
     private var customerPickupLocation: LatLng? = null
 
     var driverLocationref: DatabaseReference? = null
+    private lateinit var firbasedatabase:FirebaseDatabase
 //    val geoQuery: GeoQuery? = null
 
     private var currentLogOutCustomerStatus = false
@@ -52,7 +57,7 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
     var driverFound = false
     var requestType = false
     var driver_found_id: String? = null
-    var DriversRef: DatabaseReference? = null
+    var MechanicRef: DatabaseReference? = null
     var DriverMarker: Marker? = null
     var PickUpMarker: Marker? = null
     var DriverLocationRefListener: ValueEventListener? = null
@@ -72,6 +77,9 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        firbasedatabase =FirebaseDatabase.getInstance("https://mobimech-d46d0-default-rtdb.firebaseio.com")
+
     }
 
     /**
@@ -155,6 +163,20 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
                 .title("User Location")
         )
         mMap.animateCamera(CameraUpdateFactory.zoomTo(17F))
+
+//        here we record the mechanics location in the DB
+        val userID: String? = FirebaseAuth.getInstance().currentUser?.uid
+
+        val MechanicsAvailabilityRefInTheDb: DatabaseReference =firbasedatabase.reference.child("Mechanics Available")
+
+        val geoFireAvailability = GeoFire(MechanicsAvailabilityRefInTheDb)
+        val MechanicsWorkingRef: DatabaseReference =FirebaseDatabase.getInstance().reference.child("Mechanics Working")
+
+//        val geoFireWorking = GeoFire(MechanicsWorkingRef)
+
+
+
+
 
     }
 
