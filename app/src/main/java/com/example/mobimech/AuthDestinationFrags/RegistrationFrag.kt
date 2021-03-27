@@ -43,6 +43,7 @@ class RegistrationFrag : Fragment() {
 
     private var firebaseAuthListner: FirebaseAuth.AuthStateListener? = null
     private lateinit var firbasedatabase:FirebaseDatabase
+//    private lateinit var mechanfirbasedatabase:FirebaseDatabase
     var MechanicRef: DatabaseReference? = null
     private var loadingBar: ProgressDialog? = null
 
@@ -60,10 +61,6 @@ class RegistrationFrag : Fragment() {
         }
     }
 
-
-    private fun reload() {
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -88,20 +85,20 @@ class RegistrationFrag : Fragment() {
             var passtext1 = registrationBinding.passlogin.editText?.text.toString().trim()
             var passtext2 = registrationBinding.passlogin2.editText?.text.toString().trim()
 
-//            Toast.makeText(activity,"$emailtext $usernametext $passtext1 $passtext2",Toast.LENGTH_SHORT).show()
-//            if ( emailtext.isNotEmpty() || usernametext.isNotEmpty()){
+
             if (passtext1 == passtext2) {
-//                    Toast.makeText(activity, "$passtext1 is equal $passtext2", Toast.LENGTH_SHORT)
-//                        .show()
+
                 createAccount(emailtext, passtext2, view)
 
             } else {
                 Toast.makeText(activity, "some fields are empty", Toast.LENGTH_SHORT)
                     .show()
             }
-//            }
 
-//            Navigation.findNavController(view).navigate(R.id.action_registrationFrag_to_walkthrough)
+
+        }
+
+        registrationBinding.mechanregisterbtn.setOnClickListener {
 
         }
 
