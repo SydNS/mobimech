@@ -1,9 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".UI.UserMapUi">
+
+
+<Button
+    android:id="@+id/logoutbtncustomer"
+    android:layout_width="50dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:background="@drawable/walkthrubtnbackground"
+    android:layout_marginLeft="20dp" />
+
+<Button
+    android:id="@+id/settingsbtncustomer"
+    android:layout_width="50dp"
+    android:layout_height="wrap_content"
+    android:layout_alignParentEnd="true"
+    android:layout_marginEnd="20dp"
+    android:layout_marginRight="20dp"
+    android:background="@drawable/walkthrubtnbackground"
+    android:layout_alignParentRight="true" />
+
+
+
+<androidx.fragment.app.FragmentContainerView
     android:id="@+id/map"
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.UserMapUi" />
+    tools:context=".UI.UserMapUi"/>
+
+<Button
+    android:id="@+id/customer_request"
+    android:layout_width="300dp"
+    android:layout_centerHorizontal="true"
+    android:layout_height="70dp"
+    android:layout_below="@id/map"
+    android:layout_marginTop="-70dp"
+    android:text="@string/request" />
+
+</RelativeLayout>
