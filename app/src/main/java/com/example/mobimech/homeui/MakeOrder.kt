@@ -28,7 +28,7 @@ class MakeOrder : Fragment() {
         makeorderBinding.makeorders.setOnClickListener {
 //            Navigation.findNavController(view).navigate(R.id.)
             startActivity(Intent(activity,UserMapUi::class.java))
-            activity?.finish()
+//            activity?.finish()
 
         }
 
