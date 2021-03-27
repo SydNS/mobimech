@@ -86,6 +86,8 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
+        buildGoogleApiClient()
+
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -150,7 +152,7 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latlong))
         mMap.addMarker(
             MarkerOptions().position(latlong)
-                .title("my Location")
+                .title("User Location")
         )
         mMap.animateCamera(CameraUpdateFactory.zoomTo(17F))
 
