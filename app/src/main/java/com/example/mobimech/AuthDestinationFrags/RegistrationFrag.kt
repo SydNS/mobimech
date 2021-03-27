@@ -1,5 +1,8 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.mobimech.AuthDestinationFrags
 
+import android.app.ProgressDialog
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +16,9 @@ import com.example.mobimech.R
 import com.example.mobimech.databinding.FragmentRegistrationBinding
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -31,13 +37,20 @@ class RegistrationFrag : Fragment() {
     private var param2: String? = null
     private var mAuth: FirebaseAuth? = null
     lateinit var registrationBinding: FragmentRegistrationBinding
-    private lateinit var emailtext:String
+    private lateinit var emailtext: String
+
 
 
     private var firebaseAuthListner: FirebaseAuth.AuthStateListener? = null
+    private lateinit var firbasedatabase:FirebaseDatabase
+    var MechanicRef: DatabaseReference? = null
+    private var loadingBar: ProgressDialog? = null
 
 
     private lateinit var auth: FirebaseAuth
+
+    private var currentUser: FirebaseUser? = null
+    var currentUserId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,9 +70,12 @@ class RegistrationFrag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        registrationBinding= FragmentRegistrationBinding.inflate(inflater)
-        var view=registrationBinding.root
+        registrationBinding = FragmentRegistrationBinding.inflate(inflater)
+        var view = registrationBinding.root
         mAuth = FirebaseAuth.getInstance()
+
+        firbasedatabase =FirebaseDatabase.getInstance("https://mobimech-d46d0-default-rtdb.firebaseio.com")
+        loadingBar = ProgressDialog(activity)
 
         return view
     }
@@ -67,22 +83,22 @@ class RegistrationFrag : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         registrationBinding.registerbtn.setOnClickListener {
-            var emailtext= registrationBinding.emaillogin.editText?.text.toString().trim()
-            var usernametext= registrationBinding.usenname.editText?.text.toString().trim()
-            var passtext1= registrationBinding.passlogin.editText?.text.toString().trim()
-            var passtext2= registrationBinding.passlogin2.editText?.text.toString().trim()
+            var emailtext = registrationBinding.emaillogin.editText?.text.toString().trim()
+            var usernametext = registrationBinding.usenname.editText?.text.toString().trim()
+            var passtext1 = registrationBinding.passlogin.editText?.text.toString().trim()
+            var passtext2 = registrationBinding.passlogin2.editText?.text.toString().trim()
 
 //            Toast.makeText(activity,"$emailtext $usernametext $passtext1 $passtext2",Toast.LENGTH_SHORT).show()
 //            if ( emailtext.isNotEmpty() || usernametext.isNotEmpty()){
-                if(passtext1==passtext2 ) {
+            if (passtext1 == passtext2) {
 //                    Toast.makeText(activity, "$passtext1 is equal $passtext2", Toast.LENGTH_SHORT)
 //                        .show()
-                    createAccount(emailtext,passtext2,view)
+                createAccount(emailtext, passtext2, view)
 
-                }else{
-                    Toast.makeText(activity, "some fields are empty", Toast.LENGTH_SHORT)
-                        .show()
-                }
+            } else {
+                Toast.makeText(activity, "some fields are empty", Toast.LENGTH_SHORT)
+                    .show()
+            }
 //            }
 
 //            Navigation.findNavController(view).navigate(R.id.action_registrationFrag_to_walkthrough)
@@ -95,23 +111,39 @@ class RegistrationFrag : Fragment() {
 
     }
 
-    private fun createAccount(email: String, password: String,view: View) {
+    private fun createAccount(email: String, password: String, view: View) {
         // [START create_user_with_email]
-        mAuth?.createUserWithEmailAndPassword(email,password)?.addOnCompleteListener {
-            if (it.isSuccessful){
+
+        loadingBar!!.setTitle("Please wait :")
+        loadingBar!!.setMessage("While system is performing processing on your data...")
+        loadingBar!!.show()
+
+        mAuth?.createUserWithEmailAndPassword(email, password)?.addOnCompleteListener {
+            if (it.isSuccessful) {
 
                 // Sign in success, update UI with the signed-in user's information
                 Log.d(TAG, "createUserWithEmail:success")
                 val user = mAuth?.currentUser
-                Toast.makeText(activity,user.toString(),Toast.LENGTH_SHORT).show()
+
+                currentUserId = user?.uid
+                MechanicRef =firbasedatabase
+                        .reference
+                        .child("Users").child("Clients").child(currentUserId!!)
+//                        .child("Users").child("Mechanics").child(currentUserId!!)
+                MechanicRef!!.setValue(true)
+
+                Toast.makeText(activity, user.toString(), Toast.LENGTH_SHORT).show()
+
+                loadingBar!!.dismiss()
 
 
                 Navigation.findNavController(view)
                     .navigate(R.id.action_registrationFrag_to_walkthrough)
-            }else{
+            } else {
                 // If sign in fails, display a message to the user.
 //                Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                Toast.makeText(activity,"Error Occured ${it.exception}",Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Error Occured ${it.exception}", Toast.LENGTH_SHORT).show()
+                loadingBar!!.dismiss()
 
             }
 
@@ -123,9 +155,8 @@ class RegistrationFrag : Fragment() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = mAuth?.currentUser
-        if(currentUser != null) reload() else{
+        firebaseAuthListner?.let { mAuth?.addAuthStateListener(it) }
 
-        }
     }
 
     override fun onStop() {
