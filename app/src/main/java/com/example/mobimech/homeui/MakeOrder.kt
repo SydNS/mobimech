@@ -1,10 +1,14 @@
 package com.example.mobimech.homeui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import com.example.mobimech.R
+import com.example.mobimech.UI.UserMapUi
 import com.example.mobimech.databinding.MakeorderBinding
 
 class MakeOrder : Fragment() {
@@ -18,8 +22,16 @@ class MakeOrder : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         makeorderBinding= MakeorderBinding.inflate(inflater)
+
+        makeorderBinding.makeorders.setOnClickListener {
+//            Navigation.findNavController(view).navigate(R.id.)
+            startActivity(Intent(activity,UserMapUi::class.java))
+            activity?.finish()
+
+        }
+
         return makeorderBinding.root}
 
 }
