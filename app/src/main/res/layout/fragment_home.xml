@@ -11,12 +11,25 @@
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/logoimage"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:contentDescription="@string/this_is_the_applogo"
-            android:src="@mipmap/logog_round" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="5dp" >
+            <ImageView
+                android:id="@+id/logoimage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/this_is_the_applogo"
+                android:src="@mipmap/logog_round" />
+            <TextView
+                android:text="@string/app_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/apptitle"
+                android:textSize="19sp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
