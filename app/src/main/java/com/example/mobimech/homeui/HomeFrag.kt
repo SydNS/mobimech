@@ -51,32 +51,6 @@ class HomeFrag : Fragment() {
         // Inflate the layout for this fragment
         fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        //crating an arraylist to store users using the data class user
-//        val orderdt = ArrayList<OrderListItem>()
-//
-//        //adding some dummy data to the list
-//        orderdt.add(OrderListItem("Juma","22/3/2021" ))
-//        orderdt.add(OrderListItem("David","23/3/2021" ))
-//        orderdt.add(OrderListItem("Elijah","24/3/2021" ))
-//        orderdt.add(OrderListItem("Paul","25/3/2021" ))
-//        orderdt.add(OrderListItem("David","23/3/2021" ))
-//        orderdt.add(OrderListItem("Elijah","24/3/2021" ))
-//        orderdt.add(OrderListItem("Paul","25/3/2021" ))
-//        orderdt.add(OrderListItem("David","23/3/2021" ))
-//        orderdt.add(OrderListItem("Elijah","24/3/2021" ))
-//        orderdt.add(OrderListItem("Paul","25/3/2021" ))
-//        orderdt.add(OrderListItem("David","23/3/2021" ))
-//        orderdt.add(OrderListItem("Elijah","24/3/2021" ))
-//        orderdt.add(OrderListItem("Paul","25/3/2021" ))
-//        orderdt.add(OrderListItem("David","23/3/2021" ))
-//        orderdt.add(OrderListItem("Elijah","24/3/2021" ))
-//        orderdt.add(OrderListItem("Paul","25/3/2021" ))
-//        orderdt.add(OrderListItem("David","23/3/2021" ))
-//        orderdt.add(OrderListItem("Elijah","24/3/2021" ))
-//        orderdt.add(OrderListItem("Paul","25/3/2021" ))
-//
-//        fragmentHomeBinding.orderrecyclerview.adapter=OrdersRRecyclerViewAdapter(orderdt)
-//        fragmentHomeBinding.orderrecyclerview.layoutManager=LinearLayoutManager(activity)
 
         fragmentHomeBinding= FragmentHomeBinding.inflate(inflater, container, false)
         fragmentHomeBinding.viewpager.adapter= TabsAdapter(childFragmentManager)
