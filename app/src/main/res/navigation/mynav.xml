@@ -21,9 +21,6 @@
         <action
             android:id="@+id/action_loginFrag_to_walkthrough"
             app:destination="@id/walkthrough" />
-        <action
-            android:id="@+id/action_loginFrag_to_homeTabs"
-            app:destination="@id/homeTabs" />
     </fragment>
     <fragment
         android:id="@+id/homeFrag"
