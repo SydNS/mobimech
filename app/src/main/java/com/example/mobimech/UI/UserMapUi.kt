@@ -6,20 +6,64 @@ import android.location.Location
 import android.location.LocationListener
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.RelativeLayout
 import com.example.mobimech.R
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
+import com.google.android.gms.location.LocationRequest
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 
 class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
     GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
     LocationListener {
+
+    private lateinit var mMap: GoogleMap
+    lateinit var googleApiClient: GoogleApiClient
+    lateinit var location: Location
+    private lateinit var lastLocation: Location
+    lateinit var locationRequest: LocationRequest
+
+    //getting request customer's id
+    private var customerID = ""
+    private var customerPickupLocation: LatLng? = null
+
+    var driverLocationref: DatabaseReference? = null
+    val geoQuery: GeoQuery? = null
+
+//    private var driverID: String? = null
+//    private var AssignedCustomerRef: DatabaseReference? = null
+//    private var AssignedCustomerPickUpRef: DatabaseReference? = null
+//    var PickUpMarker: Marker? = null
+//    private var AssignedCustomerPickUpRefListner: ValueEventListener? = null
+//    private var txtName: TextView? = null
+//    private var txtPhone: TextView? = null
+
+    //private var settingsbtn: Button? = null
+    private var currentLogOutCustomerStatus = false
+    var radius = 1.0
+    var driverFound = false
+    var requestType = false
+    var driver_found_id: String? = null
+    var DriversRef: DatabaseReference? = null
+    var DriverMarker: Marker? = null
+    var PickUpMarker: Marker? = null
+    var DriverLocationRefListener: ValueEventListener? = null
+
+
+    //    private var logoutbtn: Button? = null
+//    private var profilePic: CircleImageView? = null
+    private var relativeLayout: RelativeLayout? = null
+    private var mAuth: FirebaseAuth? = null
 
 
 
