@@ -94,8 +94,14 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
         }
         customer_request.setOnClickListener {
             mAuth?.signOut()
-            startActivity(Intent(this,MainActivity::class.java))
-            finish()
+
+            val userID: String? = FirebaseAuth.getInstance().currentUser?.uid
+
+            val MechanicsAvailabilityRefInTheDb: DatabaseReference =firbasedatabase.reference.child("UserRequest")
+
+            val geoFireMechanicAvailability = GeoFire(MechanicsAvailabilityRefInTheDb)
+            geoFireMechanicAvailability.setLocation(userID, GeoLocation(location.latitude,location.longitude))
+
         }
     }
 
