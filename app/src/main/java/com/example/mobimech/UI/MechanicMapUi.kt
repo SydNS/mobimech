@@ -56,7 +56,7 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
     var radius = 1.0
     var driverFound = false
     var requestType = false
-    var driver_found_id: String? = null
+    var mechanic_found_id: String? = null
     var customerSessionId: String? = null
     var MechanicRef: DatabaseReference? = null
     var DriverMarker: Marker? = null
@@ -70,6 +70,10 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
     private var mAuth: FirebaseAuth? = null
     lateinit var logoutbtncustomer: Button
     lateinit var accepting_btn_request: Button
+
+
+    private var AssignedCustomerRef: DatabaseReference? = null
+    private var AssignedCustomerPickUpRef: DatabaseReference? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,74 +98,40 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
         getAssignedCustomer()
     }
 
-    private fun getAssignedCustomer() {
-        var mechanicId = FirebaseAuth.getInstance().currentUser?.uid
+    private fun getAssignedCustomersRequest() {
+        mechanic_found_id=mAuth?.uid
 
-        var assignedCustomerRef = firbasedatabase.reference.child("Users").child(
-            "Mechanics"
-        ).child("l")
+        AssignedCustomerRef = mechanic_found_id?.let {
+            FirebaseDatabase.getInstance().reference.child("Users")
+                .child("Clients").child(it).child("CustomerRideID")
+        }
+        AssignedCustomerPickUpRefListner =
+            AssignedCustomerRef?.addValueEventListener(object : ValueEventListener {
 
-        assignedCustomerRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(p0: DataSnapshot) {
-                if (p0.exists()) {
-
-                    val map: Map<String, Object> = p0.value as Map<String, Object>
-                    if (map["customerSessionId"] != null) {
-                        customerID = map.get("customerSessionId").toString()
-                        getAssignedCutomerPickUpLocation()
+                override fun onDataChange(p0: DataSnapshot) {
+                    if (p0.exists()) {
+                        customerID = p0.value.toString()
+                        //getting assigned customer location
+                        GetAssignedCustomerPickupLocation()
+                        relativeLayout!!.visibility = View.VISIBLE
+                        //assignedCustomerInformation
+                    } else {
+                        customerID = ""
+                        PickUpMarker?.remove()
+                        if (AssignedCustomerPickUpRefListner != null) {
+                            AssignedCustomerPickUpRef?.removeEventListener(
+                                AssignedCustomerPickUpRefListner!!
+                            )
+                        }
+                        relativeLayout!!.visibility = View.GONE
                     }
-
-
                 }
 
-            }
-
-            private fun getAssignedCutomerPickUpLocation() {
-
-            }
-
-            override fun onCancelled(p0: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-
-        })
-
-
-
-
-//        var assignedCustomerLocationRef = firbasedatabase.reference.child("UserRequest").child(
-//            mechanicId!!
-//        ).child("l")
-
-        assignedCustomerLocationRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(p0: DataSnapshot) {
-                if (p0.exists()) {
-
-                    val map: Map<String, Object> = p0.value as Map<String, Object>
-
-                    if (map.get("customerSessionId") != null) {
-                        customerID = map.get("customerSessionId").toString()
-                        getAssignedCutomerPickUpLocation()
-                    }
-
-
+                override fun onCancelled(p0: DatabaseError) {
+                    TODO("Not yet implemented")
                 }
-
-            }
-
-            private fun getAssignedCutomerPickUpLocation() {
-                TODO("Not yet implemented")
-            }
-
-            override fun onCancelled(p0: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-
-        })
-
-
+            })
     }
-
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
