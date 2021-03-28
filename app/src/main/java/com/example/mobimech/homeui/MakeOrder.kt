@@ -26,7 +26,18 @@ class MakeOrder : Fragment() {
     ): View {
         makeorderBinding= MakeorderBinding.inflate(inflater)
 
+
+//        to the user map
         makeorderBinding.makeorders.setOnClickListener {
+//            Navigation.findNavController(view).navigate(R.id.)
+            startActivity(Intent(activity,UserMapUi::class.java))
+//            startActivity(Intent(activity,MechanicMapUi::class.java))
+//            activity?.finish()
+
+        }
+
+//        to the mechanics map
+        makeorderBinding.hl2.setOnClickListener {
 //            Navigation.findNavController(view).navigate(R.id.)
 //            startActivity(Intent(activity,UserMapUi::class.java))
             startActivity(Intent(activity,MechanicMapUi::class.java))
