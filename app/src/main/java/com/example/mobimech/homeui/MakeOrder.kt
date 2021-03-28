@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.mobimech.R
+import com.example.mobimech.UI.MechanicMapUi
 import com.example.mobimech.UI.UserMapUi
 import com.example.mobimech.databinding.MakeorderBinding
 
@@ -27,7 +28,8 @@ class MakeOrder : Fragment() {
 
         makeorderBinding.makeorders.setOnClickListener {
 //            Navigation.findNavController(view).navigate(R.id.)
-            startActivity(Intent(activity,UserMapUi::class.java))
+//            startActivity(Intent(activity,UserMapUi::class.java))
+            startActivity(Intent(activity,MechanicMapUi::class.java))
 //            activity?.finish()
 
         }
