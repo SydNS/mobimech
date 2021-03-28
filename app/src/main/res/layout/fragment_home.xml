@@ -23,11 +23,14 @@
                 android:contentDescription="@string/this_is_the_applogo"
                 android:src="@mipmap/logog_round" />
             <TextView
+                android:layout_marginStart="10dp"
+                android:gravity="center"
                 android:text="@string/app_name"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/apptitle"
-                android:textSize="19sp"/>
+                android:textSize="19sp"
+                android:layout_marginLeft="10dp" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 
