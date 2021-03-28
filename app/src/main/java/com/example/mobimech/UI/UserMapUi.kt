@@ -33,6 +33,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import java.util.*
 
 
 //Mechanic's Map Activity
@@ -170,12 +171,34 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
 //this will look for the driver around and online , if the driver accepts the request
 // then, the driver working node is available and we get his location using his ID through the DataSnapshot
 
-        MechanicRef
-
         mechanicLocationref= MechanicRef?.child("mechanicWorking")?.child(mechanic_found_id)?.child("l")
-        mechanicLocationref?.addValueEventListener(object :ValueEventListener{
+        mechanicLocationref?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
-                TODO("Not yet implemented")
+                if (p0.exists()) {
+
+
+                    val map: List<Object> = p0.value as List<Object>
+                    var locationLat = 0
+                    var locationLng = 0
+                    customer_request.run {
+                        GettingDriverLocation()
+                        text = "Getting You A Mechanic"
+                    }
+
+                    locationLat = (map[0].toString() as Double).toInt()
+                    locationLng = (map[1].toString() as Double).toInt()
+
+                    var latLng=LatLng(locationLat.toDouble(), locationLng.toDouble())
+
+                    if (DriverMarker!=null){
+                        DriverMarker?.remove()
+                    }
+                    DriverMarker=mMap.addMarker(
+                        MarkerOptions().position(latLng)
+                            .title("Mechanic is here")
+                    )
+                }
+
             }
 
             override fun onCancelled(p0: DatabaseError) {
