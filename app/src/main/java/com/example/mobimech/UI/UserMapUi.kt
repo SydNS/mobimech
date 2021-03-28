@@ -34,6 +34,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.util.*
+import kotlin.collections.HashMap
 
 
 //Mechanic's Map Activity
@@ -153,6 +154,12 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
 
                     var MechanRef:DatabaseReference= FirebaseDatabase.getInstance(fbdbroot).reference.child("Users").child("Mechanics").child(mechanic_found_id)
 
+                    val customerId=FirebaseAuth.getInstance().currentUser?.uid
+                    val mapOfUserDetails =HashMap<String, Any>()
+                    when {
+                        customerId != null -> mapOfUserDetails.put("customerId",customerId)
+                    }
+                    MechanRef.updateChildren(mapOfUserDetails)
 
 
                 }
