@@ -13,6 +13,7 @@ import android.widget.RelativeLayout
 import androidx.core.app.ActivityCompat
 import com.example.mobimech.R
 import com.firebase.geofire.GeoFire
+import com.firebase.geofire.GeoLocation
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.LocationRequest
@@ -167,12 +168,11 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
 //        here we record the mechanics location in the DB
         val userID: String? = FirebaseAuth.getInstance().currentUser?.uid
 
-        val MechanicsAvailabilityRefInTheDb: DatabaseReference =firbasedatabase.reference.child("Mechanics Available")
+        val MechanicsAvailabilityRefInTheDb: DatabaseReference =firbasedatabase.reference.child("MechanicAvailable")
 
-        val geoFireAvailability = GeoFire(MechanicsAvailabilityRefInTheDb)
-        val MechanicsWorkingRef: DatabaseReference =FirebaseDatabase.getInstance().reference.child("Mechanics Working")
+        val geoFireMechanicAvailability = GeoFire(MechanicsAvailabilityRefInTheDb)
+        geoFireMechanicAvailability.setLocation(userID, GeoLocation(location.latitude,location.longitude))
 
-//        val geoFireWorking = GeoFire(MechanicsWorkingRef)
 
 
 
@@ -189,4 +189,20 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
             .build()
         googleApiClient.connect()
     }
-}
+
+
+
+    override fun onStop() {
+        super.onStop()
+
+//        when the user gets out of the activity we remove him fro this DB
+
+//        here we record the mechanics location in the DB
+        val userID: String? = FirebaseAuth.getInstance().currentUser?.uid
+
+        val MechanicsAvailabilityRefInTheDb: DatabaseReference =firbasedatabase.reference.child("MechanicAvailable")
+
+        val geoFireMechanicAvailability = GeoFire(MechanicsAvailabilityRefInTheDb)
+        geoFireMechanicAvailability.removeLocation(userID)
+
+    }}

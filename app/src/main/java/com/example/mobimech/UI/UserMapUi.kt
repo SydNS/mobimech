@@ -166,14 +166,14 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
         mMap.animateCamera(CameraUpdateFactory.zoomTo(17F))
 
 //        here we record the mechanics location in the DB
-        val userID: String? = FirebaseAuth.getInstance().currentUser?.uid
-
-        val MechanicsAvailabilityRefInTheDb: DatabaseReference =firbasedatabase.reference.child("MechanicAvailable")
-
-        val geoFireMechanicAvailability = GeoFire(MechanicsAvailabilityRefInTheDb)
-        geoFireMechanicAvailability.setLocation(userID, GeoLocation(location.latitude,location.longitude))
-
-
+//        val userID: String? = FirebaseAuth.getInstance().currentUser?.uid
+//
+//        val MechanicsAvailabilityRefInTheDb: DatabaseReference =firbasedatabase.reference.child("MechanicAvailable")
+//
+//        val geoFireMechanicAvailability = GeoFire(MechanicsAvailabilityRefInTheDb)
+//        geoFireMechanicAvailability.setLocation(userID, GeoLocation(location.latitude,location.longitude))
+//
+//
 
 
 
@@ -193,14 +193,14 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
         super.onStop()
 
 //        when the user gets out of the activity we remove him fro this DB
-
-//        here we record the mechanics location in the DB
-        val userID: String? = FirebaseAuth.getInstance().currentUser?.uid
-
-        val MechanicsAvailabilityRefInTheDb: DatabaseReference =firbasedatabase.reference.child("MechanicAvailable")
-
-        val geoFireMechanicAvailability = GeoFire(MechanicsAvailabilityRefInTheDb)
-        geoFireMechanicAvailability.removeLocation(userID)
+//
+////        here we record the mechanics location in the DB
+//        val userID: String? = FirebaseAuth.getInstance().currentUser?.uid
+//
+//        val MechanicsAvailabilityRefInTheDb: DatabaseReference =firbasedatabase.reference.child("MechanicAvailable")
+//
+//        val geoFireMechanicAvailability = GeoFire(MechanicsAvailabilityRefInTheDb)
+//        geoFireMechanicAvailability.removeLocation(userID)
 
     }
 }
