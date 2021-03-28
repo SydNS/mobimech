@@ -3,12 +3,14 @@
 package com.example.mobimech.UI
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.*
 import android.location.Location
 import android.location.LocationListener
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.RelativeLayout
 import androidx.core.app.ActivityCompat
 import com.example.mobimech.R
@@ -68,6 +70,7 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
 //    private var profilePic: CircleImageView? = null
     private var relativeLayout: RelativeLayout? = null
     private var mAuth: FirebaseAuth? = null
+    lateinit var logoutbtncustomer:Button
 
 
 
@@ -79,8 +82,14 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        mAuth =FirebaseAuth.getInstance()
         firbasedatabase =FirebaseDatabase.getInstance("https://mobimech-d46d0-default-rtdb.firebaseio.com")
 
+        logoutbtncustomer.setOnClickListener {
+            mAuth?.signOut()
+            startActivity(Intent(this,MainActivity::class.java))
+            finish()
+        }
     }
 
     /**
