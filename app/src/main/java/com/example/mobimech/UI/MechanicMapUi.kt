@@ -34,7 +34,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 
-
 //Mechanic's Map Activity
 
 class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
@@ -52,7 +51,7 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
     private var customerPickupLocation: LatLng? = null
 
     var driverLocationref: DatabaseReference? = null
-    private lateinit var firbasedatabase:FirebaseDatabase
+    private lateinit var firbasedatabase: FirebaseDatabase
 //    val geoQuery: GeoQuery? = null
 
     private var currentLogOutCustomerStatus = false
@@ -70,8 +69,7 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
 //    private var profilePic: CircleImageView? = null
     private var relativeLayout: RelativeLayout? = null
     private var mAuth: FirebaseAuth? = null
-    lateinit var logoutbtncustomer:Button
-
+    lateinit var logoutbtncustomer: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,12 +80,13 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-        mAuth =FirebaseAuth.getInstance()
-        firbasedatabase =FirebaseDatabase.getInstance("https://mobimech-d46d0-default-rtdb.firebaseio.com")
-
+        mAuth = FirebaseAuth.getInstance()
+        firbasedatabase =
+            FirebaseDatabase.getInstance("https://mobimech-d46d0-default-rtdb.firebaseio.com")
+        logoutbtncustomer = findViewById(R.id.logoutbtncustomer)
         logoutbtncustomer.setOnClickListener {
             mAuth?.signOut()
-            startActivity(Intent(this,MainActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
     }
@@ -123,7 +122,7 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
             // for ActivityCompat#requestPermissions for more details.
             return
         }
-        mMap.isMyLocationEnabled=true
+        mMap.isMyLocationEnabled = true
 
         // Add a marker in Sydney and move the camera
 //        val sydney = LatLng(-34.0, 151.0)
@@ -133,9 +132,9 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
 
     override fun onConnected(p0: Bundle?) {
 
-        locationRequest= LocationRequest()
-        locationRequest.interval=1000
-        locationRequest.fastestInterval=1000
+        locationRequest = LocationRequest()
+        locationRequest.interval = 1000
+        locationRequest.fastestInterval = 1000
         locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
 
         if (ActivityCompat.checkSelfPermission(
@@ -165,7 +164,7 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
     }
 
     override fun onLocationChanged(location: Location) {
-        lastLocation=location
+        lastLocation = location
         val latlong = LatLng(location.latitude, location.longitude)
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latlong))
         mMap.addMarker(
@@ -177,14 +176,14 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
 //        here we record the mechanics location in the DB
         val userID: String? = FirebaseAuth.getInstance().currentUser?.uid
 
-        val MechanicsAvailabilityRefInTheDb: DatabaseReference =firbasedatabase.reference.child("MechanicAvailable")
+        val MechanicsAvailabilityRefInTheDb: DatabaseReference =
+            firbasedatabase.reference.child("MechanicAvailable")
 
         val geoFireMechanicAvailability = GeoFire(MechanicsAvailabilityRefInTheDb)
-        geoFireMechanicAvailability.setLocation(userID, GeoLocation(location.latitude,location.longitude))
-
-
-
-
+        geoFireMechanicAvailability.setLocation(
+            userID,
+            GeoLocation(location.latitude, location.longitude)
+        )
 
 
     }
@@ -200,7 +199,6 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
     }
 
 
-
     override fun onStop() {
         super.onStop()
 
@@ -209,9 +207,21 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
 //        here we record the mechanics location in the DB
         val userID: String? = FirebaseAuth.getInstance().currentUser?.uid
 
-        val MechanicsAvailabilityRefInTheDb: DatabaseReference =firbasedatabase.reference.child("MechanicAvailable")
+        val MechanicsAvailabilityRefInTheDb: DatabaseReference =
+            firbasedatabase.reference.child("MechanicAvailable")
 
         val geoFireMechanicAvailability = GeoFire(MechanicsAvailabilityRefInTheDb)
         geoFireMechanicAvailability.removeLocation(userID)
 
-    }}
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        onStop()
+        this.finish()
+
+    }
+
+}
+
+
