@@ -25,6 +25,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
@@ -75,6 +76,9 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
     private var AssignedCustomerRef: DatabaseReference? = null
     private var AssignedCustomerPickUpRef: DatabaseReference? = null
 
+//    var PickUpMarker: Marker? = null
+    private var AssignedCustomerPickUpRefListner: ValueEventListener? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,15 +99,15 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
             finish()
         }
 
-        getAssignedCustomer()
+        getAssignedCustomersRequest()
     }
 
     private fun getAssignedCustomersRequest() {
         mechanic_found_id=mAuth?.uid
 
         AssignedCustomerRef = mechanic_found_id?.let {
-            FirebaseDatabase.getInstance().reference.child("Users")
-                .child("Clients").child(it).child("CustomerRideID")
+            firbasedatabase.reference.child("Users")
+                .child("Clients").child(it).child("CustomerAssignedID")
         }
         AssignedCustomerPickUpRefListner =
             AssignedCustomerRef?.addValueEventListener(object : ValueEventListener {
@@ -113,7 +117,7 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
                         customerID = p0.value.toString()
                         //getting assigned customer location
                         GetAssignedCustomerPickupLocation()
-                        relativeLayout!!.visibility = View.VISIBLE
+//                        relativeLayout!!.visibility = View.VISIBLE
                         //assignedCustomerInformation
                     } else {
                         customerID = ""
@@ -123,7 +127,38 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
                                 AssignedCustomerPickUpRefListner!!
                             )
                         }
-                        relativeLayout!!.visibility = View.GONE
+//                        relativeLayout!!.visibility = View.GONE
+                    }
+                }
+
+                override fun onCancelled(p0: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
+    }
+
+    private fun GetAssignedCustomerPickupLocation() {
+        AssignedCustomerPickUpRef =
+            FirebaseDatabase.getInstance().reference.child("UserRequest")
+                .child(customerID).child("l")
+        AssignedCustomerPickUpRefListner =
+            AssignedCustomerPickUpRef!!.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        val customerLocationMap = dataSnapshot.getValue() as List<Any?>
+                        var LocationLat = 0.0
+                        var LocationLng = 0.0
+                        if (customerLocationMap[0] != null) {
+                            LocationLat = customerLocationMap[0].toString().toDouble()
+                        }
+                        if (customerLocationMap[1] != null) {
+                            LocationLng = customerLocationMap[1].toString().toDouble()
+                        }
+                        val DriverLatLng = LatLng(LocationLat, LocationLng)
+                        PickUpMarker = mMap.addMarker(
+                            MarkerOptions().position(DriverLatLng).title("Customer PickUp Location")
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.logog_foreground))
+                        )
                     }
                 }
 
