@@ -74,6 +74,8 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
     private var mAuth: FirebaseAuth? = null
     lateinit var logoutbtncustomer: Button
     lateinit var customer_request: Button
+    val fbdbroot="https://mobimech-d46d0-default-rtdb.firebaseio.com"
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,7 +87,7 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
         mapFragment.getMapAsync(this)
 
         firbasedatabase =
-            FirebaseDatabase.getInstance("https://mobimech-d46d0-default-rtdb.firebaseio.com")
+            FirebaseDatabase.getInstance(fbdbroot)
 
         MechanicRef=firbasedatabase.getReference("MechanicAvailable")
 
@@ -148,6 +150,11 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
                 if (!mechanicFound) {
                     mechanicFound = true
                     mechanic_found_id = key
+
+                    var MechanRef:DatabaseReference= FirebaseDatabase.getInstance(fbdbroot).reference.child("Users").child("Mechanics").child(mechanic_found_id)
+
+
+
                 }
 
             }
@@ -180,10 +187,7 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
                     val map: List<Object> = p0.value as List<Object>
                     var locationLat = 0
                     var locationLng = 0
-                    customer_request.run {
-                        GettingDriverLocation()
-                        text = "Getting You A Mechanic"
-                    }
+                    customer_request.text="Mechanic Found"
 
                     locationLat = (map[0].toString() as Double).toInt()
                     locationLng = (map[1].toString() as Double).toInt()
@@ -195,7 +199,7 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
                     }
                     DriverMarker=mMap.addMarker(
                         MarkerOptions().position(latLng)
-                            .title("Mechanic is here")
+                            .title("Your Mechanic")
                     )
                 }
 
