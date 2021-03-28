@@ -29,9 +29,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 
 
 //Mechanic's Map Activity
@@ -59,6 +57,7 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
     var driverFound = false
     var requestType = false
     var driver_found_id: String? = null
+    var customerSessionId: String? = null
     var MechanicRef: DatabaseReference? = null
     var DriverMarker: Marker? = null
     var PickUpMarker: Marker? = null
@@ -70,6 +69,7 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
     private var relativeLayout: RelativeLayout? = null
     private var mAuth: FirebaseAuth? = null
     lateinit var logoutbtncustomer: Button
+    lateinit var accepting_btn_request: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,11 +84,82 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
         firbasedatabase =
             FirebaseDatabase.getInstance("https://mobimech-d46d0-default-rtdb.firebaseio.com")
         logoutbtncustomer = findViewById(R.id.logoutbtncustomer)
+        accepting_btn_request = findViewById(R.id.accepting_btn_request)
         logoutbtncustomer.setOnClickListener {
             mAuth?.signOut()
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
+
+        getAssignedCustomer()
+    }
+
+    private fun getAssignedCustomer() {
+        var mechanicId = FirebaseAuth.getInstance().currentUser?.uid
+
+        var assignedCustomerRef = firbasedatabase.reference.child("Users").child(
+            "Mechanics"
+        ).child("l")
+
+        assignedCustomerRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                if (p0.exists()) {
+
+                    val map: Map<String, Object> = p0.value as Map<String, Object>
+                    if (map["customerSessionId"] != null) {
+                        customerID = map.get("customerSessionId").toString()
+                        getAssignedCutomerPickUpLocation()
+                    }
+
+
+                }
+
+            }
+
+            private fun getAssignedCutomerPickUpLocation() {
+
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+
+
+
+//        var assignedCustomerLocationRef = firbasedatabase.reference.child("UserRequest").child(
+//            mechanicId!!
+//        ).child("l")
+
+        assignedCustomerLocationRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                if (p0.exists()) {
+
+                    val map: Map<String, Object> = p0.value as Map<String, Object>
+
+                    if (map.get("customerSessionId") != null) {
+                        customerID = map.get("customerSessionId").toString()
+                        getAssignedCutomerPickUpLocation()
+                    }
+
+
+                }
+
+            }
+
+            private fun getAssignedCutomerPickUpLocation() {
+                TODO("Not yet implemented")
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+
     }
 
     /**
