@@ -108,9 +108,23 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
             mMap.moveCamera(CameraUpdateFactory.newLatLng(customerPickupLocation))
             mMap.addMarker(
                 MarkerOptions().position(customerPickupLocation!!)
-                    .title("User Location")
+                    .title("Pick Up here")
             )
-            mMap.animateCamera(CameraUpdateFactory.zoomTo(17F))
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(11F))
+            customer_request.run {
+                geoFireMechanicAvailability.setLocation(userID, GeoLocation(mlastlocation.latitude,mlastlocation.longitude))
+
+                customerPickupLocation=LatLng(mlastlocation.latitude,mlastlocation.longitude)
+
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(customerPickupLocation))
+                mMap.addMarker(
+                        MarkerOptions().position(customerPickupLocation!!)
+                            .title("Pick Up here")
+                    )
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(11F))
+                text = "Getting You A Mechanic"
+            }
+
 
         }
     }
