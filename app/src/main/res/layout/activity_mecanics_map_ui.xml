@@ -39,7 +39,7 @@ tools:context=".UI.MechanicMapUi">
     tools:context=".UI.UserMapUi"/>
 
 <Button
-    android:id="@+id/customer_request"
+    android:id="@+id/accepting_btn_request"
     android:layout_width="wrap_content"
     android:layout_centerHorizontal="true"
     android:layout_height="wrap_content"
