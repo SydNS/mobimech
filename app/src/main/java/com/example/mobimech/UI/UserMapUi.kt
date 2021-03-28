@@ -43,7 +43,7 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
 
     private lateinit var mMap: GoogleMap
     lateinit var googleApiClient: GoogleApiClient
-    lateinit var location: Location
+    lateinit var mlastlocation: Location
     private lateinit var lastLocation: Location
     lateinit var locationRequest: LocationRequest
 
@@ -75,6 +75,7 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
 
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_map_ui)
@@ -100,7 +101,16 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
             val MechanicsAvailabilityRefInTheDb: DatabaseReference =firbasedatabase.reference.child("UserRequest")
 
             val geoFireMechanicAvailability = GeoFire(MechanicsAvailabilityRefInTheDb)
-            geoFireMechanicAvailability.setLocation(userID, GeoLocation(location.latitude,location.longitude))
+            geoFireMechanicAvailability.setLocation(userID, GeoLocation(mlastlocation.latitude,mlastlocation.longitude))
+
+            customerPickupLocation=LatLng(mlastlocation.latitude,mlastlocation.longitude)
+
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(customerPickupLocation))
+            mMap.addMarker(
+                MarkerOptions().position(customerPickupLocation!!)
+                    .title("User Location")
+            )
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(17F))
 
         }
     }
