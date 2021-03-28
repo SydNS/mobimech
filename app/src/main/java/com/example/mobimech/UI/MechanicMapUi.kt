@@ -170,7 +170,7 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latlong))
         mMap.addMarker(
             MarkerOptions().position(latlong)
-                .title("User Location")
+                .title("Mechanic Location")
         )
         mMap.animateCamera(CameraUpdateFactory.zoomTo(17F))
 
