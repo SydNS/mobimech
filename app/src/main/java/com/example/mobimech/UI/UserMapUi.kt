@@ -3,12 +3,14 @@
 package com.example.mobimech.UI
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.*
 import android.location.Location
 import android.location.LocationListener
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.RelativeLayout
 import androidx.core.app.ActivityCompat
 import com.example.mobimech.R
@@ -68,6 +70,8 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
 //    private var profilePic: CircleImageView? = null
     private var relativeLayout: RelativeLayout? = null
     private var mAuth: FirebaseAuth? = null
+    lateinit var logoutbtncustomer: Button
+    lateinit var customer_request: Button
 
 
 
@@ -80,7 +84,19 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
         mapFragment.getMapAsync(this)
 
         firbasedatabase =FirebaseDatabase.getInstance("https://mobimech-d46d0-default-rtdb.firebaseio.com")
+        logoutbtncustomer=findViewById(R.id.logoutbtncustomer)
+        customer_request=findViewById(R.id.customer_request)
 
+        logoutbtncustomer.setOnClickListener {
+            mAuth?.signOut()
+            startActivity(Intent(this,MainActivity::class.java))
+            finish()
+        }
+        customer_request.setOnClickListener {
+            mAuth?.signOut()
+            startActivity(Intent(this,MainActivity::class.java))
+            finish()
+        }
     }
 
     /**
@@ -165,15 +181,8 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
         )
         mMap.animateCamera(CameraUpdateFactory.zoomTo(17F))
 
-//        here we record the mechanics location in the DB
-//        val userID: String? = FirebaseAuth.getInstance().currentUser?.uid
-//
-//        val MechanicsAvailabilityRefInTheDb: DatabaseReference =firbasedatabase.reference.child("MechanicAvailable")
-//
-//        val geoFireMechanicAvailability = GeoFire(MechanicsAvailabilityRefInTheDb)
-//        geoFireMechanicAvailability.setLocation(userID, GeoLocation(location.latitude,location.longitude))
-//
-//
+//        here we removed the code for recording the users locationn becoz the user is static
+
 
 
 
@@ -191,16 +200,6 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
 
     override fun onStop() {
         super.onStop()
-
-//        when the user gets out of the activity we remove him fro this DB
-//
-////        here we record the mechanics location in the DB
-//        val userID: String? = FirebaseAuth.getInstance().currentUser?.uid
-//
-//        val MechanicsAvailabilityRefInTheDb: DatabaseReference =firbasedatabase.reference.child("MechanicAvailable")
-//
-//        val geoFireMechanicAvailability = GeoFire(MechanicsAvailabilityRefInTheDb)
-//        geoFireMechanicAvailability.removeLocation(userID)
 
     }
 }

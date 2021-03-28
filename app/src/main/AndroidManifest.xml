@@ -35,7 +35,9 @@
 
         <activity
             android:name=".UI.UserMapUi"
-            android:label="@string/title_activity_user_map_ui"/>
+            android:label="User"/>
+        <activity android:name=".UI.MechanicMapUi"
+            android:label="Mechanic"/>
         <activity
             android:name=".UI.MainActivity"
             android:theme="@style/activityauth"
