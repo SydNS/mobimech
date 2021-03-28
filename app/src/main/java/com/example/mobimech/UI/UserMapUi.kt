@@ -157,9 +157,10 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
                     val customerId=FirebaseAuth.getInstance().currentUser?.uid
                     val mapOfUserDetails =HashMap<String, Any>()
                     when {
-                        customerId != null -> mapOfUserDetails.put("customerId",customerId)
+                        customerId != null -> mapOfUserDetails["customerId"] = customerId
                     }
                     MechanRef.updateChildren(mapOfUserDetails)
+
 
 
                 }
