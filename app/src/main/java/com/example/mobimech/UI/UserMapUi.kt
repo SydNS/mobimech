@@ -16,6 +16,8 @@ import androidx.core.app.ActivityCompat
 import com.example.mobimech.R
 import com.firebase.geofire.GeoFire
 import com.firebase.geofire.GeoLocation
+import com.firebase.geofire.GeoQuery
+import com.firebase.geofire.GeoQueryEventListener
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.LocationRequest
@@ -25,14 +27,12 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-
+import com.google.firebase.database.*
 
 
 //Mechanic's Map Activity
@@ -43,27 +43,28 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
 
     private lateinit var mMap: GoogleMap
     lateinit var googleApiClient: GoogleApiClient
-    lateinit var mlastlocation: Location
     private lateinit var lastLocation: Location
-    lateinit var locationRequest: LocationRequest
+
+    //    private lateinit var lastLocation: Location
+    private lateinit var locationRequest: LocationRequest
 
     //getting request customer's id
     private var customerID = ""
     private var customerPickupLocation: LatLng? = null
 
-    var driverLocationref: DatabaseReference? = null
-    private lateinit var firbasedatabase:FirebaseDatabase
+    var mechanicLocationref: DatabaseReference? = null
+    private lateinit var firbasedatabase: FirebaseDatabase
 //    val geoQuery: GeoQuery? = null
 
     private var currentLogOutCustomerStatus = false
     var radius = 1.0
-    var driverFound = false
+    var mechanicFound = false
     var requestType = false
-    var driver_found_id: String? = null
+    lateinit var mechanic_found_id:String
     var MechanicRef: DatabaseReference? = null
     var DriverMarker: Marker? = null
     var PickUpMarker: Marker? = null
-    var DriverLocationRefListener: ValueEventListener? = null
+    var MechanicLocationRefListener: ValueEventListener? = null
 
 
     //    private var logoutbtn: Button? = null
@@ -74,8 +75,6 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
     lateinit var customer_request: Button
 
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_map_ui)
@@ -84,26 +83,33 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-        firbasedatabase =FirebaseDatabase.getInstance("https://mobimech-d46d0-default-rtdb.firebaseio.com")
-        logoutbtncustomer=findViewById(R.id.logoutbtncustomer)
-        customer_request=findViewById(R.id.customer_request)
+        firbasedatabase =
+            FirebaseDatabase.getInstance("https://mobimech-d46d0-default-rtdb.firebaseio.com")
+
+        MechanicRef=firbasedatabase.getReference("MechanicAvailable")
+
+        logoutbtncustomer = findViewById(R.id.logoutbtncustomer)
+        customer_request = findViewById(R.id.customer_request)
 
         logoutbtncustomer.setOnClickListener {
             mAuth?.signOut()
-            startActivity(Intent(this,MainActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
         customer_request.setOnClickListener {
-            mAuth?.signOut()
 
             val userID: String? = FirebaseAuth.getInstance().currentUser?.uid
 
-            val MechanicsAvailabilityRefInTheDb: DatabaseReference =firbasedatabase.reference.child("UserRequest")
+            val CustomerRefInTheDb: DatabaseReference =
+                firbasedatabase.reference.child("UserRequest")
 
-            val geoFireMechanicAvailability = GeoFire(MechanicsAvailabilityRefInTheDb)
-            geoFireMechanicAvailability.setLocation(userID, GeoLocation(mlastlocation.latitude,mlastlocation.longitude))
+            val CustomerAvailability = GeoFire(CustomerRefInTheDb)
+            CustomerAvailability.setLocation(
+                userID,
+                GeoLocation(lastLocation.latitude, lastLocation.longitude)
+            )
 
-            customerPickupLocation=LatLng(mlastlocation.latitude,mlastlocation.longitude)
+            customerPickupLocation = LatLng(lastLocation.latitude, lastLocation.longitude)
 
             mMap.moveCamera(CameraUpdateFactory.newLatLng(customerPickupLocation))
             mMap.addMarker(
@@ -112,22 +118,93 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
             )
             mMap.animateCamera(CameraUpdateFactory.zoomTo(11F))
             customer_request.run {
-                geoFireMechanicAvailability.setLocation(userID, GeoLocation(mlastlocation.latitude,mlastlocation.longitude))
-
-                customerPickupLocation=LatLng(mlastlocation.latitude,mlastlocation.longitude)
-
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(customerPickupLocation))
-                mMap.addMarker(
-                        MarkerOptions().position(customerPickupLocation!!)
-                            .title("Pick Up here")
-                    )
-                mMap.animateCamera(CameraUpdateFactory.zoomTo(11F))
+                GettingDriverLocation()
                 text = "Getting You A Mechanic"
             }
 
+            getClosestDriver()
 
         }
     }
+
+
+    private fun getClosestDriver() {
+        val mechanicsLocationref = firbasedatabase.reference.child("MechanicAvailable")
+        val geoFire = GeoFire(mechanicsLocationref)
+        val geoQuery: GeoQuery = geoFire.queryAtLocation(
+            GeoLocation(
+                customerPickupLocation!!.latitude,
+                customerPickupLocation!!.longitude
+            ), radius
+        )
+
+        geoQuery.removeAllListeners()
+
+        geoQuery.addGeoQueryEventListener(object : GeoQueryEventListener {
+            override fun onKeyEntered(key: String, location: GeoLocation) {
+                //anytime the driver is called this method will be called
+                //key=driverID and the location
+                if (!mechanicFound) {
+                    mechanicFound = true
+                    mechanic_found_id = key
+                }
+
+            }
+
+            override fun onKeyExited(key: String) {}
+            override fun onKeyMoved(key: String, location: GeoLocation) {}
+            override fun onGeoQueryReady() {
+                if (!mechanicFound) {
+                    radius += 1
+                    getClosestDriver()
+                }
+            }
+
+            override fun onGeoQueryError(error: DatabaseError?) {}
+        })
+
+
+    }
+    private fun GettingDriverLocation() {
+
+//this will look for the driver around and online , if the driver accepts the request
+// then, the driver working node is available and we get his location using his ID through the DataSnapshot
+
+        MechanicRef
+
+        mechanicLocationref= MechanicRef?.child("mechanicWorking")?.child(mechanic_found_id)?.child("l")
+        mechanicLocationref?.addValueEventListener(object :ValueEventListener{
+            override fun onDataChange(p0: DataSnapshot) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+
+    }
+
+
+
+                override fun onLocationChanged(location: Location) {
+        lastLocation = location
+        val latlong = LatLng(location.latitude, location.longitude)
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latlong))
+        mMap.addMarker(
+            MarkerOptions().position(latlong)
+                .title("User Location")
+        )
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(12F))
+
+//        here we removed the code for recording the users locationn becoz the user is static
+
+    }
+
+
+
 
     /**
      * Manipulates the map once available.
@@ -160,7 +237,7 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
             // for ActivityCompat#requestPermissions for more details.
             return
         }
-        mMap.isMyLocationEnabled=true
+        mMap.isMyLocationEnabled = true
 
         // Add a marker in Sydney and move the camera
 //        val sydney = LatLng(-34.0, 151.0)
@@ -168,11 +245,12 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
 //        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
     }
 
+
     override fun onConnected(p0: Bundle?) {
 
-        locationRequest= LocationRequest()
-        locationRequest.interval=1000
-        locationRequest.fastestInterval=1000
+        locationRequest = LocationRequest()
+        locationRequest.interval = 1000
+        locationRequest.fastestInterval = 1000
         locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
 
         if (ActivityCompat.checkSelfPermission(
@@ -201,22 +279,6 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
         TODO("Not yet implemented")
     }
 
-    override fun onLocationChanged(location: Location) {
-        lastLocation=location
-        val latlong = LatLng(location.latitude, location.longitude)
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latlong))
-        mMap.addMarker(
-            MarkerOptions().position(latlong)
-                .title("User Location")
-        )
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(17F))
-
-//        here we removed the code for recording the users locationn becoz the user is static
-
-
-
-
-    }
 
     @Synchronized
     protected fun buildGoogleApiClient() {
@@ -228,8 +290,16 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
         googleApiClient.connect()
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onBackPressed() {
+        super.onBackPressed()
+        this.finish()
 
     }
+
+    override fun onStop() {
+        super.onStop()
+        this.finish()
+
+    }
+
 }
