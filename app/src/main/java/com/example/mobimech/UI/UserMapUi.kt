@@ -161,8 +161,6 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
                     }
                     MechanRef.updateChildren(mapOfUserDetails)
 
-
-
                 }
 
             }
@@ -190,8 +188,6 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
         mechanicLocationref?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 if (p0.exists()) {
-
-
                     val map: List<Object> = p0.value as List<Object>
                     var locationLat = 0
                     var locationLng = 0
@@ -200,7 +196,7 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
                     locationLat = (map[0].toString() as Double).toInt()
                     locationLng = (map[1].toString() as Double).toInt()
 
-                    var latLng=LatLng(locationLat.toDouble(), locationLng.toDouble())
+                    val latLng=LatLng(locationLat.toDouble(), locationLng.toDouble())
 
                     if (DriverMarker!=null){
                         DriverMarker?.remove()
@@ -224,7 +220,8 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
 
 
 
-                override fun onLocationChanged(location: Location) {
+
+    override fun onLocationChanged(location: Location) {
         lastLocation = location
         val latlong = LatLng(location.latitude, location.longitude)
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latlong))

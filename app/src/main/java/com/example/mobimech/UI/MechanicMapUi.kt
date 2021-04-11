@@ -76,7 +76,7 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
     private var AssignedCustomerRef: DatabaseReference? = null
     private var AssignedCustomerPickUpRef: DatabaseReference? = null
 
-//    var PickUpMarker: Marker? = null
+    //    var PickUpMarker: Marker? = null
     private var AssignedCustomerPickUpRefListner: ValueEventListener? = null
 
 
@@ -103,70 +103,73 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
     }
 
     private fun getAssignedCustomersRequest() {
-        mechanic_found_id=mAuth?.uid
+        mechanic_found_id = mAuth?.uid
 
         AssignedCustomerRef = mechanic_found_id?.let {
             firbasedatabase.reference.child("Users")
-                .child("Clients").child(it).child("CustomerAssignedID")
+                .child("Clients").child(mechanic_found_id!!)
         }
-        AssignedCustomerPickUpRefListner =
-            AssignedCustomerRef?.addValueEventListener(object : ValueEventListener {
 
-                override fun onDataChange(p0: DataSnapshot) {
-                    if (p0.exists()) {
-                        customerID = p0.value.toString()
-                        //getting assigned customer location
+        AssignedCustomerRef?.addValueEventListener(object : ValueEventListener {
+
+            override fun onDataChange(p0: DataSnapshot) {
+                if (p0.exists()) {
+                    val assignedCustomerMap = p0.value as Map<String, Any>
+                    if (assignedCustomerMap["customerId"] != null) {
+                        customerID = assignedCustomerMap["customerId"].toString()
+
+
                         GetAssignedCustomerPickupLocation()
-//                        relativeLayout!!.visibility = View.VISIBLE
-                        //assignedCustomerInformation
-                    } else {
-                        customerID = ""
-                        PickUpMarker?.remove()
-                        if (AssignedCustomerPickUpRefListner != null) {
-                            AssignedCustomerPickUpRef?.removeEventListener(
-                                AssignedCustomerPickUpRefListner!!
-                            )
-                        }
-//                        relativeLayout!!.visibility = View.GONE
                     }
-                }
 
-                override fun onCancelled(p0: DatabaseError) {
-                    TODO("Not yet implemented")
                 }
-            })
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
     }
 
     private fun GetAssignedCustomerPickupLocation() {
-        AssignedCustomerPickUpRef =
-            FirebaseDatabase.getInstance().reference.child("UserRequest")
-                .child(customerID).child("l")
-        AssignedCustomerPickUpRefListner =
-            AssignedCustomerPickUpRef!!.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        val customerLocationMap = dataSnapshot.getValue() as List<Any?>
-                        var LocationLat = 0.0
-                        var LocationLng = 0.0
-                        if (customerLocationMap[0] != null) {
-                            LocationLat = customerLocationMap[0].toString().toDouble()
-                        }
-                        if (customerLocationMap[1] != null) {
-                            LocationLng = customerLocationMap[1].toString().toDouble()
-                        }
-                        val DriverLatLng = LatLng(LocationLat, LocationLng)
-                        PickUpMarker = mMap.addMarker(
-                            MarkerOptions().position(DriverLatLng).title("Customer PickUp Location")
-                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.logog_foreground))
-                        )
+
+        var assignedpickuplocationref: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("UserRequest")?.child(customerID)
+                ?.child("l")
+
+        assignedpickuplocationref?.addValueEventListener(object : ValueEventListener {
+
+            override fun onDataChange(p0: DataSnapshot) {
+                if (p0.exists()) {
+                    val assignedpickuplocationrefMap: List<Object> = p0.value as List<Object>
+                    var locationLat = 0
+                    var locationLng = 0
+
+
+                    locationLat = (assignedpickuplocationrefMap[0].toString() as Double).toInt()
+                    locationLng = (assignedpickuplocationrefMap[1].toString() as Double).toInt()
+
+                    var latLng = LatLng(locationLat.toDouble(), locationLng.toDouble())
+
+                    if (DriverMarker != null) {
+                        DriverMarker?.remove()
                     }
+                    DriverMarker = mMap.addMarker(
+                        MarkerOptions().position(latLng)
+                            .title("Your Customer")
+                    )
                 }
 
-                override fun onCancelled(p0: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-            })
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+
+
     }
+
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -240,28 +243,46 @@ class MechanicMapUi : AppCompatActivity(), OnMapReadyCallback,
     }
 
     override fun onLocationChanged(location: Location) {
-        lastLocation = location
-        val latlong = LatLng(location.latitude, location.longitude)
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latlong))
-        mMap.addMarker(
-            MarkerOptions().position(latlong)
-                .title("Mechanic Location")
-        )
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(17F))
+        if (applicationContext != null) {
+            lastLocation = location
+            val latlong = LatLng(location.latitude, location.longitude)
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(latlong))
+            mMap.addMarker(
+                MarkerOptions().position(latlong)
+                    .title("Mechanic Location")
+            )
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(17F))
 
 //        here we record the mechanics location in the DB
-        val userID: String? = FirebaseAuth.getInstance().currentUser?.uid
+            val userID: String? = FirebaseAuth.getInstance().currentUser?.uid
 
-        val MechanicsAvailabilityRefInTheDb: DatabaseReference =
-            firbasedatabase.reference.child("MechanicAvailable")
+            val MechanicsAvailabilityRefInTheDb: DatabaseReference =
+                firbasedatabase.reference.child("MechanicAvailable")
+            val MechanicsWorkingRefInTheDb: DatabaseReference =
+                firbasedatabase.reference.child("mechanicWorking")
 
-        val geoFireMechanicAvailability = GeoFire(MechanicsAvailabilityRefInTheDb)
-        geoFireMechanicAvailability.setLocation(
-            userID,
-            GeoLocation(location.latitude, location.longitude)
-        )
+            val geoFireMechanicAvailability = GeoFire(MechanicsAvailabilityRefInTheDb)
+            val geoFireMechanicWorking = GeoFire(MechanicsWorkingRefInTheDb)
 
 
+
+            if (customerID==""){
+                geoFireMechanicWorking.removeLocation(customerID)
+                geoFireMechanicAvailability.setLocation(
+                    userID,
+                    GeoLocation(location.latitude, location.longitude)
+                )
+
+            }else{
+                geoFireMechanicAvailability.removeLocation(customerID)
+                geoFireMechanicWorking.setLocation(
+                    userID,
+                    GeoLocation(location.latitude, location.longitude)
+                )
+            }
+
+
+        }
     }
 
     @Synchronized
