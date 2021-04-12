@@ -21,6 +21,7 @@ import com.google.firebase.storage.UploadTask
 import com.squareup.picasso.Picasso
 import com.theartofdev.edmodo.cropper.CropImage
 import java.util.*
+import com.example.mobimech.R
 
 class SettingsActivity : AppCompatActivity() {
     private var getType: String? = null
