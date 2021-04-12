@@ -16,6 +16,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.mobimech.R
 import com.example.mobimech.adapters.WalkthroughRecyclerviewdapter
 import com.example.mobimech.databinding.FragmentWalkthroughBinding
+import com.example.mobimech.mobimechsharedpreferences.IsItTheAppsFirstTimeOpenning
 import com.example.mobimech.models.DisplayItem
 
 // TODO: Rename parameter arguments, choose names that match
@@ -35,6 +36,7 @@ class Walkthrough : Fragment() {
 
 
     private lateinit var sharedPreferences: SharedPreferences
+    lateinit var isItTheAppsFirstTimeOpenning: IsItTheAppsFirstTimeOpenning
 
     lateinit var walkthroughBinding: FragmentWalkthroughBinding
     lateinit var walkthroughRecyclerviewdapter: WalkthroughRecyclerviewdapter
@@ -65,6 +67,9 @@ class Walkthrough : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
+
+        isItTheAppsFirstTimeOpenning = IsItTheAppsFirstTimeOpenning(requireActivity())
+
         walkthroughBinding = FragmentWalkthroughBinding.inflate(inflater, container, false)
         val view: View = walkthroughBinding.root
         //getting recyclerview from xml
@@ -153,7 +158,7 @@ class Walkthrough : Fragment() {
         }
 
         walkthroughBinding.Signinbtnwalkthrough.setOnClickListener {
-
+            isItTheAppsFirstTimeOpenning.writeInstalled()
             Navigation.findNavController(view).navigate(R.id.action_walkthrough_to_loginFrag)
         }
 
