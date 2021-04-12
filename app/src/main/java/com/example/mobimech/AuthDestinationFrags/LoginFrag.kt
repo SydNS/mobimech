@@ -13,6 +13,7 @@ import androidx.navigation.Navigation
 import com.example.mobimech.R
 import com.example.mobimech.databinding.FragmentLoginBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 // TODO: Rename parameter arguments, choose names that match
@@ -29,13 +30,12 @@ class LoginFrag : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
     private lateinit var firbasedatabase: FirebaseDatabase
-
-
     lateinit var loginBinding:FragmentLoginBinding
-
+    private var customersDatabaseRef: DatabaseReference? = null
     private lateinit var auth: FirebaseAuth
+    var currentUserId: String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -129,10 +129,12 @@ class LoginFrag : Fragment() {
 
 
                 if (appuser=="Clients"){
+
                     Navigation.findNavController(view).navigate(
                         R.id.action_loginFrag_to_homeFrag
                     )
                 }else if (appuser=="Mechanics"){
+
                     Navigation.findNavController(view).navigate(
                         R.id.action_loginFrag_to_homeFrag
                     )

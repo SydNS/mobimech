@@ -71,7 +71,7 @@ class RegistrationFrag : Fragment() {
         var view = registrationBinding.root
         mAuth = FirebaseAuth.getInstance()
 
-        firbasedatabase =FirebaseDatabase.getInstance("https://mobimech-d46d0-default-rtdb.firebaseio.com")
+        firbasedatabase =FirebaseDatabase.getInstance("https://mobilemechan-default-rtdb.firebaseio.com/")
         loadingBar = ProgressDialog(activity)
 
         return view
@@ -85,12 +85,7 @@ class RegistrationFrag : Fragment() {
             var passtext1 = registrationBinding.passlogin.editText?.text.toString().trim()
             var passtext2 = registrationBinding.passlogin2.editText?.text.toString().trim()
 
-
-            if (passtext1 == passtext2) {
-
-                createAccount(emailtext, passtext2, view,"Clients","Client")
-
-            } else {
+            if (passtext1 == passtext2) createAccount(emailtext, passtext2, view,"Clients","Client") else {
                 Toast.makeText(activity, "some fields are empty", Toast.LENGTH_SHORT)
                     .show()
             }
@@ -105,12 +100,7 @@ class RegistrationFrag : Fragment() {
             var passtext1 = registrationBinding.passlogin.editText?.text.toString().trim()
             var passtext2 = registrationBinding.passlogin2.editText?.text.toString().trim()
 
-
-            if (passtext1 == passtext2) {
-
-                createAccount(emailtext, passtext2, view,"Mechanics","Mechanic")
-
-            } else {
+            if (passtext1 == passtext2) createAccount(emailtext, passtext2, view,"Mechanics","Mechanic") else {
                 Toast.makeText(activity, "some fields are empty", Toast.LENGTH_SHORT)
                     .show()
             }
