@@ -63,6 +63,9 @@
         <action
             android:id="@+id/action_walkthrough_to_loginFrag"
             app:destination="@id/loginFrag" />
+        <action
+            android:id="@+id/action_walkthrough_to_registrationFrag"
+            app:destination="@id/registrationFrag" />
     </fragment>
     <fragment
         android:id="@+id/splash"
@@ -75,6 +78,9 @@
         <action
             android:id="@+id/action_splash_to_loginFrag"
             app:destination="@id/loginFrag" />
+        <action
+            android:id="@+id/action_splash_to_registrationFrag"
+            app:destination="@id/registrationFrag" />
     </fragment>
     <fragment
         android:id="@+id/homeTabs"
