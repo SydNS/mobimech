@@ -4,10 +4,8 @@ package com.example.mobimech.UI
 
 import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.content.pm.PackageManager.*
 import android.location.Location
-import android.location.LocationListener
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -27,13 +25,11 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import java.util.*
 import kotlin.collections.HashMap
 
 
@@ -92,8 +88,8 @@ class UserMapUi : AppCompatActivity(), OnMapReadyCallback,
 
         MechanicRef=firbasedatabase.getReference("MechanicAvailable")
 
-        logoutbtncustomer = findViewById(R.id.logoutbtncustomer)
-        customer_request = findViewById(R.id.customer_request)
+        logoutbtncustomer = findViewById(R.id.logout_customer_btn)
+        customer_request = findViewById(R.id.call_a_mechanic_button)
 
         logoutbtncustomer.setOnClickListener {
             mAuth?.signOut()
