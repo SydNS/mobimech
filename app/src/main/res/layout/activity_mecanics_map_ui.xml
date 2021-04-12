@@ -27,7 +27,6 @@
     android:layout_alignParentEnd="true"
     android:layout_marginEnd="20dp"
     android:layout_marginRight="20dp"
-    android:background="@drawable/walkthrubtnbackground"
     android:layout_alignParentRight="true" />
 
 
