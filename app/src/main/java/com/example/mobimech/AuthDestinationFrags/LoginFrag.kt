@@ -31,7 +31,7 @@ class LoginFrag : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var firbasedatabase: FirebaseDatabase
-    lateinit var loginBinding:FragmentLoginBinding
+    lateinit var loginBinding: FragmentLoginBinding
     private var customersDatabaseRef: DatabaseReference? = null
     private lateinit var auth: FirebaseAuth
     var currentUserId: String? = null
@@ -54,7 +54,8 @@ class LoginFrag : Fragment() {
         // Inflate the layout for this fragment
         loginBinding = FragmentLoginBinding.inflate(inflater, container, false)
 
-        firbasedatabase =FirebaseDatabase.getInstance("https://mobimech-d46d0-default-rtdb.firebaseio.com")
+        firbasedatabase =
+            FirebaseDatabase.getInstance("https://mobilemechan-default-rtdb.firebaseio.com/")
         return loginBinding.root
     }
 
@@ -63,16 +64,16 @@ class LoginFrag : Fragment() {
         loginBinding.loginbtn.setOnClickListener {
 //            Navigation.findNavController(view).navigate(R.id.action_loginFrag_to_homeFrag)
 
-            val email:String= loginBinding.emaillogin.editText?.text.toString().trim()
-            val password:String=loginBinding.passlogin.editText?.text.toString()
+            val email: String = loginBinding.emaillogin.editText?.text.toString().trim()
+            val password: String = loginBinding.passlogin.editText?.text.toString()
 
-            if(email.isEmpty()){
-                Toast.makeText(activity,"Fill in all the Fields",Toast.LENGTH_SHORT).show()
+            if (email.isEmpty()) {
+                Toast.makeText(activity, "Fill in all the Fields", Toast.LENGTH_SHORT).show()
             }
-            if(password.isEmpty()){
-                Toast.makeText(activity,"Fill in all the Fields",Toast.LENGTH_SHORT).show()
+            if (password.isEmpty()) {
+                Toast.makeText(activity, "Fill in all the Fields", Toast.LENGTH_SHORT).show()
             }
-            signIn(email,password,view,"Clients")
+            signIn(email, password, view, "Clients")
 
 
         }
@@ -89,8 +90,6 @@ class LoginFrag : Fragment() {
                 Toast.makeText(activity, "Fill in all the Fields", Toast.LENGTH_SHORT).show()
             }
             signIn(email, password, view, "Mechanics")
-
-
         }
 
         loginBinding.registerlink.setOnClickListener {
@@ -112,28 +111,25 @@ class LoginFrag : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_loginFrag_to_resetPassword)
 
         }
-
-
     }
 
 
-    private fun signIn(email: String, password: String,view: View,appuser:String) {
+    private fun signIn(email: String, password: String, view: View, appuser: String) {
         // [START sign_in_with_email]
-        auth.signInWithEmailAndPassword(email,password).addOnCompleteListener {
-            if(it.isSuccessful){
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+            if (it.isSuccessful) {
                 Log.d(TAG, "createUserWithEmail:success")
                 val user = auth.currentUser
-                val uid= user?.uid
+                val uid = user?.uid
 
-                Toast.makeText(activity, user?.email.toString(),Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, user?.email.toString(), Toast.LENGTH_SHORT).show()
 
-
-                if (appuser=="Clients"){
+                if (appuser == "Clients") {
 
                     Navigation.findNavController(view).navigate(
                         R.id.action_loginFrag_to_homeFrag
                     )
-                }else if (appuser=="Mechanics"){
+                } else if (appuser == "Mechanics") {
 
                     Navigation.findNavController(view).navigate(
                         R.id.action_loginFrag_to_homeFrag
@@ -146,12 +142,12 @@ class LoginFrag : Fragment() {
                     Toast.LENGTH_LONG
                 ).show()
 
-
-            }else{
-
-                Toast.makeText(activity,"Sorry failed to login ${it.exception}",Toast.LENGTH_SHORT).show()
-
-
+            } else {
+                Toast.makeText(
+                    activity,
+                    "Sorry failed to login ${it.exception}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 
