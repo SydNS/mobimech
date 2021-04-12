@@ -41,7 +41,7 @@ class SettingsActivity : AppCompatActivity() {
     private var storageProfilePicsRef: StorageReference? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
+        setContentView(R.layout.activity_setting)
         getType = intent.getStringExtra("type")
         Toast.makeText(this, getType, Toast.LENGTH_SHORT).show()
         mAuth = FirebaseAuth.getInstance()
