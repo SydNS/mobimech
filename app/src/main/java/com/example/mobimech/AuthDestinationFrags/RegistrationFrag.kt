@@ -2,8 +2,12 @@
 
 package com.example.mobimech.AuthDestinationFrags
 
+import android.R.attr.name
 import android.app.ProgressDialog
 import android.content.ContentValues.TAG
+import android.content.Context
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,7 +18,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.mobimech.R
 import com.example.mobimech.databinding.FragmentRegistrationBinding
-import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
@@ -32,6 +35,10 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class RegistrationFrag : Fragment() {
+
+
+    private lateinit var sharedPreferences:SharedPreferences
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -45,11 +52,13 @@ class RegistrationFrag : Fragment() {
     var MechanicRef: DatabaseReference? = null
     private var loadingBar: ProgressDialog? = null
 
-
-    private lateinit var auth: FirebaseAuth
-
-    private var currentUser: FirebaseUser? = null
     var currentUserId: String? = null
+
+//    override fun onAttach(context: Context) {
+//        super.onAttach(context)
+//        sharedPreferences =
+//            context.getSharedPreferences("NotTheFirsttime", MODE_PRIVATE)
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,11 +68,15 @@ class RegistrationFrag : Fragment() {
         }
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
+        sharedPreferences =
+            activity?.getSharedPreferences("NotTheFirsttime", Context.MODE_PRIVATE)!!
+
         // Inflate the layout for this fragment
         registrationBinding = FragmentRegistrationBinding.inflate(inflater)
         var view = registrationBinding.root
@@ -78,6 +91,8 @@ class RegistrationFrag : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
         registrationBinding.registerbtn.setOnClickListener {
             val emailtext = registrationBinding.emaillogin.editText?.text.toString().trim()
             var usernametext = registrationBinding.usenname.editText?.text.toString().trim()
@@ -131,6 +146,13 @@ class RegistrationFrag : Fragment() {
         childname: String,
         appuser: String
     ) {
+//
+//        // Storing data into SharedPreferences
+//        val alreadyinstalled = sharedPreferences?.edit()
+//        alreadyinstalled.putString("Answer","yes")
+//        alreadyinstalled.apply()
+
+
         // [START create_user_with_email]
 
         loadingBar!!.setTitle("Please wait :")

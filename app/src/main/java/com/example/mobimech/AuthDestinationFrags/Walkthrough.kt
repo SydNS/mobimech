@@ -1,5 +1,7 @@
 package com.example.mobimech.AuthDestinationFrags
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -31,6 +33,9 @@ class Walkthrough : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+
+    private lateinit var sharedPreferences: SharedPreferences
+
     lateinit var walkthroughBinding: FragmentWalkthroughBinding
     lateinit var walkthroughRecyclerviewdapter: WalkthroughRecyclerviewdapter
     lateinit var walkthruVP: ViewPager2
@@ -39,6 +44,12 @@ class Walkthrough : Fragment() {
     lateinit var walkthrunext: Button
     lateinit var walkthrsignin: Button
     lateinit var users: ArrayList<DisplayItem>
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+//        sharedPreferences =
+//            context.getSharedPreferences("NotTheFirsttime", Context.MODE_PRIVATE)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +71,12 @@ class Walkthrough : Fragment() {
         walkthruVP = walkthroughBinding.walkthroughviewpager
         walkthruprevious = walkthroughBinding.previous
         walkthrunext = walkthroughBinding.next
-        walkthrsignin = walkthroughBinding.Signinbtn
+        walkthrsignin = walkthroughBinding.Signinbtnwalkthrough
+
+
+        sharedPreferences =
+            activity?.getSharedPreferences("NotTheFirsttime", Context.MODE_PRIVATE)!!
+
 
 
         //crating an arraylist to store users using the data class user
@@ -136,7 +152,8 @@ class Walkthrough : Fragment() {
             walkthruVP.setCurrentItem(ci + 1, true)
         }
 
-        walkthroughBinding.Signinbtn.setOnClickListener {
+        walkthroughBinding.Signinbtnwalkthrough.setOnClickListener {
+
             Navigation.findNavController(view).navigate(R.id.action_walkthrough_to_loginFrag)
         }
 
