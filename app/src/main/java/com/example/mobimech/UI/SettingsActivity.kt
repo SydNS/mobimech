@@ -59,9 +59,9 @@ class SettingsActivity : AppCompatActivity() {
         profileChangeBtn = findViewById(R.id.change_picture_btn)
         closeButton!!.setOnClickListener {
             if (getType == "Drivers") {
-                startActivity(Intent(this@SettingsActivity, DriverMapActivity::class.java))
+                startActivity(Intent(this@SettingsActivity, MechanicMapUi::class.java))
             } else {
-                startActivity(Intent(this@SettingsActivity, CustomersMapActivity::class.java))
+                startActivity(Intent(this@SettingsActivity, UserMapUi::class.java))
             }
         }
         saveButton!!.setOnClickListener {
@@ -90,9 +90,9 @@ class SettingsActivity : AppCompatActivity() {
             profileImageView?.setImageURI(imageUri)
         } else {
             if (getType == "Drivers") {
-                startActivity(Intent(this@SettingsActivity, DriverMapActivity::class.java))
+                startActivity(Intent(this@SettingsActivity, MechanicMapUi::class.java))
             } else {
-                startActivity(Intent(this@SettingsActivity, CustomersMapActivity::class.java))
+                startActivity(Intent(this@SettingsActivity, UserMapUi::class.java))
             }
             Toast.makeText(this, "Error, Try Again.", Toast.LENGTH_SHORT).show()
         }
@@ -148,14 +148,14 @@ class SettingsActivity : AppCompatActivity() {
                         startActivity(
                             Intent(
                                 this@SettingsActivity,
-                                DriverMapActivity::class.java
+                                MechanicMapUi::class.java
                             )
                         )
                     } else {
                         startActivity(
                             Intent(
                                 this@SettingsActivity,
-                                CustomersMapActivity::class.java
+                                UserMapUi::class.java
                             )
                         )
                     }
@@ -183,9 +183,9 @@ class SettingsActivity : AppCompatActivity() {
             }
             databaseReference?.child(mAuth?.currentUser!!.uid)?.updateChildren(userMap)
             if (getType == "Drivers") {
-                startActivity(Intent(this@SettingsActivity, DriverMapActivity::class.java))
+                startActivity(Intent(this@SettingsActivity, MechanicMapUi::class.java))
             } else {
-                startActivity(Intent(this@SettingsActivity, CustomersMapActivity::class.java))
+                startActivity(Intent(this@SettingsActivity, UserMapUi::class.java))
             }
         }
     }
