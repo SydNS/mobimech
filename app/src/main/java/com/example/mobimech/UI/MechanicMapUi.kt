@@ -80,12 +80,12 @@ LocationListener {
         txtPhone = findViewById(R.id.phone_customer)
         profilePic = findViewById(R.id.profile_image_customer)
         relativeLayout = findViewById(R.id.rel2)
-        val mapFragment: SupportMapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+        val mapFragment: SupportMapFragment? = supportFragmentManager
+            .findFragmentById(R.id.map) as SupportMapFragment?
+        mapFragment?.getMapAsync(this)
         SettingsDriverButton!!.setOnClickListener {
             val intent = Intent(this, SettingsActivity::class.java)
-            intent.putExtra("type", "Drivers")
+            intent.putExtra("type", "Mechanics")
             startActivity(intent)
         }
         LogoutDriverBtn!!.setOnClickListener {
@@ -99,10 +99,10 @@ LocationListener {
 
     //getting assigned customer location
     private val assignedCustomersRequest: Unit
-    private get() {
+    get() {
         AssignedCustomerRef = driverID?.let {
             FirebaseDatabase.getInstance().reference.child("Users")
-                .child("Drivers").child(it).child("CustomerRideID")
+                .child("Mechanics").child(it).child("CustomerRideID")
         }
         AssignedCustomerRef?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -191,10 +191,10 @@ LocationListener {
             mMap?.animateCamera(CameraUpdateFactory.zoomTo(12f))
             val userID: String = FirebaseAuth.getInstance().currentUser.uid
             val DriversAvailabilityRef: DatabaseReference =
-                FirebaseDatabase.getInstance().reference.child("Drivers Available")
+                FirebaseDatabase.getInstance().reference.child("Mechanics Available")
             val geoFireAvailability = GeoFire(DriversAvailabilityRef)
             val DriversWorkingRef: DatabaseReference =
-                FirebaseDatabase.getInstance().reference.child("Drivers Working")
+                FirebaseDatabase.getInstance().reference.child("Mechanics Working")
             val geoFireWorking = GeoFire(DriversWorkingRef)
             when (customerID) {
                 "" -> {
@@ -251,7 +251,7 @@ LocationListener {
         googleApiClient?.connect()
     }
 
-    protected override fun onStop() {
+    override fun onStop() {
         super.onStop()
         if (!currentLogOutUserStatus) {
             DisconnectDriver()
@@ -261,7 +261,7 @@ LocationListener {
     private fun DisconnectDriver() {
         val userID: String = FirebaseAuth.getInstance().getCurrentUser().uid
         val DriversAvailabiltyRef: DatabaseReference =
-            FirebaseDatabase.getInstance().reference.child("Drivers Available")
+            FirebaseDatabase.getInstance().reference.child("Mechanics Available")
         val geoFire = GeoFire(DriversAvailabiltyRef)
         geoFire.removeLocation(userID)
     }
