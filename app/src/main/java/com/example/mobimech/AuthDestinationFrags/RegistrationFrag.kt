@@ -38,12 +38,10 @@ class RegistrationFrag : Fragment() {
     private var mAuth: FirebaseAuth? = null
     lateinit var registrationBinding: FragmentRegistrationBinding
     private lateinit var emailtext: String
-
-
-
     private var firebaseAuthListner: FirebaseAuth.AuthStateListener? = null
-    private lateinit var firbasedatabase:FirebaseDatabase
-//    private lateinit var mechanfirbasedatabase:FirebaseDatabase
+    private lateinit var firbasedatabase: FirebaseDatabase
+
+    //    private lateinit var mechanfirbasedatabase:FirebaseDatabase
     var MechanicRef: DatabaseReference? = null
     private var loadingBar: ProgressDialog? = null
 
@@ -71,7 +69,8 @@ class RegistrationFrag : Fragment() {
         var view = registrationBinding.root
         mAuth = FirebaseAuth.getInstance()
 
-        firbasedatabase =FirebaseDatabase.getInstance("https://mobilemechan-default-rtdb.firebaseio.com/")
+        firbasedatabase =
+            FirebaseDatabase.getInstance("https://mobilemechan-default-rtdb.firebaseio.com/")
         loadingBar = ProgressDialog(activity)
 
         return view
@@ -80,12 +79,18 @@ class RegistrationFrag : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         registrationBinding.registerbtn.setOnClickListener {
-            var emailtext = registrationBinding.emaillogin.editText?.text.toString().trim()
+            val emailtext = registrationBinding.emaillogin.editText?.text.toString().trim()
             var usernametext = registrationBinding.usenname.editText?.text.toString().trim()
-            var passtext1 = registrationBinding.passlogin.editText?.text.toString().trim()
-            var passtext2 = registrationBinding.passlogin2.editText?.text.toString().trim()
+            val passtext1 = registrationBinding.passlogin.editText?.text.toString().trim()
+            val passtext2 = registrationBinding.passlogin2.editText?.text.toString().trim()
 
-            if (passtext1 == passtext2) createAccount(emailtext, passtext2, view,"Clients","Client") else {
+            if (passtext1 == passtext2) createAccount(
+                emailtext,
+                passtext2,
+                view,
+                "Customers",
+                "Client"
+            ) else {
                 Toast.makeText(activity, "some fields are empty", Toast.LENGTH_SHORT)
                     .show()
             }
@@ -95,12 +100,18 @@ class RegistrationFrag : Fragment() {
 
         registrationBinding.mechanregisterbtn.setOnClickListener {
 
-            var emailtext = registrationBinding.emaillogin.editText?.text.toString().trim()
+            val emailtext = registrationBinding.emaillogin.editText?.text.toString().trim()
             var usernametext = registrationBinding.usenname.editText?.text.toString().trim()
-            var passtext1 = registrationBinding.passlogin.editText?.text.toString().trim()
-            var passtext2 = registrationBinding.passlogin2.editText?.text.toString().trim()
+            val passtext1 = registrationBinding.passlogin.editText?.text.toString().trim()
+            val passtext2 = registrationBinding.passlogin2.editText?.text.toString().trim()
 
-            if (passtext1 == passtext2) createAccount(emailtext, passtext2, view,"Mechanics","Mechanic") else {
+            if (passtext1 == passtext2) createAccount(
+                emailtext,
+                passtext2,
+                view,
+                "Mechanics",
+                "Mechanic"
+            ) else {
                 Toast.makeText(activity, "some fields are empty", Toast.LENGTH_SHORT)
                     .show()
             }
@@ -113,7 +124,13 @@ class RegistrationFrag : Fragment() {
 
     }
 
-    private fun createAccount(email: String, password: String, view: View,childname:String,appuser:String) {
+    private fun createAccount(
+        email: String,
+        password: String,
+        view: View,
+        childname: String,
+        appuser: String
+    ) {
         // [START create_user_with_email]
 
         loadingBar!!.setTitle("Please wait :")
@@ -128,13 +145,13 @@ class RegistrationFrag : Fragment() {
                 val user = mAuth?.currentUser
 
                 currentUserId = user?.uid
-                MechanicRef =firbasedatabase
-                        .reference
-                        .child("Users").child(childname).child(currentUserId!!)
+                MechanicRef = firbasedatabase
+                    .reference
+                    .child("Users").child(childname).child(currentUserId!!)
 //                        .child("Users").child("Mechanics").child(currentUserId!!)
                 MechanicRef!!.setValue(true)
 
-                Toast.makeText(activity, "Welcome Our Dear $appuser", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Welcome $appuser", Toast.LENGTH_SHORT).show()
 
                 loadingBar!!.dismiss()
 
@@ -144,7 +161,11 @@ class RegistrationFrag : Fragment() {
             } else {
                 // If sign in fails, display a message to the user.
 //                Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                Toast.makeText(activity, "Error Occured ${it.exception?.message.toString()}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    activity,
+                    "Error Occured ${it.exception?.message.toString()}",
+                    Toast.LENGTH_SHORT
+                ).show()
                 loadingBar!!.dismiss()
 
             }
