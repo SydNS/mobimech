@@ -81,7 +81,6 @@
 
 
         <Button
-            android:background="@color/light_blue_600"
             android:id="@+id/loginbtn"
             android:text="@string/user_login"
             android:layout_alignParentEnd="true"
@@ -91,7 +90,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/passlogin"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="50dp" />
 
 
         <Button
