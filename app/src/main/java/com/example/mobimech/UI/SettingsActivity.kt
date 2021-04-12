@@ -53,12 +53,12 @@ class SettingsActivity : AppCompatActivity() {
         nameEditText = findViewById(R.id.name)
         phoneEditText = findViewById(R.id.phone_number)
         driverCarName = findViewById(R.id.driver_car_name)
-        if (getType == "Drivers") driverCarName?.visibility = View.VISIBLE
+        if (getType == "Mechanics") driverCarName?.visibility = View.VISIBLE
         closeButton = findViewById(R.id.close_button)
         saveButton = findViewById(R.id.save_button)
         profileChangeBtn = findViewById(R.id.change_picture_btn)
         closeButton!!.setOnClickListener {
-            if (getType == "Drivers") {
+            if (getType == "Mechanics") {
                 startActivity(Intent(this@SettingsActivity, MechanicMapUi::class.java))
             } else {
                 startActivity(Intent(this@SettingsActivity, UserMapUi::class.java))
@@ -89,7 +89,7 @@ class SettingsActivity : AppCompatActivity() {
             }
             profileImageView?.setImageURI(imageUri)
         } else {
-            if (getType == "Drivers") {
+            if (getType == "Mechanics") {
                 startActivity(Intent(this@SettingsActivity, MechanicMapUi::class.java))
             } else {
                 startActivity(Intent(this@SettingsActivity, UserMapUi::class.java))
@@ -104,7 +104,7 @@ class SettingsActivity : AppCompatActivity() {
         } else if (TextUtils.isEmpty(phoneEditText?.text.toString())) {
             Toast.makeText(this, "Please provide your phone number.", Toast.LENGTH_SHORT).show()
         } else {
-            if (getType == "Drivers" && TextUtils.isEmpty(driverCarName?.text.toString())) {
+            if (getType == "Mechanics" && TextUtils.isEmpty(driverCarName?.text.toString())) {
                 Toast.makeText(this, "Please provide your car Name.", Toast.LENGTH_SHORT).show()
             } else if (checker == "clicked") {
                 uploadProfilePicture()
@@ -136,7 +136,7 @@ class SettingsActivity : AppCompatActivity() {
                     userMap["name"] = nameEditText?.text.toString()
                     userMap["phone"] = phoneEditText?.text.toString()
                     userMap["image"] = myUrl
-                    if (getType == "Drivers") {
+                    if (getType == "Mechanics") {
                         userMap["car"] = driverCarName?.text.toString()
                     }
                     mAuth?.currentUser?.let {
@@ -144,7 +144,7 @@ class SettingsActivity : AppCompatActivity() {
                             ?.updateChildren(userMap)
                     }
                     progressDialog.dismiss()
-                    if (getType == "Drivers") {
+                    if (getType == "Mechanics") {
                         startActivity(
                             Intent(
                                 this@SettingsActivity,
@@ -171,18 +171,18 @@ class SettingsActivity : AppCompatActivity() {
             Toast.makeText(this, "Please provide your name.", Toast.LENGTH_SHORT).show()
         } else if (TextUtils.isEmpty(phoneEditText?.text.toString())) {
             Toast.makeText(this, "Please provide your phone number.", Toast.LENGTH_SHORT).show()
-        } else if (getType == "Drivers" && TextUtils.isEmpty(driverCarName?.text.toString())) {
+        } else if (getType == "Mechanics" && TextUtils.isEmpty(driverCarName?.text.toString())) {
             Toast.makeText(this, "Please provide your car Name.", Toast.LENGTH_SHORT).show()
         } else {
             val userMap = HashMap<String, Any>()
             userMap["uid"] = mAuth?.currentUser!!.uid
             userMap["name"] = nameEditText?.text.toString()
             userMap["phone"] = phoneEditText?.text.toString()
-            if (getType == "Drivers") {
+            if (getType == "Mechanics") {
                 userMap["car"] = driverCarName?.text.toString()
             }
             databaseReference?.child(mAuth?.currentUser!!.uid)?.updateChildren(userMap)
-            if (getType == "Drivers") {
+            if (getType == "Mechanics") {
                 startActivity(Intent(this@SettingsActivity, MechanicMapUi::class.java))
             } else {
                 startActivity(Intent(this@SettingsActivity, UserMapUi::class.java))
