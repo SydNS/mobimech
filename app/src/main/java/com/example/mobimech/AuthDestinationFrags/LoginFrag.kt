@@ -1,6 +1,7 @@
 package com.example.mobimech.AuthDestinationFrags
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import com.example.mobimech.R
 import com.example.mobimech.databinding.FragmentLoginBinding
+import com.example.mobimech.mobimechsharedpreferences.IsItTheAppsFirstTimeOpenning
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -44,6 +46,13 @@ class LoginFrag : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
 
+//        if (!IsItTheAppsFirstTimeOpenning(requireContext()).checkingInstalled()) {
+//            Navigation.findNavController(view).navigate(R.id.action_loginFrag_to_registrationFrag)
+//
+//        } else {
+//
+//        }
+
         auth = FirebaseAuth.getInstance()
     }
 
@@ -51,6 +60,14 @@ class LoginFrag : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        if (!IsItTheAppsFirstTimeOpenning(requireContext()).checkingInstalled()) {
+            if (container != null) {
+                Navigation.findNavController(container)
+                    .navigate(R.id.action_loginFrag_to_registrationFrag)
+            }
+        }
+
+
         // Inflate the layout for this fragment
         loginBinding = FragmentLoginBinding.inflate(inflater, container, false)
 
