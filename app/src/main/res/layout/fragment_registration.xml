@@ -112,14 +112,29 @@
 
 
         <Button
-            android:id="@+id/registerbtn"
-            android:layout_width="300dp"
+            android:id="@+id/mechanregisterbtn"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/passlogin2"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
+            android:layout_marginStart="50dp"
+            android:text="@string/mechnic_login"
+            android:textColor="@color/whiteTextColor"
+            android:layout_marginLeft="50dp" />
+
+
+
+        <Button
+            android:id="@+id/registerbtn"
             android:text="@string/register"
-            android:textColor="@color/whiteTextColor" />
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="50dp"
+            android:textColor="@color/whiteTextColor"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/passlogin2"
+            android:layout_marginTop="20dp" />
 
         <TextView
             android:id="@+id/loginlink"
@@ -130,7 +145,6 @@
             android:layout_marginTop="20dp"
             android:text="@string/have_an_account_login_here"
             android:textColor="@color/whiteTextColor" />
-
 
     </RelativeLayout>
 

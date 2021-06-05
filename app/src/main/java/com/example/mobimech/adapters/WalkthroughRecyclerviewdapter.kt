@@ -8,32 +8,27 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobimech.R
+import com.example.mobimech.databinding.ListLayoutBinding
 import com.example.mobimech.models.DisplayItem
 
 class WalkthroughRecyclerviewdapter(val userList: ArrayList<DisplayItem>) :
     RecyclerView.Adapter<WalkthroughRecyclerviewdapter.ViewHolder>() {
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bindItems(user: DisplayItem) {
-            val textViewName = itemView.findViewById(R.id.textViewUsername) as TextView
-            val textViewAddress  = itemView.findViewById(R.id.textViewAddress) as TextView
-            val image  = itemView.findViewById(R.id.bground) as RelativeLayout
-            textViewName.text = user.name
-            textViewAddress.text = user.address
-            image.setBackgroundResource(user.displayimage)
-        }
-    }
+    lateinit var listLayoutBinding: ListLayoutBinding
+
+    class ViewHolder(var listLayoutBinding: ListLayoutBinding) :
+        RecyclerView.ViewHolder(listLayoutBinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.list_layout, parent, false)
-//        var listLayoutBinding: ListLayoutBinding= ListLayoutBinding.inflate(LayoutInflater.from(parent.context))
-//        val v =listLayoutBinding.root
-
-        return ViewHolder(v)
+        
+        listLayoutBinding =
+            ListLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(listLayoutBinding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItems(userList[position])
+        listLayoutBinding.textViewUsername.text = userList[position].name
+        listLayoutBinding.textViewAddress.text = userList[position].address
+        listLayoutBinding.bground.setBackgroundResource(userList[position].displayimage)
     }
 
     override fun getItemCount(): Int {

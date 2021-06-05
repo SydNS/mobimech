@@ -1,11 +1,22 @@
-package com.example.mobimech.AuthDestinationFrags
+package com.example.mobimech.homeui
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mobimech.R
+import com.example.mobimech.UI.UserMapUi
+import com.example.mobimech.adapters.OrdersRRecyclerViewAdapter
+import com.example.mobimech.adapters.TabsAdapter
+import com.example.mobimech.databinding.FragmentHomeBinding
+import com.example.mobimech.databinding.FragmentHomeTabsBinding
+import com.example.mobimech.models.DisplayItem
+import com.example.mobimech.models.OrderListItem
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +33,9 @@ class HomeFrag : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    lateinit var fragmentHomeBinding: FragmentHomeBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,7 +49,26 @@ class HomeFrag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false)
+
+
+        fragmentHomeBinding= FragmentHomeBinding.inflate(inflater, container, false)
+        fragmentHomeBinding.viewpager.adapter= TabsAdapter(childFragmentManager)
+        fragmentHomeBinding.tabLayout.setupWithViewPager(fragmentHomeBinding.viewpager)
+
+        return fragmentHomeBinding.root
+
+
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+//        fragmentHomeBinding.makeorders.setOnClickListener {
+//            startActivity(Intent(activity,UserMapUi::class.java))
+//        }
+
     }
 
     companion object {

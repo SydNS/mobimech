@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/orderows"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+
+        <RelativeLayout
+            android:id="@+id/highlights"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginVertical="2dp"
+            android:background="@color/whiteTextColor">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/makeorders"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:layout_marginVertical="5dp"
+                android:layout_marginLeft="5dp"
+                android:elevation="5dp"
+                android:layout_marginStart="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/whiteTextColor">
+
+                    <TextView
+                        android:id="@+id/numberofpending"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginVertical="15dp"
+                        android:text="12"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:id="@+id/pending"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/numberofpending"
+                        android:layout_centerInParent="true"
+                        android:text="@string/make_order"
+                        android:textColor="#000" />
+
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/hl2"
+                android:layout_width="120dp"
+                android:layout_height="110dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="1dp"
+                android:layout_marginVertical="5dp"
+                android:background="@color/whiteCardColor"
+                android:elevation="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/whiteTextColor">
+
+                    <TextView
+                        android:id="@+id/numberofinprocess"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginVertical="15dp"
+                        android:text="2"
+                        android:textColor="#BC2929" />
+
+                    <TextView
+                        android:id="@+id/inprocess"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/numberofinprocess"
+                        android:layout_centerInParent="true"
+                        android:text="@string/pending_orders"
+                        android:textColor="#BC2929" />
+
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/hl3"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginVertical="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/whiteCardColor"
+                android:elevation="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:background="@color/whiteTextColor">
+
+                    <TextView
+                        android:id="@+id/numberofcomplete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginVertical="15dp"
+                        android:text="10"
+                        android:textColor="#4CAF50" />
+
+                    <TextView
+                        android:id="@+id/complete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/numberofcomplete"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:text="@string/completed_orders"
+                        android:textColor="#4CAF50" />
+
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

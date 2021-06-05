@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/walkthrubtnbackground"
+
         >
 
 <!--        <ImageView-->
@@ -56,6 +57,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textEmailSubject"
                 android:hint="@string/enter_your_email_phone_number" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -73,26 +75,41 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPassword"
                 android:hint="@string/enter_your_password" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <Button
-            android:background="@color/light_blue_600"
             android:id="@+id/loginbtn"
-            android:layout_width="300dp"
+            android:text="@string/user_login"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="50dp"
+            android:textColor="@color/whiteTextColor"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/passlogin"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:text="@string/login"
-            android:textColor="@color/whiteTextColor" />
+            android:layout_marginEnd="50dp" />
+
+
+        <Button
+            android:id="@+id/mechanloginbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/passlogin"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="50dp"
+            android:text="@string/mechnic_login"
+            android:textColor="@color/whiteTextColor"
+            android:layout_marginLeft="50dp" />
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/loginbtn"
+            android:layout_below="@id/mechanloginbtn"
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
 

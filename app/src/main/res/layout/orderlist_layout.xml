@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="10dp"
+    android:layout_margin="2dp">
+
+    <RelativeLayout
+        android:background="@color/whiteTextColor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:textColor="#000"
+            android:id="@+id/mecahnname"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="8dp"
+            android:text="Name Mechan" />
+
+        <TextView
+            android:textColor="#000"
+            android:id="@+id/orderdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="8dp"
+            android:text="20 /march /2012" />
+
+        <TextView
+            android:textColor="#000"
+            android:id="@+id/rateStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mecahnname"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="8dp"
+            android:text="rate this mechanrate this mechanrate this mechanrate this mechanrate this mechan  " />
+
+        <TextView
+            android:textColor="#000"
+            android:id="@+id/serviceprovided"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Service"
+            android:layout_below="@id/rateStart"
+            android:layout_margin="10dp"/>
+
+        <TextView
+            android:textColor="#000"
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="location"
+            android:layout_toRightOf="@+id/serviceprovided"
+            android:layout_below="@id/rateStart"
+            android:layout_margin="10dp"/>
+        <TextView
+            android:textColor="#000"
+            android:id="@+id/cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="location"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/rateStart"
+            android:layout_margin="10dp"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

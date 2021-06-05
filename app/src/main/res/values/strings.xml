@@ -27,4 +27,16 @@
     <string name="mobile_mechanic">Mobile Mechanic</string>
     <string name="descn1">\"We bring you the garage \"</string>
     <string name="descn2">"we bring you the best mechanics we bring you the best mechanics we bring you the best mechanics "</string>
+    <string name="title_activity_user_map_ui">User Map</string>
+    <string name="DetailsOfTheIssueAtHand">DetailsOfTheIssueAtHand</string>
+    <string name="typeOfVehicle">Kind Of Vehicle</string>
+    <string name="pancturedpart">Panctured part</string>
+    <string name="enterthecarmodel">Enter the Carmodel</string>
+    <string name="make_order">Make Order</string>
+    <string name="pending_orders">Pending Orders</string>
+    <string name="completed_orders">Completed Orders</string>
+    <string name="request">Request a Mechanic</string>
+    <string name="accept_request">Accept Request</string>
+    <string name="mechnic_login">Mechanic</string>
+    <string name="user_login">User</string>
 </resources>

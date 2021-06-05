@@ -1,5 +1,7 @@
 package com.example.mobimech.AuthDestinationFrags
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,11 +10,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
+import androidx.navigation.Navigation
 import androidx.transition.Visibility
 import androidx.viewpager2.widget.ViewPager2
 import com.example.mobimech.R
 import com.example.mobimech.adapters.WalkthroughRecyclerviewdapter
 import com.example.mobimech.databinding.FragmentWalkthroughBinding
+import com.example.mobimech.mobimechsharedpreferences.IsItTheAppsFirstTimeOpenning
 import com.example.mobimech.models.DisplayItem
 
 // TODO: Rename parameter arguments, choose names that match
@@ -30,6 +34,10 @@ class Walkthrough : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+
+    private lateinit var sharedPreferences: SharedPreferences
+    lateinit var isItTheAppsFirstTimeOpenning: IsItTheAppsFirstTimeOpenning
+
     lateinit var walkthroughBinding: FragmentWalkthroughBinding
     lateinit var walkthroughRecyclerviewdapter: WalkthroughRecyclerviewdapter
     lateinit var walkthruVP: ViewPager2
@@ -38,6 +46,12 @@ class Walkthrough : Fragment() {
     lateinit var walkthrunext: Button
     lateinit var walkthrsignin: Button
     lateinit var users: ArrayList<DisplayItem>
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+//        sharedPreferences =
+//            context.getSharedPreferences("NotTheFirsttime", Context.MODE_PRIVATE)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,13 +67,21 @@ class Walkthrough : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
+
+        isItTheAppsFirstTimeOpenning = IsItTheAppsFirstTimeOpenning(requireActivity())
+
         walkthroughBinding = FragmentWalkthroughBinding.inflate(inflater, container, false)
         val view: View = walkthroughBinding.root
         //getting recyclerview from xml
         walkthruVP = walkthroughBinding.walkthroughviewpager
         walkthruprevious = walkthroughBinding.previous
         walkthrunext = walkthroughBinding.next
-        walkthrsignin = walkthroughBinding.Signinbtn
+        walkthrsignin = walkthroughBinding.Signinbtnwalkthrough
+
+
+        sharedPreferences =
+            activity?.getSharedPreferences("NotTheFirsttime", Context.MODE_PRIVATE)!!
+
 
 
         //crating an arraylist to store users using the data class user
@@ -133,6 +155,11 @@ class Walkthrough : Fragment() {
             val ci = walkthruVP.currentItem
 
             walkthruVP.setCurrentItem(ci + 1, true)
+        }
+
+        walkthroughBinding.Signinbtnwalkthrough.setOnClickListener {
+            isItTheAppsFirstTimeOpenning.writeInstalled()
+            Navigation.findNavController(view).navigate(R.id.action_walkthrough_to_loginFrag)
         }
 
     }

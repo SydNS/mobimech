@@ -24,9 +24,13 @@
     </fragment>
     <fragment
         android:id="@+id/homeFrag"
-        android:name="com.example.mobimech.AuthDestinationFrags.HomeFrag"
+        android:name="com.example.mobimech.homeui.HomeFrag"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFrag_to_loginFrag"
+            app:destination="@id/loginFrag" />
+    </fragment>
     <fragment
         android:id="@+id/registrationFrag"
         android:name="com.example.mobimech.AuthDestinationFrags.RegistrationFrag"
@@ -35,6 +39,9 @@
         <action
             android:id="@+id/action_registrationFrag_to_loginFrag"
             app:destination="@id/loginFrag" />
+        <action
+            android:id="@+id/action_registrationFrag_to_walkthrough"
+            app:destination="@id/walkthrough" />
     </fragment>
     <fragment
         android:id="@+id/resetPassword"
@@ -44,6 +51,9 @@
         <action
             android:id="@+id/action_resetPassword_to_loginFrag"
             app:destination="@id/loginFrag" />
+        <action
+            android:id="@+id/action_resetPassword_to_registrationFrag"
+            app:destination="@id/registrationFrag" />
     </fragment>
     <fragment
         android:id="@+id/walkthrough"
@@ -53,6 +63,9 @@
         <action
             android:id="@+id/action_walkthrough_to_loginFrag"
             app:destination="@id/loginFrag" />
+        <action
+            android:id="@+id/action_walkthrough_to_registrationFrag"
+            app:destination="@id/registrationFrag" />
     </fragment>
     <fragment
         android:id="@+id/splash"
@@ -65,5 +78,13 @@
         <action
             android:id="@+id/action_splash_to_loginFrag"
             app:destination="@id/loginFrag" />
+        <action
+            android:id="@+id/action_splash_to_registrationFrag"
+            app:destination="@id/registrationFrag" />
     </fragment>
+    <fragment
+        android:id="@+id/homeTabs"
+        android:name="com.example.mobimech.HomeTabs"
+        android:label="fragment_home_tabs"
+        tools:layout="@layout/fragment_home_tabs" />
 </navigation>
