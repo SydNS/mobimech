@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_loginFrag_to_walkthrough"
             app:destination="@id/walkthrough" />
+        <action
+            android:id="@+id/action_loginFrag_to_homeMechanic"
+            app:destination="@id/homeMechanic" />
     </fragment>
     <fragment
         android:id="@+id/homeFrag"
@@ -30,6 +33,15 @@
         <action
             android:id="@+id/action_homeFrag_to_loginFrag"
             app:destination="@id/loginFrag" />
+        <action
+            android:id="@+id/action_homeFrag_to_walkthrough"
+            app:destination="@id/walkthrough" />
+        <action
+            android:id="@+id/action_homeFrag_to_loginFrag2"
+            app:destination="@id/loginFrag" />
+        <action
+            android:id="@+id/action_homeFrag_to_resetPassword"
+            app:destination="@id/resetPassword" />
     </fragment>
     <fragment
         android:id="@+id/registrationFrag"
@@ -42,6 +54,9 @@
         <action
             android:id="@+id/action_registrationFrag_to_walkthrough"
             app:destination="@id/walkthrough" />
+        <action
+            android:id="@+id/action_registrationFrag_to_homeMechanic"
+            app:destination="@id/homeMechanic" />
     </fragment>
     <fragment
         android:id="@+id/resetPassword"
@@ -83,8 +98,16 @@
             app:destination="@id/registrationFrag" />
     </fragment>
     <fragment
-        android:id="@+id/homeTabs"
+        android:id="@+id/homeMechanic"
         android:name="com.example.mobimech.HomeTabs"
         android:label="fragment_home_tabs"
         tools:layout="@layout/fragment_home_tabs" />
+    <fragment
+        android:id="@+id/logsFrag"
+        android:name="com.example.mobimech.homeui.LogsFrag"
+        android:label="LogsFrag" />
+    <fragment
+        android:id="@+id/makeOrder"
+        android:name="com.example.mobimech.homeui.MakeOrder"
+        android:label="MakeOrder" />
 </navigation>
