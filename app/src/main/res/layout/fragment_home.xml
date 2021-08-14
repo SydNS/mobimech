@@ -51,6 +51,7 @@
                 android:layout_height="21dp"
                 android:layout_gravity="end"
                 android:layout_marginLeft="170dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/logout_btn"
@@ -59,7 +60,8 @@
                 app:layout_constraintHorizontal_bias="0.906"
                 app:layout_constraintStart_toEndOf="@+id/apptitle"
                 app:layout_constraintTop_toTopOf="@+id/apptitle"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.0"
+                android:layout_marginRight="15dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
