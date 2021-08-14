@@ -1,13 +1,16 @@
 package com.example.mobimech.homeui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.example.mobimech.R
 import com.example.mobimech.adapters.TabsAdapter
 import com.example.mobimech.databinding.FragmentHomeTabsBinding
+import com.google.firebase.auth.FirebaseAuth
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +26,7 @@ class HomeTabs : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    lateinit var auth: FirebaseAuth
 
     lateinit var homeTabsBinding: FragmentHomeTabsBinding
 
@@ -41,10 +45,17 @@ class HomeTabs : Fragment() {
     ): View {
         // Inflate the layout for this fragment
 
-        homeTabsBinding= FragmentHomeTabsBinding.inflate(inflater, container, false)
-        homeTabsBinding.viewpager.adapter=TabsAdapter(childFragmentManager)
+        auth = FirebaseAuth.getInstance()
+
+        homeTabsBinding = FragmentHomeTabsBinding.inflate(inflater, container, false)
+        homeTabsBinding.viewpager.adapter = TabsAdapter(childFragmentManager)
         homeTabsBinding.tabLayout.setupWithViewPager(homeTabsBinding.viewpager)
 
+        homeTabsBinding.logoutbutton.setOnClickListener {
+            auth.signOut()
+            Navigation.findNavController(homeTabsBinding.root)
+                .navigate(R.id.action_homeFrag_to_loginFrag)
+        }
 
         return homeTabsBinding.root
     }
