@@ -82,9 +82,9 @@ class UserMapUi : FragmentActivity(), OnMapReadyCallback, GoogleApiClient.Connec
         mAuth = FirebaseAuth.getInstance()
         currentUser = mAuth!!.currentUser
         customerID = FirebaseAuth.getInstance().getCurrentUser().uid
-        CustomerDatabaseRef = FirebaseDatabase.getInstance("https://mobilemechan-default-rtdb.firebaseio.com/").reference.child("Customer Requests")
-        DriverAvailableRef = FirebaseDatabase.getInstance("https://mobilemechan-default-rtdb.firebaseio.com/").reference.child("Mechanics Available")
-        DriverLocationRef = FirebaseDatabase.getInstance("https://mobilemechan-default-rtdb.firebaseio.com/").reference.child("Mechanics Working")
+        CustomerDatabaseRef = FirebaseDatabase.getInstance().reference.child("Customer Requests")
+        DriverAvailableRef = FirebaseDatabase.getInstance().reference.child("Mechanics Available")
+        DriverLocationRef = FirebaseDatabase.getInstance().reference.child("Mechanics Working")
         Logout = findViewById<Button>(R.id.logout_customer_btn)
         SettingsButton = findViewById<Button>(R.id.settings_customer_btn)
         CallCabCarButton = findViewById<Button>(R.id.call_a_mechanic_button)
