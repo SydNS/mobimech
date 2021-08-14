@@ -38,6 +38,7 @@ class HomeFrag : Fragment() {
     private var param2: String? = null
 
     private var currentUser: FirebaseUser? = null
+    private var auth: FirebaseAuth? = null
 
 
     lateinit var fragmentHomeBinding: FragmentHomeBinding
@@ -46,8 +47,8 @@ class HomeFrag : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        mAuth = FirebaseAuth.getInstance()
-        mAuth?.currentUser
+        auth = FirebaseAuth.getInstance()
+        auth?.currentUser
 
 //        checking if a user is an old one or not
         if (!isUserOld()) {
@@ -55,10 +56,10 @@ class HomeFrag : Fragment() {
                 .findNavController(this)
                 .navigate(R.id.action_homeFrag_to_walkthrough)
 
-        }else if (WhatTypeOfUser()=="Deliverer") {
+        } else if (WhatTypeOfUser() == "Mechanic") {
             NavHostFragment
                 .findNavController(this)
-                .navigate(R.id.action_home_map_to_deliverersmap)
+                .navigate(R.id.action_homeFrag_to_loginFrag)
 
         } else if (WhatTypeOfUser() == "Client") {
             onStart()
@@ -68,7 +69,6 @@ class HomeFrag : Fragment() {
             onStart()
         }
     }
-
 
 
     private fun isUserOld(): Boolean {
@@ -89,27 +89,29 @@ class HomeFrag : Fragment() {
     override fun onStart() {
         super.onStart()
 //         Check if user is signed in (non-null) and update UI accordingly.
-        currentUser = mAuth?.currentUser
+        currentUser = auth?.currentUser
 //        Toast.makeText(requireActivity(),"${currentUser?.email}",Toast.LENGTH_LONG).show()
         if (currentUser == null) {
 
             NavHostFragment.findNavController(requireParentFragment())
-                .navigate(R.id.action_home_map_to_authFragment)
+                .navigate(R.id.action_homeFrag_to_loginFrag)
         }
     }
-
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false)
-        fragmentHomeBinding= FragmentHomeBinding.inflate(inflater, container, false)
-        fragmentHomeBinding.viewpager.adapter= TabsAdapter(childFragmentManager)
+        fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false)
+        fragmentHomeBinding.viewpager.adapter = TabsAdapter(childFragmentManager)
         fragmentHomeBinding.tabLayout.setupWithViewPager(fragmentHomeBinding.viewpager)
+        fragmentHomeBinding.logoutbutton.setOnClickListener {
+            auth?.signOut()
 
+        }
         return fragmentHomeBinding.root
 
 
