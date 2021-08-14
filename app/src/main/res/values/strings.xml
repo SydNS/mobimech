@@ -39,4 +39,7 @@
     <string name="accept_request">Accept Request</string>
     <string name="mechnic_login">Mechanic</string>
     <string name="user_login">User</string>
+    <string name="prev">Prev</string>
+    <string name="next">Next</string>
+    <string name="sign_in">Sign In</string>
 </resources>
