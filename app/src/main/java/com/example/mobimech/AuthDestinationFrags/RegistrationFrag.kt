@@ -10,6 +10,7 @@ import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -83,7 +84,7 @@ class RegistrationFrag : Fragment() {
         mAuth = FirebaseAuth.getInstance()
 
         firbasedatabase =
-            FirebaseDatabase.getInstance("https://mobilemechan-default-rtdb.firebaseio.com/")
+            FirebaseDatabase.getInstance()
         loadingBar = ProgressDialog(activity)
 
         return view
@@ -208,6 +209,12 @@ class RegistrationFrag : Fragment() {
         super.onStop()
         firebaseAuthListner?.let { mAuth?.removeAuthStateListener(it) }
     }
+
+
+    private fun String.isValidEmail(): Boolean {
+        return Patterns.EMAIL_ADDRESS.matcher(this).matches()
+    }
+
 
     companion object {
         /**
