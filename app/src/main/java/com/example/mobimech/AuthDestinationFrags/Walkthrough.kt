@@ -79,9 +79,9 @@ class Walkthrough : Fragment() {
         walkthrsignin = walkthroughBinding.Signinbtnwalkthrough
 
 
+
         sharedPreferences =
             activity?.getSharedPreferences("NotTheFirsttime", Context.MODE_PRIVATE)!!
-
 
 
         //crating an arraylist to store users using the data class user
@@ -128,12 +128,12 @@ class Walkthrough : Fragment() {
                         walkthrunext.visibility = View.GONE
                         walkthrsignin.visibility = View.VISIBLE
                     }
-                    position==1 -> {
+                    position == 1 -> {
                         walkthruprevious.visibility = View.VISIBLE
                         walkthrunext.visibility = View.VISIBLE
                         walkthrsignin.visibility = View.GONE
                     }
-                    position==0 -> {
+                    position == 0 -> {
                         walkthruprevious.visibility = View.GONE
                         walkthrunext.visibility = View.VISIBLE
                         walkthrsignin.visibility = View.GONE
@@ -160,7 +160,18 @@ class Walkthrough : Fragment() {
         walkthroughBinding.Signinbtnwalkthrough.setOnClickListener {
             isItTheAppsFirstTimeOpenning.writeInstalled()
             Navigation.findNavController(view).navigate(R.id.action_walkthrough_to_loginFrag)
+            storeDecidedUser()
         }
+
+    }
+
+    private fun storeDecidedUser() {
+
+        val sharedPreferences =
+            activity?.getSharedPreferences("OldUser", Context.MODE_PRIVATE)
+        val editor = sharedPreferences?.edit()
+        editor?.putBoolean("Old", true)
+        editor?.apply()
 
     }
 
