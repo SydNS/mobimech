@@ -4,11 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".homeui.HomeTabs"
+    tools:context=".homeui.HomeFrag"
     android:background="@drawable/walkthrubtnbackground">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
+        android:background="@drawable/appbarbg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -47,19 +48,18 @@
             <ImageButton
                 android:id="@+id/logoutbutton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="21dp"
                 android:layout_gravity="end"
-                android:layout_marginStart="204dp"
-                android:layout_marginLeft="204dp"
+                android:layout_marginLeft="170dp"
                 android:layout_marginTop="1dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/logout_btn"
                 app:layout_constraintBottom_toBottomOf="@+id/apptitle"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.906"
                 app:layout_constraintStart_toEndOf="@+id/apptitle"
                 app:layout_constraintTop_toTopOf="@+id/apptitle"
-                app:layout_constraintVertical_bias="0.333" />
+                app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -68,6 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:tabGravity="fill"
+            android:background="@android:color/transparent"
             app:tabMode="fixed" />
 
     </com.google.android.material.appbar.AppBarLayout>

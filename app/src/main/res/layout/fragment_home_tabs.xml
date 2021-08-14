@@ -9,15 +9,66 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
+        android:background="@drawable/appbarbg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/logoimage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/this_is_the_applogo"
+                android:src="@mipmap/logog_round"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/apptitle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textSize="19sp"
+                app:layout_constraintBottom_toBottomOf="@+id/logoimage"
+                app:layout_constraintStart_toEndOf="@+id/logoimage"
+                app:layout_constraintTop_toTopOf="@+id/logoimage"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <ImageButton
+                android:id="@+id/logoutbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="21dp"
+                android:layout_gravity="end"
+                android:layout_marginLeft="170dp"
+                android:layout_marginTop="1dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/logout_btn"
+                app:layout_constraintBottom_toBottomOf="@+id/apptitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.906"
+                app:layout_constraintStart_toEndOf="@+id/apptitle"
+                app:layout_constraintTop_toTopOf="@+id/apptitle"
+                app:layout_constraintVertical_bias="0.0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:tabGravity="fill"
+            android:background="@android:color/transparent"
             app:tabMode="fixed" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -28,3 +79,4 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
