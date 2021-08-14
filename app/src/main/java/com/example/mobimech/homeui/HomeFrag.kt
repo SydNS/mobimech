@@ -1,11 +1,13 @@
 package com.example.mobimech.homeui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobimech.R
@@ -16,6 +18,8 @@ import com.example.mobimech.databinding.FragmentHomeBinding
 import com.example.mobimech.databinding.FragmentHomeTabsBinding
 import com.example.mobimech.models.DisplayItem
 import com.example.mobimech.models.OrderListItem
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -33,16 +37,68 @@ class HomeFrag : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private var currentUser: FirebaseUser? = null
+
+
     lateinit var fragmentHomeBinding: FragmentHomeBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+
+        mAuth = FirebaseAuth.getInstance()
+        mAuth?.currentUser
+
+//        checking if a user is an old one or not
+        if (!isUserOld()) {
+            NavHostFragment
+                .findNavController(this)
+                .navigate(R.id.action_homeFrag_to_walkthrough)
+
+        }else if (WhatTypeOfUser()=="Deliverer") {
+            NavHostFragment
+                .findNavController(this)
+                .navigate(R.id.action_home_map_to_deliverersmap)
+
+        } else if (WhatTypeOfUser() == "Client") {
+            onStart()
+
+
+        } else {
+            onStart()
         }
     }
+
+
+
+    private fun isUserOld(): Boolean {
+        val sharedPreferences =
+            requireActivity().getSharedPreferences("OldUser", Context.MODE_PRIVATE)
+
+        return sharedPreferences.getBoolean("Old", false)
+    }
+
+
+    private fun WhatTypeOfUser(): String? {
+        val sharedPreferences =
+            requireActivity().getSharedPreferences("OldUserType", Context.MODE_PRIVATE)
+        val isOld = sharedPreferences.getString("Type", null)
+        return isOld
+    }
+
+    override fun onStart() {
+        super.onStart()
+//         Check if user is signed in (non-null) and update UI accordingly.
+        currentUser = mAuth?.currentUser
+//        Toast.makeText(requireActivity(),"${currentUser?.email}",Toast.LENGTH_LONG).show()
+        if (currentUser == null) {
+
+            NavHostFragment.findNavController(requireParentFragment())
+                .navigate(R.id.action_home_map_to_authFragment)
+        }
+    }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,8 +106,6 @@ class HomeFrag : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false)
-
-
         fragmentHomeBinding= FragmentHomeBinding.inflate(inflater, container, false)
         fragmentHomeBinding.viewpager.adapter= TabsAdapter(childFragmentManager)
         fragmentHomeBinding.tabLayout.setupWithViewPager(fragmentHomeBinding.viewpager)
