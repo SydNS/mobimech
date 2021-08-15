@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:android_orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:background="@android:color/white"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="170dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="8dp"
+            android:android_id="@+id/nameTextView"
+            android:android_layout_alignParentLeft="true"
+            android:android_layout_height="wrap_content"
+            android:android_layout_width="match_parent"
+            android:android_padding="10dp"
+            android:android_text="Name"
+            android:android_textAppearance="?android:attr/textAppearanceLarge"
+            android:android_textColor="#000000"
+            android:android_textStyle="bold"
+            android:fontFamily="@font/josefinsansregular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.076"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="256dp"
+            android:layout_height="25dp"
+            android:android_id="@+id/quoteTextView"
+            android:android_layout_alignParentLeft="true"
+            android:android_layout_height="wrap_content"
+            android:android_layout_width="wrap_content"
+            android:android_lines="3"
+            android:android_padding="10dp"
+            android:android_text="Quote....................."
+            android:android_textAppearance="?android:attr/textAppearanceLarge"
+            android:fontFamily="@font/josefinsansregular"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toEndOf="@+id/textView"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            tools:layout_editor_absoluteY="74dp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="255dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="8dp"
+            android:android_id="@+id/descriptionTextView"
+            android:android_layout_height="wrap_content"
+            android:android_layout_width="wrap_content"
+            android:android_text="Description........."
+            android:android_textAppearance="?android:attr/textAppearanceMedium"
+            android:android_textStyle="italic"
+            android:fontFamily="@font/josefinsansregular"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toEndOf="@+id/textView2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
