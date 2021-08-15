@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:id="@+id/orderows"
+        android:background="@drawable/rcvbg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp">
@@ -14,8 +17,7 @@
             android:id="@+id/highlights"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:layout_marginVertical="2dp"
-            android:background="@color/whiteTextColor">
+            android:layout_marginVertical="2dp">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/makeorders"
@@ -27,16 +29,16 @@
                 android:elevation="5dp">
 
                 <RelativeLayout
+                    android:background="@drawable/rcvbg"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/whiteTextColor">
+                    android:layout_height="match_parent">
 
                     <ImageView
                         android:id="@+id/logoimage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:contentDescription="@string/this_is_the_applogo"
-                        android:src="@mipmap/logog_round" />
+                        android:src="@drawable/logog_foreground" />
 
 
                     <TextView
@@ -131,18 +133,25 @@
             </androidx.cardview.widget.CardView>
 
         </RelativeLayout>
-
-
-
-
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@id/orderows"
-        android:id="@+id/serviceslist"
+    <RelativeLayout
+        android:id="@+id/cardView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"/>
+        android:layout_margin="20dp"
+        android:layout_marginTop="50dp"
+        app:cardCornerRadius="5dp"
+        android:layout_below="@+id/orderows"
+        android:background="@drawable/rcvbg">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/serviceslist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/orderows"
+            android:layout_margin="10dp"
+            tools:ignore="NotSibling" />
+    </RelativeLayout>
 
 </RelativeLayout>
