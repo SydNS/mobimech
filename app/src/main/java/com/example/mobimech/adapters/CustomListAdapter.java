@@ -13,13 +13,11 @@ import com.example.mobimech.models.Mechanics_here;
 
 import java.util.ArrayList;
 
-public class CustomListAdapter
-/**********************************CUSTOM ADAPTER START************************/
-class CustomAdapter extends BaseAdapter {
+public class CustomListAdapter extends BaseAdapter {
     Context c;
     ArrayList<Mechanics_here> teachers;
 
-    public CustomAdapter(Context c, ArrayList<Mechanics_here> teachers) {
+    public CustomListAdapter(Context c, ArrayList<Mechanics_here> teachers) {
         this.c = c;
         this.teachers = teachers;
     }
@@ -43,7 +41,7 @@ class CustomAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(c).inflate(R.layout.model, parent, false);
+            convertView = LayoutInflater.from(c).inflate(R.layout.modelholder, parent, false);
         }
 
         TextView nameTextView = convertView.findViewById(R.id.nameTextView);
