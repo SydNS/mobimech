@@ -5,9 +5,7 @@ package com.example.mobimech.UI
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.pm.PackageManager.*
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -114,10 +112,10 @@ class UserMapUi : FragmentActivity(), OnMapReadyCallback, GoogleApiClient.Connec
                 geoQuery?.removeAllListeners()
                 DriverLocationRefListner?.let { it1 -> DriverLocationRef?.removeEventListener(it1) }
                 if (driverFound != null) {
-                    DriversRef = driverFoundID?.let { it1 ->
+                    driverFoundID?.let {
                         FirebaseDatabase.getInstance().reference
-                            .child("Users").child("Mechanics").child(it1).child("CustomerRideID")
-                    }
+                            .child("Users").child("Mechanics").child(it).child("CustomerRideID")
+                    }.also { DriversRef = it }
                     DriversRef?.removeValue()
                     driverFoundID = null
                 }
