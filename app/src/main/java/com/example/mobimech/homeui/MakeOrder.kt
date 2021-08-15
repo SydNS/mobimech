@@ -96,27 +96,51 @@ class MakeOrder : Fragment(), ServiceListAdapter.OnItemClickListener {
 
     override fun onItemClick(position: Int) {
         val getUserID = auth.currentUser?.uid
-
-        Toast.makeText(requireActivity(), "Item $position clicked", Toast.LENGTH_SHORT).show()
+        val eml = auth.currentUser?.email.toString()
+//        Toast.makeText(requireActivity(), "Item $position clicked", Toast.LENGTH_SHORT).show()
 //        val clickedItem = accinfoList?.get(position)
 //        clickedItem?.accountinfo = "Clicked"
 ////        myAccountAdapter?.notifyItemChanged(position)
 
         when (position) {
-            0 -> {
-                val requestedService =
-                    RequestedService(getUserID!!, requestTitle = "Whole Car Repair")
-                getReference.child("Services_requests").child(getUserID).push()
-                    .setValue(requestedService).addOnSuccessListener {
-                        Toast.makeText(requireActivity(), "Item ${requestedService.personRequest} clicked", Toast.LENGTH_SHORT).show()
-
-                    }
-
-            }
-//            1 ->startActivity(Intent(activity, WalletActivity::class.java))
+            0 -> sendRequest(eml, "Whole Car Repair", getUserID!!)
+            1 -> sendRequest(eml, "Brakes Repair", getUserID!!)
 
 //            else -> println("maybe")
         }
+    }
+
+    private fun sendRequest(eml: String, requestTitle: String, getUserID: String) {
+        val requestedService =
+            RequestedService(eml, requestTitle)
+        getReference.child("Services_requests").child(getUserID)
+            .setValue(requestedService).addOnSuccessListener {
+                Toast.makeText(
+                    requireActivity(),
+                    "${requestedService.personRequest} you've requested ${requestedService.requestTitle}",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireActivity(), "Item ${it.message} clicked", Toast.LENGTH_SHORT)
+                    .show()
+
+            }
+        getReference.child("Records_of_Services_requests").child(getUserID).push()
+            .setValue(requestedService).addOnSuccessListener {
+                Toast.makeText(
+                    requireActivity(),
+                    "${requestedService.personRequest} you've requested ${requestedService.requestTitle}",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireActivity(), "Item ${it.message} clicked", Toast.LENGTH_SHORT)
+                    .show()
+
+            }
     }
 
 }
