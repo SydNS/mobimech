@@ -89,15 +89,15 @@ class RegistrationFrag : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
 
         sharedPreferences =
-            activity?.getSharedPreferences("NotTheFirsttime", Context.MODE_PRIVATE)!!
+            activity?.getSharedPreferences("NotTheFirsttime", MODE_PRIVATE)!!
 
         // Inflate the layout for this fragment
         registrationBinding = FragmentRegistrationBinding.inflate(inflater)
-        var view = registrationBinding.root
+        val view = registrationBinding.root
         mAuth = FirebaseAuth.getInstance()
 
         firbasedatabase =
@@ -119,23 +119,27 @@ class RegistrationFrag : Fragment() {
                     .setAspectRatio(1, 1)
                     .setAspectRatio(1, 1)
                     .start(it1, this)
-            };
+            }
         }
 
         registrationBinding.registerbtn.setOnClickListener {
             val emailtext = registrationBinding.emaillogin.editText?.text.toString().trim()
-            var usernametext = registrationBinding.usenname.editText?.text.toString().trim()
+            val usernametext = registrationBinding.usenname.editText?.text.toString().trim()
             val passtext1 = registrationBinding.passlogin.editText?.text.toString().trim()
             val passtext2 = registrationBinding.passlogin2.editText?.text.toString().trim()
 
-            if (passtext1 == passtext2) createAccount(
-                emailtext,
-                passtext2,
-                view,
-                "Customers",
-                "Client",
-                usernametext
-            ) else {
+            if (passtext1 == passtext2) {
+                createAccount(
+                    emailtext,
+                    passtext2,
+                    view,
+                    "Customers",
+                    "Client",
+                    usernametext
+                )
+                Navigation.findNavController(view)
+                    .navigate(R.id.action_registrationFrag_to_homeFrag)
+            } else {
                 Toast.makeText(activity, "some fields are empty", Toast.LENGTH_SHORT)
                     .show()
             }
@@ -146,19 +150,23 @@ class RegistrationFrag : Fragment() {
         registrationBinding.mechanregisterbtn.setOnClickListener {
 
             val emailtext = registrationBinding.emaillogin.editText?.text.toString().trim()
-            var usernametext = registrationBinding.usenname.editText?.text.toString().trim()
+            val usernametext = registrationBinding.usenname.editText?.text.toString().trim()
             val passtext1 = registrationBinding.passlogin.editText?.text.toString().trim()
             val passtext2 = registrationBinding.passlogin2.editText?.text.toString().trim()
 
-            if (passtext1 == passtext2) createAccount(
-                emailtext,
-                passtext2,
-                view,
-                "Mechanics",
-                "Mechanic",
-                usernametext
+            if (passtext1 == passtext2) {
+                createAccount(
+                    emailtext,
+                    passtext2,
+                    view,
+                    "Mechanics",
+                    "Mechanic",
+                    usernametext
 
-            ) else {
+                )
+                Navigation.findNavController(view)
+                    .navigate(R.id.action_registrationFrag_to_homeMechanic)
+            } else {
                 Toast.makeText(activity, "some fields are empty", Toast.LENGTH_SHORT)
                     .show()
             }
@@ -214,8 +222,6 @@ class RegistrationFrag : Fragment() {
                 loadingBar!!.dismiss()
 
 
-                Navigation.findNavController(view)
-                    .navigate(R.id.action_registrationFrag_to_homeMechanic)
             } else {
                 // If sign in fails, display a message to the user.
 //                Log.w(TAG, "createUserWithEmail:failure", task.exception)
@@ -276,15 +282,16 @@ class RegistrationFrag : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == FragmentActivity.RESULT_OK && data != null) {
-            val result: CropImage.ActivityResult? =CropImage.getActivityResult(data)
+            val result: CropImage.ActivityResult? = CropImage.getActivityResult(data)
             if (result != null) {
                 selectedPhotoUri = result.uri
             }
 
-            Picasso.get().load(selectedPhotoUri.toString()).into(registrationBinding.selectphotoImageviewRegister)
+            Picasso.get().load(selectedPhotoUri.toString())
+                .into(registrationBinding.selectphotoImageviewRegister)
 //            registrationBinding.imuri.text=selectedPhotoUri.toString()
-        }else{
-            Toast.makeText(activity,"No image",Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(activity, "No image", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -312,7 +319,7 @@ class RegistrationFrag : Fragment() {
 //        }
 //    }
 
-    private fun performRegistration( name: String) {
+    private fun performRegistration(name: String) {
 
 
         if (selectedPhotoUri == null) {
@@ -326,7 +333,7 @@ class RegistrationFrag : Fragment() {
     private fun uploadImageToFirebaseStorage(username: String) {
         if (selectedPhotoUri == null) {
             // save user without photo
-            saveUserToFirebaseDatabase(null,username)
+            saveUserToFirebaseDatabase(null, username)
         } else {
             val filename = UUID.randomUUID().toString()
             val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
@@ -337,7 +344,7 @@ class RegistrationFrag : Fragment() {
                     @Suppress("NestedLambdaShadowedImplicitParameter")
                     ref.downloadUrl.addOnSuccessListener {
                         Log.d(RegisterActivity.TAG, "File Location: $it")
-                        saveUserToFirebaseDatabase(it.toString(),username)
+                        saveUserToFirebaseDatabase(it.toString(), username)
                     }
                 }
                 .addOnFailureListener {
@@ -349,7 +356,7 @@ class RegistrationFrag : Fragment() {
 
     }
 
-    private fun saveUserToFirebaseDatabase(profileImageUrl: String?,username: String) {
+    private fun saveUserToFirebaseDatabase(profileImageUrl: String?, username: String) {
         val uid = FirebaseAuth.getInstance().uid ?: return
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
 
