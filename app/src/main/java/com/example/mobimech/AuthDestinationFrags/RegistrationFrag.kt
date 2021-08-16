@@ -137,6 +137,7 @@ class RegistrationFrag : Fragment() {
                     "Client",
                     usernametext
                 )
+                AreYouAClient()
                 Navigation.findNavController(view)
                     .navigate(R.id.action_registrationFrag_to_homeFrag)
             } else {
@@ -377,5 +378,15 @@ class RegistrationFrag : Fragment() {
                 loading_view.visibility = View.GONE
                 already_have_account_text_view.visibility = View.VISIBLE
             }
+    }
+
+    private fun AreYouAClient() {
+
+        val sharedPreferences =
+            activity?.getSharedPreferences("UserType", Context.MODE_PRIVATE)
+        val editor = sharedPreferences?.edit()
+        editor?.putBoolean("Client", true)
+        editor?.apply()
+
     }
 }
