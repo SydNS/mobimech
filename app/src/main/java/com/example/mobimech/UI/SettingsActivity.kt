@@ -37,7 +37,7 @@ class SettingsActivity : AppCompatActivity() {
     private var checker = ""
     private var imageUri: Uri? = null
     private var myUrl = ""
-    private  var uploadTask: UploadTask? =null
+    private var uploadTask: UploadTask? = null
     private var storageProfilePicsRef: StorageReference? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +46,7 @@ class SettingsActivity : AppCompatActivity() {
         Toast.makeText(this, getType, Toast.LENGTH_SHORT).show()
         mAuth = FirebaseAuth.getInstance()
         databaseReference =
-            getType?.let(FirebaseDatabase.getInstance("https://mobilemechan-default-rtdb.firebaseio.com/").reference.child("Users")::child)
+            getType?.let(FirebaseDatabase.getInstance().reference.child("Users")::child)
         storageProfilePicsRef =
             FirebaseStorage.getInstance().reference.child("Profile Pictures")
         profileImageView = findViewById(R.id.profile_image)
@@ -118,8 +118,9 @@ class SettingsActivity : AppCompatActivity() {
         progressDialog.setMessage("Please wait, while we are settings your account information")
         progressDialog.show()
         if (imageUri != null) {
-            val fileRef: StorageReference = storageProfilePicsRef!!.child((mAuth?.currentUser?.uid ?: String() ) + ".jpg")
-            uploadTask  = fileRef.putFile(imageUri!!)
+            val fileRef: StorageReference =
+                storageProfilePicsRef!!.child((mAuth?.currentUser?.uid ?: String()) + ".jpg")
+            uploadTask = fileRef.putFile(imageUri!!)
             uploadTask!!.continueWithTask { task ->
                 if (!task.isSuccessful) {
                     task.exception?.let {
