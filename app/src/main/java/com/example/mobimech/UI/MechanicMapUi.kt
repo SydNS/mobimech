@@ -73,7 +73,7 @@ LocationListener {
         setContentView(R.layout.activity_mecanics_map_ui)
         mAuth = FirebaseAuth.getInstance()
         currentUser = mAuth!!.currentUser
-        driverID = mAuth!!.currentUser.uid
+        driverID = mAuth!!.currentUser?.uid
         LogoutDriverBtn = findViewById<Button>(R.id.logout_driv_btn)
         SettingsDriverButton = findViewById<Button>(R.id.settings_driver_btn)
         txtName = findViewById(R.id.name_customer)
@@ -189,7 +189,7 @@ LocationListener {
             val latLng = LatLng(location.latitude, location.longitude)
             mMap?.moveCamera(CameraUpdateFactory.newLatLng(latLng))
             mMap?.animateCamera(CameraUpdateFactory.zoomTo(12f))
-            val userID: String = FirebaseAuth.getInstance().currentUser.uid
+            val userID: String = FirebaseAuth.getInstance().currentUser!!.uid
             val DriversAvailabilityRef: DatabaseReference =
                 FirebaseDatabase.getInstance().reference.child("Mechanics Available")
             val geoFireAvailability = GeoFire(DriversAvailabilityRef)
@@ -259,7 +259,7 @@ LocationListener {
     }
 
     private fun DisconnectDriver() {
-        val userID: String = FirebaseAuth.getInstance().getCurrentUser().uid
+        val userID: String = FirebaseAuth.getInstance().currentUser!!.uid
         val DriversAvailabiltyRef: DatabaseReference =
             FirebaseDatabase.getInstance().reference.child("Mechanics Available")
         val geoFire = GeoFire(DriversAvailabiltyRef)
