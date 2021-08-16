@@ -57,6 +57,9 @@
         <action
             android:id="@+id/action_registrationFrag_to_homeMechanic"
             app:destination="@id/homeMechanic" />
+        <action
+            android:id="@+id/action_registrationFrag_to_homeFrag"
+            app:destination="@id/homeFrag" />
     </fragment>
     <fragment
         android:id="@+id/resetPassword"
