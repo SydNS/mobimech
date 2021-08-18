@@ -31,7 +31,8 @@
                         android:layout_width="30dp"
                         android:layout_height="40dp"
                         android:src="@drawable/close"
-                        app:tint="@android:color/white" />
+                        app:tint="@android:color/white"
+                        android:contentDescription="@string/this_is_for_issue_at_hand" />
 
                     <ImageView
                         android:id="@+id/save_button"
@@ -41,7 +42,8 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="15dp"
                         android:src="@drawable/save_edited_info"
-                        app:tint="@android:color/white" />
+                        app:tint="@android:color/white"
+                        android:layout_marginEnd="15dp" />
 
                 </RelativeLayout>
 
@@ -63,7 +65,8 @@
             android:src="@drawable/whole_service"
             app:civ_border_color="#c880ff"
             android:scaleType="centerCrop"
-            app:civ_border_width="2dp" />
+            app:civ_border_width="2dp"
+            android:contentDescription="TODO" />
 
 
         <TextView
@@ -74,9 +77,9 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/josefinsansregular"
-            android:text="Take Picture Of the Condition"
+            android:text="@string/take_picture_of_the_condition"
             android:textColor="#ffff"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
 
@@ -89,9 +92,10 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/josefinsansregular"
-            android:hint="Your Name"
+            android:hint="@string/your_name"
             android:textColor="#ffff"
-            android:textColorHint="#ffff" />
+            android:textColorHint="#ffff"
+            android:importantForAutofill="no" />
 
 
         <EditText
@@ -119,7 +123,8 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="50dp"
             android:autofillHints="todo"
-            android:hint="Your Situation Details"
+            android:fontFamily="@font/josefinsansregular"
+            android:hint="@string/your_situation_details"
             android:textColor="#ffff"
             android:textColorHint="#ffff"
             android:visibility="visible" />
@@ -132,7 +137,7 @@
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/josefinsansregular"
             android:gravity="center_horizontal"
-            android:text="Daniels Mobile Mechanic"
+            android:text="@string/daniels_mobile_mechanic"
             android:textAlignment="center"
             android:textColor="#ffff" />
 
