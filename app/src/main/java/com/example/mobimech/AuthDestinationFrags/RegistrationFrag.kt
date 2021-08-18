@@ -2,8 +2,6 @@
 
 package com.example.mobimech.AuthDestinationFrags
 
-import android.R.attr.name
-import android.app.Activity
 import android.app.ProgressDialog
 import android.content.ContentValues.TAG
 import android.content.Context
@@ -12,7 +10,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.util.Patterns
 import android.view.LayoutInflater
@@ -23,20 +20,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.Navigation
 import com.example.mobimech.R
-import com.example.mobimech.UI.LatestMessagesActivity
 import com.example.mobimech.UI.RegisterActivity
 import com.example.mobimech.UI.User
-import com.example.mobimech.UI.UserMapUi
 import com.example.mobimech.databinding.FragmentRegistrationBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import com.theartofdev.edmodo.cropper.CropImage
-import com.theartofdev.edmodo.cropper.CropImageView
-import kotlinx.android.synthetic.main.fragment_registration.*
 import kotlinx.android.synthetic.main.messaging_register.*
 import java.util.*
 
@@ -137,7 +129,7 @@ class RegistrationFrag : Fragment() {
                     "Client",
                     usernametext
                 )
-                AreYouAClient()
+                areYouAClient()
                 Navigation.findNavController(view)
                     .navigate(R.id.action_registrationFrag_to_homeFrag)
             } else {
@@ -166,7 +158,7 @@ class RegistrationFrag : Fragment() {
 
                 )
                 Navigation.findNavController(view)
-                    .navigate(R.id.action_registrationFrag_to_homeMechanic)
+                    .navigate(R.id.action_loginFrag_to_mechanicsHome)
             } else {
                 Toast.makeText(activity, "some fields are empty", Toast.LENGTH_SHORT)
                     .show()
@@ -380,7 +372,7 @@ class RegistrationFrag : Fragment() {
             }
     }
 
-    private fun AreYouAClient() {
+    private fun areYouAClient() {
 
         val sharedPreferences =
             activity?.getSharedPreferences("UserType", Context.MODE_PRIVATE)
