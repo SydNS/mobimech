@@ -154,7 +154,6 @@ class UserMapUi : FragmentActivity(), OnMapReadyCallback, GoogleApiClient.Connec
             change_picture_btn.setOnClickListener {
                 checker = "clicked"
                 CropImage.activity()
-                    .setAspectRatio(1, 1)
                     .start(this)
             }
             save_button.setOnClickListener {
