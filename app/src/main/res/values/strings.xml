@@ -42,4 +42,9 @@
     <string name="prev">Prev</string>
     <string name="next">Next</string>
     <string name="sign_in">Sign In</string>
+    <string name="your_name">Your Name</string>
+    <string name="your_situation_details">Your Situation Details</string>
+    <string name="daniels_mobile_mechanic">Daniels Mobile Mechanic</string>
+    <string name="take_picture_of_the_condition">Take Picture Of the Condition</string>
+    <string name="this_is_for_issue_at_hand">this is for issue at hand</string>
 </resources>
