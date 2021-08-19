@@ -51,19 +51,30 @@ class HomeFrag : Fragment() {
         auth = FirebaseAuth.getInstance()
         auth?.currentUser
 
-//        checking if a user is an old one or not
-        if (!isUserOld()) {
-            NavHostFragment
-                .findNavController(this)
-                .navigate(R.id.action_homeFrag_to_walkthrough)
+        currentUser = auth?.currentUser
+//        Toast.makeText(requireActivity(),"${currentUser?.email}",Toast.LENGTH_LONG).show()
+        when {
 
-        }else if (!isYouAClient()) {
-            NavHostFragment
-                .findNavController(this)
-                .navigate(R.id.action_homeFrag_to_mechanicsHome)
+            !isUserOld() -> {
+                NavHostFragment
+                    .findNavController(this)
+                    .navigate(R.id.action_homeFrag_to_walkthrough)
 
-        } else {
-            onStart()
+            }
+            !isYouAClient() -> {
+                NavHostFragment
+                    .findNavController(this)
+                    .navigate(R.id.action_homeFrag_to_mechanicsHome)
+
+            }
+            currentUser == null -> {
+
+                NavHostFragment.findNavController(this)
+                    .navigate(R.id.action_homeFrag_to_loginFrag2)
+            }
+            else -> {
+                onStart()
+            }
         }
     }
 
@@ -87,14 +98,7 @@ class HomeFrag : Fragment() {
 
     override fun onStart() {
         super.onStart()
-//         Check if user is signed in (non-null) and update UI accordingly.
-        currentUser = auth?.currentUser
-//        Toast.makeText(requireActivity(),"${currentUser?.email}",Toast.LENGTH_LONG).show()
-        if (currentUser == null) {
 
-            NavHostFragment.findNavController(requireParentFragment())
-                .navigate(R.id.action_homeFrag_to_loginFrag)
-        }
     }
 
 
@@ -111,7 +115,7 @@ class HomeFrag : Fragment() {
             auth?.signOut()
             NavHostFragment
                 .findNavController(this)
-                .navigate(R.id.action_homeFrag_to_loginFrag)
+                .navigate(R.id.action_homeFrag_to_loginFrag2)
 
 
         }
