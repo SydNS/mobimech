@@ -4,49 +4,47 @@
     android:layout_height="match_parent">
 
 
-    <!--    <androidx.recyclerview.widget.RecyclerView-->
-    <!--        android:id="@+id/orderrecyclerview"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="20dp"-->
-    <!--        android:orientation="horizontal" />-->
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@+id/headerTextView"
+            android:id="@+id/orderrecyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal" />
 
     <TextView
+        android:id="@+id/headerTextView"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:android_id="@+id/headerTextView"
-        android:android_layout_height="wrap_content"
-        android:android_layout_width="match_parent"
-        android:android_text="Zen Quotes App"
-        android:android_textAlignment="center"
-        android:android_textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:android_textColor="@color/colorAccent"
-        android:android_textStyle="bold" />
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:gravity="center_horizontal" />
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:android_fastScrollAlwaysVisible="true"
-        android:android_id="@+id/myListView"
-        android:android_layout_alignParentStart="true"
-        android:android_layout_alignParentLeft="true"
-        android:android_layout_below="@+id/headerTextView"
-        android:android_layout_height="wrap_content"
-        android:android_layout_marginTop="30dp"
-        android:android_layout_width="match_parent" >
+<!--    <ListView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:fastScrollAlwaysVisible="true"-->
+<!--        android:id="@+id/myListView"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_below="@+id/headerTextView"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="30dp">-->
 
-    </ListView>
+<!--    </ListView>-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:android_id="@+id/fab"
+        android:id="@+id/fab"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="20dp"
-        android:android_layout_gravity="bottom|end"
-        android:android_src="@android:drawable/ic_dialog_email"
+        android:layout_gravity="bottom|end"
+        android:src="@android:drawable/ic_dialog_email"
         android:contentDescription="TODO"
         android:layout_alignParentRight="true" />
 </RelativeLayout>
