@@ -97,17 +97,8 @@ class MakeOrder : Fragment(), ServiceListAdapter.OnItemClickListener {
     override fun onItemClick(position: Int) {
         val getUserID = auth.currentUser?.uid
         val eml = auth.currentUser?.email.toString()
-//        Toast.makeText(requireActivity(), "Item $position clicked", Toast.LENGTH_SHORT).show()
-//        val clickedItem = accinfoList?.get(position)
-//        clickedItem?.accountinfo = "Clicked"
-////        myAccountAdapter?.notifyItemChanged(position)
+        recyclerDataArrayList?.get(position)?.let { sendRequest(eml, it.title, getUserID!!) }
 
-        when (position) {
-            0 -> sendRequest(eml, "Whole Car Repair", getUserID!!)
-            1 -> sendRequest(eml, "Brakes Repair", getUserID!!)
-
-//            else -> println("maybe")
-        }
     }
 
     private fun sendRequest(eml: String, requestTitle: String, getUserID: String) {
