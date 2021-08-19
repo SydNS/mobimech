@@ -22,8 +22,8 @@
             android:id="@+id/action_loginFrag_to_walkthrough"
             app:destination="@id/walkthrough" />
         <action
-            android:id="@+id/action_loginFrag_to_homeMechanic"
-            app:destination="@id/homeMechanic" />
+            android:id="@+id/action_loginFrag_to_mechanicsHome"
+            app:destination="@id/mechanicsHome" />
     </fragment>
     <fragment
         android:id="@+id/homeFrag"
@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_homeFrag_to_resetPassword"
             app:destination="@id/resetPassword" />
+        <action
+            android:id="@+id/action_homeFrag_to_mechanicsHome"
+            app:destination="@id/mechanicsHome" />
     </fragment>
     <fragment
         android:id="@+id/registrationFrag"
@@ -55,11 +58,11 @@
             android:id="@+id/action_registrationFrag_to_walkthrough"
             app:destination="@id/walkthrough" />
         <action
-            android:id="@+id/action_registrationFrag_to_homeMechanic"
-            app:destination="@id/homeMechanic" />
-        <action
             android:id="@+id/action_registrationFrag_to_homeFrag"
             app:destination="@id/homeFrag" />
+        <action
+            android:id="@+id/action_registrationFrag_to_mechanicsHome"
+            app:destination="@id/mechanicsHome" />
     </fragment>
     <fragment
         android:id="@+id/resetPassword"
@@ -101,11 +104,6 @@
             app:destination="@id/registrationFrag" />
     </fragment>
     <fragment
-        android:id="@+id/homeMechanic"
-        android:name="com.example.mobimech.HomeTabs"
-        android:label="fragment_home_tabs"
-        tools:layout="@layout/fragment_home_tabs" />
-    <fragment
         android:id="@+id/logsFrag"
         android:name="com.example.mobimech.homeui.LogsFrag"
         android:label="LogsFrag" />
@@ -113,4 +111,22 @@
         android:id="@+id/makeOrder"
         android:name="com.example.mobimech.homeui.MakeOrder"
         android:label="MakeOrder" />
+    <fragment
+        android:id="@+id/mechanicsHome"
+        android:name="com.example.mobimech.MechanicsHome"
+        android:label="fragment_mechanics_home"
+        tools:layout="@layout/fragment_mechanics_home" >
+        <action
+            android:id="@+id/action_mechanicsHome_to_mechanicMapUi"
+            app:destination="@id/mechanicMapUi" />
+    </fragment>
+    <activity
+        android:id="@+id/mechanicMapUi"
+        android:name="com.example.mobimech.UI.MechanicMapUi"
+        android:label="activity_mecanics_map_ui"
+        tools:layout="@layout/activity_mecanics_map_ui" />
+    <activity
+        android:id="@+id/latestMessagesActivity"
+        android:name="com.example.mobimech.UI.LatestMessagesActivity"
+        android:label="LatestMessagesActivity" />
 </navigation>
