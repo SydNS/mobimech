@@ -148,9 +148,8 @@ class LoginFrag : Fragment() {
                     )
                 } else if (appuser == "Mechanics") {
 
-                    Navigation.findNavController(view).navigate(
-                        R.id.action_loginFrag_to_homeFrag
-                    )
+                    Navigation.findNavController(view)
+                        .navigate(R.id.action_loginFrag_to_mechanicsHome)
 
                 }
                 Toast.makeText(
