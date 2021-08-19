@@ -12,6 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.mobimech.UI.MechanicMapUi
 import com.example.mobimech.databinding.FragmentMechanicsHomeBinding
+import kotlinx.android.synthetic.main.fragment_mechanics_home.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -47,13 +48,14 @@ class MechanicsHome : Fragment() {
 
         val v=mechanicsHomeBinding.root
 
-        v.setOnClickListener {
+        v.button2.setOnClickListener {
 //            Navigation.findNavController(v).navigate(R.id.mechanicMapUi)
 //            stopped here for monday to move to the debrief
 //            ActivityNavigator(requireActivity()) s
 //                .createDestination()
 //                .setIntent(Intent(requireActivity(), MechanicMapUi::class.java))
 //                .navigate(null, null)
+            startActivity(Intent(requireActivity(),MechanicMapUi::class.java))
         }
 
         return v
