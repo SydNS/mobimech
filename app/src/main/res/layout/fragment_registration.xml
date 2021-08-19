@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/walkthrubtnbackground"
     tools:context=".AuthDestinationFrags.RegistrationFrag">
 
@@ -18,21 +19,32 @@
         <!--            android:src="@drawable/bg3"-->
         <!--            android:contentDescription="@string/this_is_the_background_image" />-->
 
-        <ImageView
-            android:id="@+id/logoimage"
+        <TextView
+            android:id="@+id/imuri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set Profile Photo"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/selectphoto_imageview_register"
+            android:layout_marginBottom="2dp"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/selectphoto_imageview_register"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
             android:contentDescription="@string/this_is_the_applogo"
-            android:src="@mipmap/logog_round" />
+            android:src="@mipmap/logog_round"
+            app:civ_border_width="4dp" />
+
 
 
         <TextView
             android:id="@+id/heading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/logoimage"
+            android:layout_below="@+id/selectphoto_imageview_register"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
             android:gravity="center_horizontal"
