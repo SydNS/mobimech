@@ -36,9 +36,7 @@
         <action
             android:id="@+id/action_homeFrag_to_walkthrough"
             app:destination="@id/walkthrough" />
-        <action
-            android:id="@+id/action_homeFrag_to_loginFrag2"
-            app:destination="@id/loginFrag" />
+
         <action
             android:id="@+id/action_homeFrag_to_resetPassword"
             app:destination="@id/resetPassword" />

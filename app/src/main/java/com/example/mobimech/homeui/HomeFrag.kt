@@ -93,7 +93,7 @@ class HomeFrag : Fragment() {
         if (currentUser == null) {
 
             NavHostFragment.findNavController(requireParentFragment())
-                .navigate(R.id.action_homeFrag_to_loginFrag2)
+                .navigate(R.id.action_homeFrag_to_loginFrag)
         }
     }
 
