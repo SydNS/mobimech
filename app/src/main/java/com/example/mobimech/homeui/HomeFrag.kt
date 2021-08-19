@@ -57,14 +57,10 @@ class HomeFrag : Fragment() {
                 .findNavController(this)
                 .navigate(R.id.action_homeFrag_to_walkthrough)
 
-        } else if (WhatTypeOfUser() == "Mechanic") {
+        }else if (!isYouAClient()) {
             NavHostFragment
                 .findNavController(this)
-                .navigate(R.id.action_homeFrag_to_loginFrag)
-
-        } else if (WhatTypeOfUser() == "Client") {
-            onStart()
-
+                .navigate(R.id.action_homeFrag_to_mechanicsHome)
 
         } else {
             onStart()
@@ -80,11 +76,13 @@ class HomeFrag : Fragment() {
     }
 
 
-    private fun WhatTypeOfUser(): String? {
+    private fun isYouAClient(): Boolean {
+
         val sharedPreferences =
-            requireActivity().getSharedPreferences("OldUserType", Context.MODE_PRIVATE)
-        val isOld = sharedPreferences.getString("Type", null)
-        return isOld
+            activity?.getSharedPreferences("UserType", Context.MODE_PRIVATE)
+        return sharedPreferences?.getBoolean("Client", false)!!
+
+
     }
 
     override fun onStart() {
@@ -95,7 +93,7 @@ class HomeFrag : Fragment() {
         if (currentUser == null) {
 
             NavHostFragment.findNavController(requireParentFragment())
-                .navigate(R.id.action_homeFrag_to_loginFrag)
+                .navigate(R.id.action_homeFrag_to_loginFrag2)
         }
     }
 
@@ -117,6 +115,8 @@ class HomeFrag : Fragment() {
 
 
         }
+
+
         return fragmentHomeBinding.root
 
 
