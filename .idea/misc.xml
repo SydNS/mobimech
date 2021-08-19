@@ -13,9 +13,11 @@
         <entry key="app/src/main/res/drawable/logoutbtop.xml" value="0.21302083333333333" />
         <entry key="app/src/main/res/drawable/rcvbg.xml" value="0.21302083333333333" />
         <entry key="app/src/main/res/drawable/serviceitembg.xml" value="0.21302083333333333" />
+        <entry key="app/src/main/res/drawable/services_backgroun.xml" value="0.21302083333333333" />
         <entry key="app/src/main/res/drawable/servicetxt.xml" value="0.21302083333333333" />
         <entry key="app/src/main/res/drawable/walkthrubtnbackground.xml" value="0.21302083333333333" />
         <entry key="app/src/main/res/layout-v21/fragment_walkthrough.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_chat_log.xml" value="0.196875" />
         <entry key="app/src/main/res/layout/activity_detail.xml" value="0.196875" />
         <entry key="app/src/main/res/layout/activity_items.xml" value="0.196875" />
         <entry key="app/src/main/res/layout/activity_latest_messages.xml" value="0.196875" />
@@ -26,6 +28,7 @@
         <entry key="app/src/main/res/layout/bottomsheet_dialog.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.196875" />
         <entry key="app/src/main/res/layout/fragment_home_tabs.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.196875" />
         <entry key="app/src/main/res/layout/fragment_mechanic_side.xml" value="0.196875" />
         <entry key="app/src/main/res/layout/fragment_mechanics_home.xml" value="0.196875" />
         <entry key="app/src/main/res/layout/fragment_registration.xml" value="0.196875" />
