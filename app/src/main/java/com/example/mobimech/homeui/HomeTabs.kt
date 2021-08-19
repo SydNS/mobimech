@@ -54,7 +54,7 @@ class HomeTabs : Fragment() {
         homeTabsBinding.logoutbutton.setOnClickListener {
             auth.signOut()
             Navigation.findNavController(homeTabsBinding.root)
-                .navigate(R.id.action_homeFrag_to_loginFrag)
+                .navigate(R.id.action_homeFrag_to_loginFrag2)
         }
 
         return homeTabsBinding.root
