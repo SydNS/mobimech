@@ -31,9 +31,6 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFrag_to_loginFrag"
-            app:destination="@id/loginFrag" />
-        <action
             android:id="@+id/action_homeFrag_to_walkthrough"
             app:destination="@id/walkthrough" />
 
@@ -43,6 +40,9 @@
         <action
             android:id="@+id/action_homeFrag_to_mechanicsHome"
             app:destination="@id/mechanicsHome" />
+        <action
+            android:id="@+id/action_homeFrag_to_loginFrag2"
+            app:destination="@id/loginFrag" />
     </fragment>
     <fragment
         android:id="@+id/registrationFrag"
