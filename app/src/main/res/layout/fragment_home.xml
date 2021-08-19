@@ -46,15 +46,15 @@
                 app:layout_constraintVertical_bias="1.0" />
 
             <ImageButton
-                android:elevation="20dp"
+                android:elevation="25dp"
                 android:id="@+id/logoutbutton"
                 android:layout_width="wrap_content"
-                android:layout_height="21dp"
+                android:layout_height="25dp"
                 android:layout_gravity="end"
                 android:layout_marginLeft="170dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginTop="1dp"
-                android:background="@drawable/btnbgs"
+                android:background="@drawable/logoutbtop"
                 android:src="@drawable/logout_btn"
                 app:layout_constraintBottom_toBottomOf="@+id/apptitle"
                 app:layout_constraintEnd_toEndOf="parent"
