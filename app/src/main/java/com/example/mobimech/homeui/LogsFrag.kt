@@ -1,14 +1,19 @@
 package com.example.mobimech.homeui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mobimech.UI.ChatLogActivity
+import com.example.mobimech.UI.LatestMessagesActivity
 import com.example.mobimech.adapters.OrdersRRecyclerViewAdapter
 import com.example.mobimech.databinding.LogsfragBinding
 import com.example.mobimech.models.OrderListItem
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class LogsFrag : Fragment() {
     lateinit var logsfragBinding: LogsfragBinding
@@ -25,6 +30,9 @@ class LogsFrag : Fragment() {
 
 //        crating an arraylist to store users using the data class user
         val orderdt = ArrayList<OrderListItem>()
+        val database = Firebase.database
+        val myRef = database.getReference("message")
+
 
         //adding some dummy data to the list
         orderdt.add(OrderListItem("Juma","22/3/2021" ))
@@ -36,6 +44,9 @@ class LogsFrag : Fragment() {
         logsfragBinding.orderrecyclerview.layoutManager= LinearLayoutManager(activity)
 
 
+        logsfragBinding.fab.setOnClickListener {
+            startActivity(Intent(activity,LatestMessagesActivity::class.java))
+        }
 
         return logsfragBinding.root
     }
