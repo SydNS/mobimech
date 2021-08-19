@@ -3,7 +3,47 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.264629388816645" />
+        <entry key="app/src/main/res/drawable/appbarbg.xml" value="0.21302083333333333" />
+        <entry key="app/src/main/res/drawable/btn_bgleft.xml" value="0.21302083333333333" />
+        <entry key="app/src/main/res/drawable/btn_bkg.xml" value="0.21302083333333333" />
+        <entry key="app/src/main/res/drawable/btnbgs.xml" value="0.21302083333333333" />
+        <entry key="app/src/main/res/drawable/ic_message_black_24dp.xml" value="0.21302083333333333" />
+        <entry key="app/src/main/res/drawable/logout_btn.xml" value="0.21302083333333333" />
+        <entry key="app/src/main/res/drawable/logoutbtop.xml" value="0.21302083333333333" />
+        <entry key="app/src/main/res/drawable/rcvbg.xml" value="0.21302083333333333" />
+        <entry key="app/src/main/res/drawable/serviceitembg.xml" value="0.21302083333333333" />
+        <entry key="app/src/main/res/drawable/servicetxt.xml" value="0.21302083333333333" />
+        <entry key="app/src/main/res/drawable/walkthrubtnbackground.xml" value="0.21302083333333333" />
+        <entry key="app/src/main/res/layout-v21/fragment_walkthrough.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_detail.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/activity_items.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/activity_latest_messages.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/activity_mecanics_map_ui.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/activity_setting.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/activity_upload.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/bottomsheet_dialog.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/fragment_home_tabs.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/fragment_mechanic_side.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/fragment_mechanics_home.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/fragment_registration.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/fragment_reset_password.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/fragment_walkthrough.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/image_dialog_layout.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/input_dialog.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/latest_message_row.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/logsfrag.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/makeorder.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/mechanics.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/messaging_login.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/messaging_register.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/modelholder.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/rows_model.xml" value="0.196875" />
+        <entry key="app/src/main/res/layout/services_viewholder.xml" value="0.196875" />
+        <entry key="app/src/main/res/menu/nav_menu.xml" value="0.196875" />
       </map>
     </option>
   </component>
