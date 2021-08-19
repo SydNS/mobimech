@@ -18,8 +18,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MobiMech">
-        <activity android:name=".UI.SettingsActivity" />
-        <activity android:name=".UI.ChatLogActivity">
+        <activity
+            android:name=".UI.SettingsActivity"
+            android:theme="@style/Theme.MobiMech" />
+        <activity
+            android:name=".UI.NewMessageActivity"
+            android:theme="@style/Theme.MobiMech" />
+        <activity
+            android:name=".UI.LatestMessagesActivity"
+            android:theme="@style/Theme.MobiMech" />
+        <activity
+            android:name=".UI.ChatLogActivity"
+            android:theme="@style/Theme.MobiMech">
             <!--            <intent-filter>-->
             <!--                <action android:name="android.intent.action.MAIN" />-->
 
